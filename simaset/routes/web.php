@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/home2', function () {
     return view('home2');
@@ -26,3 +26,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/category','CategoryController');
+
+Route::get('/', 'Auth\LoginController@index');
+Route::post('/auth', 'Auth\LoginController@auth');
+Route::get('/dashboard', 'Home\DashboardController@index');
+Route::get('/md/kategori', 'Md\KategoriController@index');
