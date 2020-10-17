@@ -29,5 +29,9 @@ Route::resource('/category','CategoryController');
 
 Route::get('/', 'Auth\LoginController@index');
 Route::post('/auth', 'Auth\LoginController@auth');
-Route::get('/dashboard', 'Home\DashboardController@index');
-Route::get('/md/kategori', 'Md\KategoriController@index');
+Route::get('auth/logout', 'Auth\LoginController@logout');
+
+Route::group(['middleware' => ['authLogin']], function () {
+    Route::get('/md/kategori', 'Md\KategoriController@index');
+    Route::get('/dashboard', 'Home\DashboardController@index');
+});

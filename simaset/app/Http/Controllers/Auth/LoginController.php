@@ -43,26 +43,33 @@ class LoginController extends Controller
         $title = 'Login Administrator';
         return view('auth.login', compact('title'));
     }
-
+    protected $layout = "layouts.app";
     public function auth(Request $request){
-        if(Session::get('login')){
-            return redirect('/home');
+        if(Session::get('/login')){
+            return redirect('/dashboard');
         }
 
         if($request->isMethod('post')){
             $data = DB::select("
                 select username, password as password, name from users where username = '$request->username' 
             ");
-
             if($data && $data[0]->password == md5($request->password)){
-                Session::put('username', $data[0]->username);
                 Session::put('name', $data[0]->name);
+                Session::put('username', $data[0]->username);
+                Session::put('login', TRUE);
                 toastr()->success('Authentikasi Berhasil');
                 return redirect('/dashboard');
             }
-            toastr()->warning('Username atau Password Salah');
+            toastr()->error('USername atau Password Salah');
             return redirect('/');
         }
-        return view('/');
+        return view('auth.login');
     }
+
+    public function logout(){
+        Session::flush();
+        toastr()->success('Logout Berhasil');
+        return redirect('/');
+    }
+       
 }
