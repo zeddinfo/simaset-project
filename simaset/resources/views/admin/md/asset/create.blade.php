@@ -80,17 +80,18 @@
                         <h3>Form Input Master Data Asset</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{url()->current()}}">
+                        <form action="{{url()->current()}}" method="POST">
+                            {{ csrf_field() }}
                             <div class="form-row mt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="inputEmail4"><b>NAMA ASSET</b><span id="wajib"> *</span></label>
-                                        <input type="text" class="form-control" id="nama_asset"
+                                        <input type="text" class="form-control" id="nama_asset" name="namaasset"
                                             placeholder="Masukan Nama Asset ...">
                                     </div>
                                     <div class="form-group">
                                         <label><b>ALAMAT ASSET</b><span id="wajib"> *</span></label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control" name="alamat"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label><strong>UKURAN</strong></label>
@@ -216,7 +217,7 @@
                                     <div class="form-row ml-2">
                                         <div class="form-group col-md-6">
                                             <label for="inputCity"><b>STATUS</b></label>
-                                            <select id="inputState" class="form-control">
+                                            <select id="inputState" class="form-control" name="status">
                                                 <option value="">- Pilih -</option>
                                                 <option value="DIJUAL">DIJUAL</option>
                                                 <option value="DISEWAKAN">DISEWAKAN</option>
@@ -226,7 +227,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputState"><b>MENGHADAP</b></label>
-                                            <select id="inputState" class="form-control">
+                                            <select id="inputState" class="form-control" name="manghadap">
                                                 <option value="-">- Pilih -</option>
                                                 <option value="Utara">Utara</option>
                                                 <option value="Timur Laut">Timur Laut</option>
@@ -242,7 +243,7 @@
                                     <div class="form-group row ml-3">
                                         <label for="inputEmail4"><b>NAMA PENYEWA</b><span id="wajib"> *</span></label>
                                         <input type="text" class="form-control" id="nama_penyewa"
-                                            placeholder="Masukan Nama Penyewa ..." style="width: 97%">
+                                            placeholder="Masukan Nama Penyewa ..." style="width: 97%" name="nama_penyewa">
                                     </div>
                                     <div class="form-group ml-3">
                                         <label><strong>MASA SEWA</strong></label>
@@ -254,7 +255,7 @@
                                                     <td>
                                                         <div class="input-group">
                                                             <input type="text" required class="form-control datepicker"
-                                                                name="rab_nobukti" id="start_rent"
+                                                                name="rab_nobukti" id="start_rent" name="tgl_sewa"
                                                                 placeholder="Silahkan Pilih Tanggal ...">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary" type="button">
@@ -270,7 +271,7 @@
                                                     <td>
                                                         <div class="input-group mb-2">
                                                             <input type="text" class="form-control text-right angka"
-                                                                id="inlineFormInputGroup2" placeholder="" name="lb"
+                                                                placeholder="" name="masa_sewa"
                                                                 id="lb">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">Tahun</div>
@@ -287,7 +288,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <input type="text" class="form-control numeric" id="inputCity"
-                                                    placeholder="JUAL">
+                                                    placeholder="JUAL" name="harga">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <select id="inputState" class="form-control">
@@ -315,6 +316,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <template class="tmp-line">@include('admin.md.asset.form_perizinan', [
+                                'i' => '__INDEX__',
+                                'model' => new \App\Models\Md\Perizinan,
+                                'name' => 'perizinan'
+                                ])</template>
+                            <template class="tmp-line-dok">@include('admin.md.asset.form_dokumentasi', [
+                                'i' => '__INDEX__',
+                                'model' => new \App\Models\Md\Dokumentasi,
+                                'name' => 'dokumentasi'
+                                ])</template>
+
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-legalisasi"
@@ -376,39 +389,25 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="tab-perizinan" role="tabpanel" aria-labelledby="tab-1">
+                                    <button type="button" class="btn  btn-primary btn-default add-item mb-2" id="add"
+                                        style="" onclick="addLine()"><i class="fa fa-plus"></i> Add Line</button>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tabel-rab-budget" width="100%"
+                                        <table class="table table-bordered" id="tabel-perizinan" width="100%"
                                             cellspacing="0">
                                             <thead>
                                                 <tr>
+                                                    <th>No</th>
                                                     <th>Perizinan</th>
                                                     <th>Nomor</th>
                                                     <th>Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach($model->budgetBelanja as $i => $budgetBelanja)
-                                      @include('transaksi.rab.form_budget_line', ['i' => $i, 'model' => $budgetBelanja, 
-                                      'name' =>  'budgetBelanja'])
-                                  @endforeach --}}
-                                                <tr>
-                                                    <td>
-                                                        <select id="inputLegalitas" class="form-control"
-                                                            name="perizinan">
-                                                            <option value="">- Pilih -</option>
-                                                            <option value="IMB">IMB</option>
-                                                            <option value="HO">HO</option>
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control angka" required
-                                                            name="nomor">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control datepicker" required
-                                                            name="tanggal">
-                                                    </td>
-                                                </tr>
+                                                @foreach($model->perizinan as $i => $perizinan)
+                                                @include('admin.md.asset.form_perizinan', ['i' => $i, 'model' =>
+                                                $perizinan,
+                                                'name' => 'perizinan'])
+                                                @endforeach
                                             </tbody>
                                         </table>
                                         {{-- <div id="delete"></div> --}}
@@ -416,34 +415,25 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="tab-foto" role="tabpanel" aria-labelledby="tab-1">
+                                    <button type="button" class="btn  btn-primary btn-default add-item mb-2" id="add"
+                                        style="" onclick="addLineDokumentasi()"><i class="fa fa-plus"></i> Add
+                                        Line</button>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tabel-rab-budget" width="100%"
+                                        <table class="table table-bordered" id="tabel-dokumentasi" width="100%"
                                             cellspacing="0">
                                             <thead>
                                                 <tr>
+                                                    <th>No</th>
                                                     <th>Pilih Foto</th>
                                                     <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach($model->budgetBelanja as $i => $budgetBelanja)
-                                      @include('transaksi.rab.form_budget_line', ['i' => $i, 'model' => $budgetBelanja, 
-                                      'name' =>  'budgetBelanja'])
-                                  @endforeach --}}
-                                                <tr>
-                                                    <td>
-                                                        <div class="custom-file">
-                                                            <input type="file" name="foto" class="custom-file-input"
-                                                                id="customFile" style="width: 150px">
-                                                            <label class="custom-file-label" for="customFile">Pilih
-                                                                Foto</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control angka" required
-                                                            name="keterangan">
-                                                    </td>
-                                                </tr>
+                                                @foreach($model->dokumentasi as $i => $dokumentasi)
+                                                @include('admin.md.asset.form_dokumentasi', ['i' => $i, 'model' =>
+                                                $dokumentasi,
+                                                'name' => 'dokumentasi'])
+                                                @endforeach
                                             </tbody>
                                         </table>
                                         {{-- <div id="delete"></div> --}}
@@ -468,8 +458,44 @@
 
 @section('script')
 <script>
+    var index = {{$model->perizinan->count()-1}};
+    var index1 = {{$model->dokumentasi->count()-1}};
+
     function autoNumeric() {
         $(".numeric").inputmask('decimal');
+    }
+
+    function addLine() {
+        var tpl = $('template.tmp-line');
+
+        index++;
+        var template = tpl.html().replace(/__INDEX__/g, index);
+        $('#tabel-perizinan > tbody').append(template);
+        renumberLine();
+    }
+
+    function addLineDokumentasi() {
+        var tpl = $('template.tmp-line-dok');
+
+        index1++;
+        var template = tpl.html().replace(/__INDEX__/g, index1);
+        $('#tabel-dokumentasi > tbody').append(template);
+        renumberLineDokumentasi();
+    }
+
+    function renumberLine() {
+        var index = 1;
+        $('#tabel-perizinan tbody tr').each(function () {
+            $(this).find('[data-id = "line_no"]').val(index);
+            index++;
+        });
+    }
+    function renumberLineDokumentasi(){
+        var index = 1;
+        $('#tabel-dokumentasi tbody tr').each(function () {
+            $(this).find('[data-id = "line_no"]').val(index);
+            index++;
+        });
     }
     $(document).ready(function () {
         autoNumeric();

@@ -37,5 +37,6 @@ Route::group(['middleware' => ['authLogin']], function () {
     Route::group(['prefix' => 'md/asset'], function () {
         Route::get('/index', 'Md\AssetController@index');
         Route::get('/create', 'Md\AssetController@create');
+        Route::post('/create', 'Md\AssetController@create');
     });
 });
