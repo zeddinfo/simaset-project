@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .nav-tabs {
+        border-bottom: 1px solid #dee2e6;
+        background-color: #6777ef;
+    }
+    .nav-tabs .nav-item .nav-link {
+        color: white;
+    }
+</style>
     <!-- Main Content -->
 <section class="section">
     <div class="section-header">
@@ -13,38 +22,28 @@
     </div>
 
     <div class="section-body">
-        <h2 class="section-title">DataTables</h2>
-        <p class="section-lead">
-            We use 'DataTables' made by @SpryMedia. You can check the full documentation <a
-                href="https://datatables.net/">here</a>.
-        </p>
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="modal-kategori">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-list" role="tab" aria-controls="tab-list" aria-selected="true"><i class="fas fa-align-justify"></i> List Asset</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-dijual" role="tab" aria-controls="tab-dijual" aria-selected="true"><i class="far fa-check-circle"></i> Dijual</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-disewa" role="tab" aria-controls="tab-disewa" aria-selected="true"><i class="fas fa-donate"></i> Disewa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-dijual-disewa" role="tab" aria-controls="tab-dijual-disewa" aria-selected="true"><i class="fas fa-money-bill-wave-alt"></i> Dijual/Disewa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-maintenance" role="tab" aria-controls="tab-maintenance" aria-selected="true"><i class="fas fa-hammer"></i> Maintenance</a>
+                        </li>
+                    </ul>
                     <div class="card-header">
-                        <div class="btn btn-info btn-tambah float-right" id="btn-tambah"><i class="fas fa-plus"></i> Tambah Data
-                        </div>
+                        <a href="{{url('/md/asset/create')}}" class="btn btn-info active float-right" role="button" aria-pressed="true"> <i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
