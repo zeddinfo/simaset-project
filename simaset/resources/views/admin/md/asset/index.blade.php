@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Main Content -->
+    <!-- Main Content -->
 <section class="section">
     <div class="section-header">
         <h1>DataTables</h1>
@@ -48,12 +48,19 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped" id="table-kategori">
+                            <table class="table table-striped table-bordered" id="table-asset">
                                 <thead>
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Slug</th>
-                                        <th>Aksi</th>
+                                        <th>No</th>
+                                        <th>Nama Asset</th>
+                                        <th>Alamat</th>
+                                        <th>LT(M<sup>2</sup>)</th>
+                                        <th>LB(M<sup>2</sup>)</th>
+                                        <th>Ukuran(L x P)</th>
+                                        <th>Status</th>
+                                        <th>Harga</th>
+                                        <th>Foto</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,38 +73,14 @@
         </div>
     </div>
 </section>
-
-@section('script')
-<script>
-    $(document).ready(function(){
-        $("#table-kategori").dataTable({
-            processing: true,
-            serverside: true,
-            responsive: true,
-            ajax: {
-                url: '{{url("api/kategori/list")}}',
-                type: 'GET',
-                dataType: 'JSON'
-            },
-            columns: [{
-					data: 'name',
-					name: 'name',
-					width: "30%"
-				},
-				{
-					data: 'slug',
-					name: 'slug',
-					width: "30%"
-				},	
-				{
-					data: 'action',
-					name: 'action',
-					width: "20%"
-				}
-			],
-        });
-    });
-</script> 
 @endsection
 
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#table-asset').DataTable({
+
+            });
+        });
+    </script>
 @endsection

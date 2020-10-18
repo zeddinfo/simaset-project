@@ -34,4 +34,7 @@ Route::get('auth/logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => ['authLogin']], function () {
     Route::get('/md/kategori', 'Md\KategoriController@index');
     Route::get('/dashboard', 'Home\DashboardController@index');
+    Route::group(['prefix' => 'md/asset'], function () {
+        Route::get('/index', 'Md\AssetController@index');
+    });
 });
