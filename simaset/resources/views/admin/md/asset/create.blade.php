@@ -91,8 +91,8 @@
                                                 <td>:</td>
                                                 <td>
                                                     <div class="input-group mb-2">
-                                                        <input type="text" class="form-control text-right"
-                                                            id="inlineFormInputGroup2" placeholder="" name="lt" id="lt">
+                                                        <input type="text" class="form-control text-right angka"
+                                                             placeholder="" name="lt" id="lt">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">M<sup>2</sup></div>
                                                         </div>
@@ -104,8 +104,8 @@
                                                 <td>:</td>
                                                 <td>
                                                     <div class="input-group mb-2">
-                                                        <input type="text" class="form-control text-right"
-                                                            id="inlineFormInputGroup2" placeholder="" name="lb" id="lb">
+                                                        <input type="text" class="form-control text-right angka"
+                                                             placeholder="" name="lb" id="lb">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">M<sup>2</sup></div>
                                                         </div>
@@ -116,9 +116,9 @@
                                                 <td>&bull; Lebar x Panjang</td>
                                                 <td>:</td>
                                                 <td>
-                                                    <input type="text" class="wide-pj" placeholder="" name="lb" id="lb"
+                                                    <input type="text" class="wide-pj angka" placeholder="" name="lb" id="lb"
                                                         style="width: 82px">
-                                                    <input type="text" class="wide-lb" placeholder="" name="lb" id="lb"
+                                                    <input type="text" class="wide-lb angka" placeholder="" name="lb" id="lb"
                                                         style="width: 82px;margin-right: -200px"><small
                                                         id="x">X</small><small id="m"><b>M</b></small>
                                                 </td>
@@ -237,9 +237,9 @@
                                             <tr>
                                                 <td>&bull; Mulai Disewa</td>
                                                 <td>:</td>
-                                                <td><div class="input-group" onclick="modalRab()">
+                                                <td><div class="input-group">
                                                     <input type="text" required class="form-control datepicker"
-                                                        name="rab_nobukti" id="rab_nobukti"
+                                                        name="rab_nobukti" id="start_rent"
                                                         placeholder="Silahkan Pilih Tanggal ...">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary" type="button">
@@ -269,7 +269,7 @@
                                     <label><strong>HARGA</strong></label>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                          <input type="text" class="form-control" id="inputCity" placeholder="JUAL">
+                                          <input type="text" class="form-control numeric" id="inputCity" placeholder="JUAL">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <select id="inputState" class="form-control">
@@ -280,7 +280,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                          <input type="text" class="form-control" id="inputCity" placeholder="SEWA">
+                                          <input type="text" class="form-control numeric" id="inputCity" placeholder="SEWA">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <select id="inputState" class="form-control">
@@ -290,24 +290,38 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label><b>EMBED GOOGLE MAPAS</b><span id="wajib"> *</span></label>
+                                        <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
                                         <textarea class="form-control"></textarea>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="inputCity"><b>STATUS ASSET<b></label>
-                                    <select name="status" title="Status" style="width:170px" id="status"
-                                        class="custom-select wide" />
-                                    <option value="">- Pilih -</option>
-                                    <option value="DIJUAL">DIJUAL</option>
-                                    <option value="DISEWAKAN">DISEWAKAN</option>
-                                    <option value="DIJUAL / DISEWAKAN">DIJUAL / DISEWAKAN</option>
-                                    <option value="MAINTENANCE">MAINTENANCE</option>
-                                    </select>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
 </section>
+@endsection
+
+@section('script')
+    <script>
+        function autoNumeric(){
+            $(".numeric").inputmask('decimal');
+        }
+        $(document).ready(function(){
+            autoNumeric();
+            $('.datepicker').datepicker({
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            immediateUpdates: true,
+            todayBtn: true,
+            todayHighlight: true
+        }).datepicker("setDate", "0");
+
+        $(".angka").keypress(function(e) {
+	    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+	        return false;
+	    }
+    });	
+
+        });
+    </script>
 @endsection

@@ -9,7 +9,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+  <link href="{{url('plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet">
   <!-- CSS Libraries -->
   {{-- <link rel="stylesheet" href="../node_modules/jqvmap/dist/jqvmap.min.css">
   <link rel="stylesheet" href="../node_modules/summernote/dist/summernote-bs4.css">
@@ -421,6 +421,31 @@
   <script src="{{url('assets/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{url('assets/js/dataTables.bootstrap4.min.js')}}"></script>
 
+  <!-- Datepicker -->
+  <script src="{{url('plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+
+  <!-- Input Mask -->
+  <script src="{{url('plugins/inputmask/inputmask.js')}}"></script>
+  <script src="{{url('plugins/inputmask/jquery.inputmask.js')}}"></script>
+  <script>
+    		Inputmask.extendAliases({
+			'numeric': {
+				'groupSeparator': ',',
+
+				'radixPoint': '.',
+
+				'autoGroup': true,
+
+				'removeMaskOnSubmit': true,
+
+				'rightAlign': true,
+
+				'autoUnmask': true,
+
+				'unmaskAsNumber': true,
+			}
+		});
+  </script>
   @yield('script')
 </body>
 @toastr_js
