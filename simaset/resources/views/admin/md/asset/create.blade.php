@@ -255,7 +255,7 @@
                                                     <td>
                                                         <div class="input-group">
                                                             <input type="text" required class="form-control datepicker"
-                                                                name="rab_nobukti" id="start_rent" name="tgl_sewa"
+                                                             id="start_rent" name="tgl_sewa"
                                                                 placeholder="Silahkan Pilih Tanggal ...">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary" type="button">
@@ -291,7 +291,7 @@
                                                     placeholder="JUAL" name="harga">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <select id="inputState" class="form-control">
+                                                <select id="inputState" class="form-control" name="satuan_harga">
                                                     <option value="">- Pilih -</option>
                                                     <option value="/ Meter">/ Meter</option>
                                                 </select>
@@ -299,7 +299,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="inputCity"
+                                                <input type="text" class="form-control numeric" id="inputCity" name="satuan_sewa"
                                                     placeholder="SEWA">
                                             </div>
                                             <div class="form-group col-md-4">

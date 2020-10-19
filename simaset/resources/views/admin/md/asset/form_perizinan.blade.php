@@ -12,7 +12,7 @@
     </select>
     </td>
     <td>
-        <input type="text" id="{{$name}}_{{$i}}_nomor" class="form-control" name="{{$name}}[{{$i}}][nomor]" placeholder=""  required="" data-id="nomor" im-insert="true">
+        <input type="text" id="{{$name}}_{{$i}}_nomor" class="form-control numeric" name="{{$name}}[{{$i}}][nomor]" placeholder=""  required="" data-id="nomor" im-insert="true">
     </td>
     <td>
         <input type="text" id="{{$name}}_{{$i}}_tgl-izin" class="form-control" name="{{$name}}[{{$i}}][tgl-izin]" placeholder="" required="" data-id="tgl-izin" im-insert="true">
