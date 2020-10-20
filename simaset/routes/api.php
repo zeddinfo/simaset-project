@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/kategori/list', 'Api\Md\KategoriController@list');
+
+Route::get('/asset/list', 'Api\Md\ApiAssetController@list');

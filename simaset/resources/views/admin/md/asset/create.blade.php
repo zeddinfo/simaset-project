@@ -80,18 +80,18 @@
                         <h3>Form Input Master Data Asset</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{url()->current()}}" method="POST">
+                        <form action="{{url()->current()}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-row mt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="inputEmail4"><b>NAMA ASSET</b><span id="wajib"> *</span></label>
                                         <input type="text" class="form-control" id="nama_asset" name="namaasset"
-                                            placeholder="Masukan Nama Asset ...">
+                                        placeholder="Masukan Nama Asset ..." value="{{isset($model) ? $model->namaasset : ''}}">
                                     </div>
                                     <div class="form-group">
                                         <label><b>ALAMAT ASSET</b><span id="wajib"> *</span></label>
-                                        <textarea class="form-control" name="alamat"></textarea>
+                                    <textarea class="form-control" name="alamat">{{isset($model) ? $model->alamat : ''}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label><strong>UKURAN</strong></label>
@@ -103,7 +103,7 @@
                                                     <td>
                                                         <div class="input-group mb-2">
                                                             <input type="text" class="form-control text-right angka"
-                                                                placeholder="" name="lt" id="lt">
+                                                            placeholder="" name="lt" id="lt" value="{{isset($model) ? $model->lt : ''}}">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">M<sup>2</sup></div>
                                                             </div>
@@ -116,7 +116,7 @@
                                                     <td>
                                                         <div class="input-group mb-2">
                                                             <input type="text" class="form-control text-right angka"
-                                                                placeholder="" name="lb" id="lb">
+                                                            placeholder="" name="lb" id="lb" value="{{isset($model) ? $model->lb : ''}}">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">M<sup>2</sup></div>
                                                             </div>
@@ -128,11 +128,11 @@
                                                     <td>:</td>
                                                     <td>
                                                         <input type="text" class="wide-pj angka" placeholder=""
-                                                            name="lb" id="lb" style="width: 82px">
+                                                        name="lebar" value="{{isset($model) ? $model->lebar : ''}}" id="lb" style="width: 82px">
                                                         <input type="text" class="wide-lb angka" placeholder=""
-                                                            name="lb" id="lb"
-                                                            style="width: 82px;margin-right: -200px"><small
-                                                            id="x">X</small><small id="m"><b>M</b></small>
+                                                        name="panjang" value="{{isset($model) ? $model->panjang : ''}}" id="lb"
+                                                        style="width: 82px;margin-right: -200px"><small
+                                                        id="x">X</small><small id="m"><b>M</b></small>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -152,7 +152,7 @@
                                                     <td style="width:200px"><select name="kamar"
                                                             title="Kamar Tidur / Ruangan" style="width:170px" id="kamar"
                                                             class="custom-select wide" />
-                                                        <option value="-">- Pilih -</option>
+                                                        <option value="{{isset($model) ? $model->kamar : ""}}" selected="selected">{{isset($model) ? $model->kamar : '- Pilih -'}}</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -163,7 +163,7 @@
 
                                                     <td style="width:200px"><select name="km" title="Kamar Mandi"
                                                             style="width:170px" id="km" class="custom-select wide" />
-                                                        <option value="-">- Pilih -</option>
+                                                    <option value="{{isset($model) ? $model->km : ''}}" selected="selected">{{isset($model) ? $model->km : '- Pilih -'}}</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -185,9 +185,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="width:200px"><select name="listrik" title="Daya Listrik"
-                                                            style="width:170px" id="listrik"
+                                                            style="width:170px" id="listrik" 
                                                             class="custom-select wide" />
-                                                        <option value="-">- Pilih -</option>
+                                                        <option value="{{isset($model) ? $model->listrik : ''}}" selected="selected">{{isset($model) ? $model->listrik : '- Pilih -'}}</option>
                                                         <option value="1.300">1.300</option>
                                                         <option value="2.200">2.200</option>
                                                         <option value="3.500">3.500</option>
@@ -200,7 +200,7 @@
 
                                                     <td style="width:200px"><select name="air" title="Air"
                                                             style="width:170px" id="air" class="custom-select wide" />
-                                                        <option value="-">- Pilih -</option>
+                                                        <option value="{{isset($model) ? $model->air : ''}}" selected="selected">{{isset($model) ? $model->air : '- Pilih -'}}</option>
                                                         <option value="Artetis">Artetis</option>
                                                         <option value="Sumur">Sumur</option>
                                                         <option value="Pam">Pam</option>
@@ -218,7 +218,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputCity"><b>STATUS</b></label>
                                             <select id="inputState" class="form-control" name="status">
-                                                <option value="">- Pilih -</option>
+                                            <option value="{{isset($model) ? $model->status : ''}}" selected="selected">{{isset($model) ? $model->status : '- Pilih -'}}</option>
                                                 <option value="DIJUAL">DIJUAL</option>
                                                 <option value="DISEWAKAN">DISEWAKAN</option>
                                                 <option value="DIJUAL / DISEWAKAN">DIJUAL / DISEWAKAN</option>
@@ -228,7 +228,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputState"><b>MENGHADAP</b></label>
                                             <select id="inputState" class="form-control" name="manghadap">
-                                                <option value="-">- Pilih -</option>
+                                            <option value="{{isset($model) ? $model->hadap : ''}}" selected="selected">{{isset($model) ? $model->hadap : '- Pilih -'}}</option>
                                                 <option value="Utara">Utara</option>
                                                 <option value="Timur Laut">Timur Laut</option>
                                                 <option value="Timur">Timur</option>
@@ -242,7 +242,7 @@
                                     </div>
                                     <div class="form-group row ml-3">
                                         <label for="inputEmail4"><b>NAMA PENYEWA</b><span id="wajib"> *</span></label>
-                                        <input type="text" class="form-control" id="nama_penyewa"
+                                    <input type="text" class="form-control" id="nama_penyewa" value="{{isset($model) ? $model->penyewa[0]->nama_penyewa : ''}}"
                                             placeholder="Masukan Nama Penyewa ..." style="width: 97%" name="nama_penyewa">
                                     </div>
                                     <div class="form-group ml-3">
@@ -256,7 +256,7 @@
                                                         <div class="input-group">
                                                             <input type="text" required class="form-control datepicker"
                                                              id="start_rent" name="tgl_sewa"
-                                                                placeholder="Silahkan Pilih Tanggal ...">
+                                                            placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->penyewa[0]->mulai_sewa : ''}}">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary" type="button">
                                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -271,7 +271,7 @@
                                                     <td>
                                                         <div class="input-group mb-2">
                                                             <input type="text" class="form-control text-right angka"
-                                                                placeholder="" name="masa_sewa"
+                                                        placeholder="" name="masa_sewa" value="{{isset($model) ? $model->penyewa[0]->masa_sewa : ''}}"
                                                                 id="lb">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">Tahun</div>
@@ -287,12 +287,13 @@
                                         <label><strong>HARGA</strong></label>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="inputCity"
-                                                    placeholder="JUAL" name="harga">
+                                                <input type="text" class="form-control numeric" id="harga"
+                                            placeholder="JUAL" name="harga" value="{{isset($model) ? $model->penyewa[0]->harga_sewa : ''}}">
+                                                <input type="hidden" name="harga_asset" id="harga_asset">
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <select id="inputState" class="form-control" name="satuan_harga">
-                                                    <option value="">- Pilih -</option>
+                                                <option value="{{isset($model) ? $model->penyewa[0]->satuan_harga : ''}}">- Pilih -</option>
                                                     <option value="/ Meter">/ Meter</option>
                                                 </select>
                                             </div>
@@ -304,14 +305,14 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <select id="inputState" class="form-control">
-                                                    <option value="">- Pilih -</option>
+                                                    <option value="{{isset($model) ? $model->penyewa[0]->satuan_sewa : ''}}">- Pilih -</option>
                                                     <option value="/ Meter">/ Tahun</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
-                                            <textarea class="form-control"></textarea>
+                                        <textarea class="form-control">{{isset($model) ? $model->embed_google : ''}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -360,28 +361,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- @foreach($model->budgetBelanja as $i => $budgetBelanja)
-                                          @include('transaksi.rab.form_budget_line', ['i' => $i, 'model' => $budgetBelanja, 
-                                          'name' =>  'budgetBelanja'])
-                                      @endforeach --}}
+                                                @foreach($model as $r)
                                                 <tr>
                                                     <td>
                                                         <select id="inputLegalitas" class="form-control"
                                                             name="legalitas">
-                                                            <option value="">- Pilih -</option>
+                                                    <option value="{{isset($model) ? $model->legal : ''}}" selected="selected">{{isset($model) ? $model->legal : ' - Pilih -'}}</option>
                                                             <option value="SHM">SHM</option>
                                                             <option value="SHBG">SHBG</option>
                                                         </select>
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control angka" required
-                                                            name="no_setipikat">
+                                                    name="no_setipikat" value="{{isset($model) ? $model->no_legal : ''}}">
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" required
-                                                            name="an_setipikat">
+                                                        name="an_setipikat" value="{{isset($model) ? $model->an_legal : ''}}">
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                         {{-- <div id="delete"></div> --}}
@@ -516,6 +515,11 @@
         $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        $('#harga').on('keypres', function(){
+            var harga = $(this).val();
+            $('#harga_sewa').val(harga);
         });
 
     });

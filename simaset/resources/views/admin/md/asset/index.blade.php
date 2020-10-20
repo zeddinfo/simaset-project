@@ -58,7 +58,6 @@
                                         <th>Ukuran(L x P)</th>
                                         <th>Status</th>
                                         <th>Harga</th>
-                                        <th>Foto</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
@@ -76,9 +75,62 @@
 
 @section('script')
     <script>
+     function hapus(id) {
+         
+		swal({
+			title: 'Apakah Anda Yakin?',
+			text: "Jika iya maka data akan dihapus permanen !",
+			imageUrl: '{{url("assets/icons/remove.svg")}}',
+			imageWidth: 400,
+			imageHeight: 200,
+			showCancelButton: true,
+			confirmButtonColor: '#FF0000',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Ya, Hapus!'
+		}, function (isConfirm) {
+			if (isConfirm) {
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+                });
+                
+				$.ajax({
+					url: `{{url('md/asset/delete/${id}')}}`,
+					type: 'POST',
+					success: function (res) {
+						toastr.info(res.message);
+						$("#table-asset").DataTable().ajax.reload();
+					}
+				});
+			} else {
+				return
+			}
+		})
+	}
+
         $(document).ready(function(){
             $('#table-asset').DataTable({
-
+                processing: true,
+                serverside: true, 
+                responsive: true,
+                ajax: {
+                    url: "{{url('api/asset/list')}}",
+                    type: "GET",
+                    dataType: "JSON"
+                },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'namaasset', name: 'namaasset'},
+                    {data: 'alamat', name: 'alamat'},
+                    {data: 'lt', name: 'lt'},
+                    {data: 'lb', name: 'lb'},
+                    {data: 'ukuran', name: 'ukuran'},
+                    {data: 'status', name: 'status'},
+                    {data: 'harga', name: 'harga', render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp ' )},
+                    {data: 'action', name: 'action'}
+                ],
+                order: [[0, 'asc']]
             });
         });
     </script>

@@ -38,5 +38,8 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::get('/index', 'Md\AssetController@index');
         Route::get('/create', 'Md\AssetController@create');
         Route::post('/create', 'Md\AssetController@create');
+        Route::get('/update/{id}', 'Md\AssetController@update');
+        Route::post('/update/{id}', 'Md\AssetController@update');
+        Route::post('/delete/{id}', 'Md\AssetController@delete');
     });
 });
