@@ -20,7 +20,7 @@ class AssetController extends Controller
     }
     public function create(Request $request){
         $model = new Asset();
-        dd($model->perizinan);
+ 
         $title = 'Create Master Data Asset';
         
         if($request->isMethod('post')){
