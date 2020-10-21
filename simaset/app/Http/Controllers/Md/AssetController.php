@@ -66,7 +66,7 @@ class AssetController extends Controller
                         $perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
                         $perizinan->line_no = $r->line_no;
                         $perizinan->nomor = $r->nomor;
-                        $perizinan->tgl_izin = $r->tgl_izin;
+                        $perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
                         $perizinan->id_asset = $model->id;
                         $perizinan->save();
                     }
@@ -87,6 +87,7 @@ class AssetController extends Controller
                         UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                          /*Remove file Original*/
                          unlink($filetemp);
+                        $dokumentasi->line_no = $r['line_no'];
                         $dokumentasi->pathfoto = $fileDest;
                         $dokumentasi->file_name = $realPath;
                         $dokumentasi->keterangan = $r['keterangan'];
@@ -110,7 +111,7 @@ class AssetController extends Controller
     }
     
     public function update(Request $request){
-        $model = Asset::query()->where(['id' => $request->id])->with('penyewa')->first();
+        $model = Asset::query()->where(['id' => $request->id])->first();
         // dd($model->dokumentasi);
         $title = 'Update Asset '.$model->namaasset;
         
@@ -175,14 +176,15 @@ class AssetController extends Controller
                             $fileName = $file->getClientOriginalName();
                             $path = $file->storeAs('public/file/foto', $fileName);
                             $filetemp =  $basePath . 'public/file/foto\\' . $fileName;
+                            
                             $fileDest = $basePath . 'public/file/foto\\' . date('Y-m-d-H-i-s') . $fileName;
-                            $realPath = 'public/file/foto\\' . date('Y-m-d-H-i-s') . $fileName;
+                            $realPath = date('Y-m-d-H-i-s') . $fileName;
                             UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                              /*Remove file Original*/
                              unlink($filetemp);
                             $dokumentasi->pathfoto = $path;
                             $dokumentasi->line_no;
-                            $dokumentasi->file_name = $fileName;
+                            $dokumentasi->file_name = $realPath;
                             $dokumentasi->keterangan = $r['keterangan'];
                             $dokumentasi->id_asset = $model->id;
     
