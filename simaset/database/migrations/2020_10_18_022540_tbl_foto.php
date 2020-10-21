@@ -15,6 +15,7 @@ class TblFoto extends Migration
     {
         Schema::create('tbl_foto', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('line_no');
             $table->string('file_name');
             $table->integer('id_asset');
             $table->string('keterangan');

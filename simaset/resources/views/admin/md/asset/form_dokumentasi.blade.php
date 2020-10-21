@@ -4,7 +4,7 @@
     <td>
         <input type="text" id="{{$name}}_{{$i}}_line_no" class="form-control" name="{{$name}}[{{$i}}][line_no]"
             placeholder="" value="{{isset($model) ? $model->line_no : ''}}" readonly required="" data-id="line_no"
-            im-insert="true" style="width: 75px">
+            im-insert="true" style="width: 50px">
     </td>
     <td>
         <div class="custom-file">
@@ -18,7 +18,12 @@
     </td>
     <td>
         <input type="text" id="{{$name}}_{{$i}}_keterangan" class="form-control" name="{{$name}}[{{$i}}][keterangan]"
-            placeholder="" required="" data-id="keterangan" im-insert="true">
+            placeholder="" required="" value="{{isset($model) ? $model->keterangan : ''}}" data-id="keterangan"
+            im-insert="true">
+    </td>
+    <td style="width: 25%;padding: 20px">
+        <?php $path = url('storage/file/foto/'.$model->file_name);?>
+        <img id="dokumentasi" src="{{$path}}" style="width: 150px">
     </td>
 </tr>
 <script>
@@ -26,4 +31,5 @@
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+
 </script>

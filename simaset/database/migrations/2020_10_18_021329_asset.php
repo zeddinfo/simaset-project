@@ -13,7 +13,7 @@ class Asset extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_asset', function (Blueprint $table) {
+        Schema::create('asset', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->nullable();
             $table->string('namaasset')->nullable();
@@ -25,12 +25,21 @@ class Asset extends Migration
             $table->string('lb')->nullable();
             $table->string('hadap')->nullable();
             $table->string('panjang')->nullable();
+            $table->string('namapenyewa')->nullable();
+            $table->string('harga')->nullable();
+            $table->string('satuan_harga')->nullable();
+            $table->string('jual')->nullable();
+            $table->string('satuan_jual')->nullable();
+            $table->string('masa_sewa')->nullable();
+            $table->date('tgl_sewa')->nullable();
+            $table->date('masa_akhir')->nullable();
             $table->string('lebar')->nullable();
             $table->string('kamar')->nullable();
             $table->string('km')->nullable();
-            $table->string('listik')->nullable();
+            $table->string('listrik')->nullable();
             $table->string('air')->nullable();
             $table->string('status')->nullable();
+            $table->string('embed_google')->nullable();
             $table->timestamps();
         });       
     }
