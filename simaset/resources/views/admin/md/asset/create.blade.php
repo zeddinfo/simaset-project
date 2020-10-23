@@ -291,26 +291,27 @@
                                         <label><strong>HARGA</strong></label>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="harga"
-                                            placeholder="JUAL" name="harga" value="{{isset($model) ? $model->harga : ''}}">
+                                                <input type="text" class="form-control numeric" id="harga_jual"
+                                            placeholder="JUAL" name="harga_jual" value="{{isset($model) ? $model->harga_jual : ''}}">
                                                 <input type="hidden" name="harga_asset" id="harga_asset">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <select id="inputState" class="form-control" name="satuan_harga">
-                                                    <option value="{{isset($model) ? $model->satuan_harga : ''}}" selected="selected">{{isset($model) && $model->satuan_harga ? $model->satuan_harga : ' - PILIH -'}}</option>
+                                                <select id="inputState" class="form-control" name="satuan_jual">
+                                                    <option value="{{isset($model) ? $model->satuan_jual : ''}}" selected="selected">{{isset($model) && $model->satuan_jual ? $model->satuan_jual : ' - PILIH -'}}</option>
                                                     <option value="/ Meter">/ Meter</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="inputCity" name="satuan_sewa"
-                                                    placeholder="SEWA">
+                                                <input type="text" class="form-control numeric" id="harga_sewa" name="harga_sewa"
+                                                    placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
+                                                    <input type="hidden" name="harga_asset" id="harga_asset">
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <select id="inputState" class="form-control">
-                                                    <option value="{{isset($model) ? $model->satuan_sewa : ''}}">- PILIH -</option>
-                                                    <option value="/ Meter">/ Tahun</option>
+                                                <select id="inputState" class="form-control" name="satuan_sewa">
+                                                    <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
+                                                    <option value="/ Tahun">/ Tahun</option>
                                                 </select>
                                             </div>
                                         </div>

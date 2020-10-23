@@ -41,9 +41,11 @@ class AssetController extends Controller
                 $model->hadap = $request->hadap;
                 $model->namapenyewa = $request->nama_penyewa;
                 $model->harga = $request->harga;
-                $model->satuan_harga = $request->satuan_harga;
-                $model->jual = $request->harga;
-                $model->satuan_jual = $request->satuan_sewa;
+                $model->harga_sewa = $request->harga_sewa;
+                $model->satuan_jual = $request->satuan_jual;
+                $model->satuan_sewa = $request->satuan_sewa;
+                // $model->jual = $request->harga;
+                $model->harga_jual = $request->harga_jual;
                 $model->tgl_sewa = $request->$tgl;
                 $model->masa_sewa = $request->masa_sewa;
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
@@ -59,16 +61,16 @@ class AssetController extends Controller
 
                 $model->save();
 
-                if($request->perizinan){
-                    $request->perizinan = json_decode(json_encode($request->perizinan));
+                if($request->tbl_perizinan){
+                    $request->tbl_perizinan = json_decode(json_encode($request->tbl_perizinan));
 
-                    foreach($request->perizinan as $r){
-                        $perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
-                        $perizinan->line_no = $r->line_no;
-                        $perizinan->nomor = $r->nomor;
-                        $perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
-                        $perizinan->id_asset = $model->id;
-                        $perizinan->save();
+                    foreach($request->tbl_perizinan as $r){
+                        $tbl_perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
+                        $tbl_perizinan->line_no = $r->line_no;
+                        $tbl_perizinan->nomor = $r->nomor;
+                        $tbl_perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
+                        $tbl_perizinan->id_asset = $model->id;
+                        $tbl_perizinan->save();
                     }
                 }
 
@@ -130,11 +132,15 @@ class AssetController extends Controller
                 $model->listrik = $request->listrik;
                 $model->panjang = $request->panjang;
                 $model->hadap = $request->hadap;
+                
                 $model->namapenyewa = $request->nama_penyewa;
-                $model->harga = $request->harga;
-                $model->satuan_harga = $request->satuan_harga;
-                $model->jual = $request->harga;
-                $model->satuan_jual = $request->satuan_sewa;
+                $model->harga = $request->harga_jual & $request->harga_sewa ;
+                $model->harga_jual = $request->harga_jual;
+                $model->harga_sewa = $request->harga_sewa;
+                $model->satuan_sewa = $request->satuan_sewa;
+                $model->satuan_jual = $request->satuan_jual;
+                // $model->jual = $request->harga;
+                $model->satuan_jual= $request->satuan_jual;
                 $model->tgl_sewa = $request->$tgl;
                 $model->masa_sewa = $request->masa_sewa;
                 $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_sewa)->format('d-m-Y');
@@ -155,13 +161,14 @@ class AssetController extends Controller
                     $request->perizinan = json_decode(json_encode($request->perizinan));
                     // dd($request->perizinan);
                     foreach($request->perizinan as $r){
-                        $perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
-                        $perizinan->line_no = $r->line_no;
-                        $perizinan->perizinan = $r->legalitas;
-                        $perizinan->nomor = $r->nomor;
-                        $perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
-                        $perizinan->id_asset = $model->id;
-                        $perizinan->save();
+                        $tbl_perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
+                        $tbl_perizinan->line_no = $r->line_no;
+                        $tbl_perizinan->id_asset = $model->id;
+                        $tbl_perizinan->perizinan = $r->legalitas;
+                        $tbl_perizinan->nomor = $r->nomor;
+                        $tbl_perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
+                        
+                        $tbl_perizinan->save();
                     }
                 }
 
@@ -182,11 +189,11 @@ class AssetController extends Controller
                             UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                              /*Remove file Original*/
                              unlink($filetemp);
-                            $dokumentasi->pathfoto = $path;
-                            $dokumentasi->line_no;
-                            $dokumentasi->file_name = $realPath;
-                            $dokumentasi->keterangan = $r['keterangan'];
-                            $dokumentasi->id_asset = $model->id;
+                             $dokumentasi->line_no = $r['line_no'];
+                             $dokumentasi->pathfoto = $fileDest;
+                             $dokumentasi->file_name = $realPath;
+                             $dokumentasi->keterangan = $r['keterangan'];
+                             $dokumentasi->id_asset = $model->id;
     
                             $dokumentasi->save();
                         } else {

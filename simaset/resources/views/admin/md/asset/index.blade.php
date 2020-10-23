@@ -58,6 +58,7 @@
                                         <th>Ukuran(L x P)</th>
                                         <th>Status</th>
                                         <th>Harga</th>
+                                        <th>Foto</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
@@ -128,6 +129,7 @@
                     {data: 'ukuran', name: 'ukuran'},
                     {data: 'status', name: 'status'},
                     {data: 'harga', name: 'harga', render: $.fn.dataTable.render.number( ',', '.', 0, 'Rp ' )},
+                    {data: '{{ asset('$pathfoto')}}'},
                     {data: 'action', name: 'action'}
                 ],
                 order: [[0, 'asc']]

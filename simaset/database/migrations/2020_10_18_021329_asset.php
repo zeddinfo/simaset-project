@@ -27,8 +27,9 @@ class Asset extends Migration
             $table->string('panjang')->nullable();
             $table->string('namapenyewa')->nullable();
             $table->string('harga')->nullable();
-            $table->string('satuan_harga')->nullable();
-            $table->string('jual')->nullable();
+            $table->string('harga_jual')->nullable();
+            $table->string('harga_sewa')->nullable();
+            $table->string('satuan_sewa')->nullable();
             $table->string('satuan_jual')->nullable();
             $table->string('masa_sewa')->nullable();
             $table->date('tgl_sewa')->nullable();
