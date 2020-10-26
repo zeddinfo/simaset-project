@@ -192,6 +192,7 @@ class AssetController extends Controller
                             // dd($file);
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
                             $fileName = $file->getClientOriginalName();
+                            $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
                             $path = $file->storeAs('public/file/foto', $fileName);
                             $filetemp =  $basePath . 'public/file/foto\\' . $fileName;
                             
@@ -201,7 +202,7 @@ class AssetController extends Controller
                              /*Remove file Original*/
                              unlink($filetemp);
                              $dokumentasi->line_no = $r['line_no'];
-                             $dokumentasi->pathfoto = $fileDest;
+                             $dokumentasi->pathfoto = $fileNameDB;
                              $dokumentasi->file_name = $realPath;
                              $dokumentasi->keterangan = $r['keterangan'];
                              $dokumentasi->id_asset = $model->id;
