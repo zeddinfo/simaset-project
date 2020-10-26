@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Md;
 
 use App\Helpers\UtilCompressImage;
 use App\Http\Controllers\Controller;
+use App\Models\History\LogHistory;
 use Illuminate\Http\Request;
 use App\Models\Md\Asset;
 use App\Models\Md\Dokumentasi;
@@ -23,6 +24,8 @@ class AssetController extends Controller
     public function create(Request $request){
         $model = new Asset();
         $title = 'Create Master Data Asset';
+        $model->tgl_sewa = '';
+        $model->perizinan->tgl_izin = '';
         
         if($request->isMethod('post')){
             DB::beginTransaction();
@@ -40,7 +43,7 @@ class AssetController extends Controller
                 $model->panjang = $request->panjang;
                 $model->hadap = $request->hadap;
                 $model->namapenyewa = $request->nama_penyewa;
-                $model->harga = $request->harga;
+                $model->harga_jual = $request->harga_jual;
                 $model->harga_sewa = $request->harga_sewa;
                 $model->satuan_jual = $request->satuan_jual;
                 $model->satuan_sewa = $request->satuan_sewa;
@@ -61,16 +64,17 @@ class AssetController extends Controller
 
                 $model->save();
 
-                if($request->tbl_perizinan){
-                    $request->tbl_perizinan = json_decode(json_encode($request->tbl_perizinan));
+                if($request->perizinan){
+                    $request->perizinan = json_decode(json_encode($request->perizinan));
 
-                    foreach($request->tbl_perizinan as $r){
-                        $tbl_perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
-                        $tbl_perizinan->line_no = $r->line_no;
-                        $tbl_perizinan->nomor = $r->nomor;
-                        $tbl_perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
-                        $tbl_perizinan->id_asset = $model->id;
-                        $tbl_perizinan->save();
+                    foreach($request->perizinan as $r){
+                        $perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
+                        $perizinan->line_no = $r->line_no;
+                        $perizinan->nomor = $r->nomor;
+                        $perizinan->perizinan = $r->legalitas;
+                        $perizinan->tgl_izin = date('Y-m-d', strtotime($r->tgl_izin));
+                        $perizinan->id_asset = $model->id;
+                        $perizinan->save();
                     }
                 }
 
@@ -98,6 +102,12 @@ class AssetController extends Controller
                         $dokumentasi->save();
                     }
                 }
+
+                $log = new LogHistory();
+                $log->id_user = $request->session()->get('id');
+                $log->status = 'CREATED ASSET';
+                $log->save();
+
                 DB::commit();
                 toastr()->success('Data Berhasil Disimpan');
                 return redirect('md/asset/index');
@@ -118,6 +128,7 @@ class AssetController extends Controller
         $title = 'Update Asset '.$model->namaasset;
         
         if($request->isMethod('post')){
+           
             DB::beginTransaction();
             try{
                 // dd($request->all());
@@ -207,6 +218,10 @@ class AssetController extends Controller
                     }
                 }
 
+                $log = new LogHistory();
+                $log->id_user = $request->session()->get('id');
+                $log->status = 'CREATED ASSET';
+                $log->save();
 
                 DB::commit();
                 toastr()->success('Data Berhasil Disimpan');
@@ -245,5 +260,14 @@ class AssetController extends Controller
         return response()->json([
             'message' => 'Data berhasil dihapus'
         ]);
+    }
+
+    public function detail(Request $request, $id){
+
+        $model = Asset::query()->where(['id' => $request->id])->first();
+        // dd($model->dokumentasi);
+        $title = 'Detail Asset '.$model->namaasset;
+
+        return view('admin.md.asset.detail', compact('model', 'title'));
     }
 }

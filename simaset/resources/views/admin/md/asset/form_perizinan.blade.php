@@ -22,9 +22,9 @@
 <script>
     $('#{{$name}}_{{$i}}_tgl_izin').datepicker({
         autoclose: true,
-        format: "dd/mm/yyyy",
+        format: "dd-mm-yyyy",
         immediateUpdates: true,
         todayBtn: true,
         todayHighlight: true
-    }).datepicker("setDate", "0");
+    });
 </script>

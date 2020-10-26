@@ -33,7 +33,27 @@ class ApiAssetController extends Controller
             $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger btn-xs"> 
                             <i class="fas fa-fw fa-trash"></i>
                         </button>';
+
+            $button .= '&nbsp';
+
+            $button .= '<a href="'.url("md/asset/detail/".$data->id).'" title = "Detail" data-id="'.$data->id.'" class="btn btn-info btn-xs"> <i class="fa fa-search"></i></a>';
+
             return $button;
+        })
+        ->editColumn('harga', function($data){
+            if($data->status == 'MAINTENANCE'){
+                $harga = ' - ';
+            } else if($data->status == 'DIJUAL / DISEWAKAN') {
+                $harga = 'Rp'. $data->harga_jual. '' .$data->satuan_jual. ' - ';
+                $harga .= 'Rp'. $data->harga_sewa. '' .$data->satuan_sewa;
+            } else if($data->status == 'DIJUAL') {
+                $harga = 'Rp'. $data->harga_jual. '' .$data->satuan_jual;
+            } else if($data->status == 'DISEWAKAN') {
+                $harga = 'Rp'. $data->harga_sewa. '' .$data->satuan_sewa;
+            } else {
+                $harga = '0';
+            }
+            return $harga;
         })
         ->editColumn('ukuran', function($data){
             $uk = $data->lebar * $data->panjang;

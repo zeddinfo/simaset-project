@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/mobile/assets/', 'Api\Md\ApiAssetController@asset');
+
 Route::get('/kategori/list', 'Api\Md\KategoriController@list');
 
 Route::get('/asset/list', 'Api\Md\ApiAssetController@list');
+
+Route::get('/logHistory', 'Api\History\LogHistoryController@list');

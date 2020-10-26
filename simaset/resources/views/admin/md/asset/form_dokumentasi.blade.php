@@ -22,8 +22,11 @@
             im-insert="true">
     </td>
     <td style="width: 25%;padding: 20px">
-        <?php $path = url('/storage/file/foto/'.$model->file_name);?>
-        <img id="dokumentasi" src="{{$path}}" style="width: 150px">
+        @php 
+        $path = url('/storage/file/foto/'.$model->file_name);
+        $defaultImg = url('/assets/icons/image.png');
+        @endphp
+        <img id="dokumentasi" src="{{isset($model) ? $path : $defaultImg}}" style="width: 150px">
     </td>
 </tr>
 <script>

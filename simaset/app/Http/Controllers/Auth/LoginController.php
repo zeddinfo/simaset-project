@@ -51,10 +51,11 @@ class LoginController extends Controller
 
         if($request->isMethod('post')){
             $data = DB::select("
-                select username, password as password, name from users where username = '$request->username' 
+                select username, id, password as password, name from users where username = '$request->username' 
             ");
             if($data && $data[0]->password == md5($request->password)){
                 Session::put('name', $data[0]->name);
+                Session::put('id', $data[0]->id);
                 Session::put('username', $data[0]->username);
                 Session::put('login', TRUE);
                 toastr()->success('Authentikasi Berhasil');
