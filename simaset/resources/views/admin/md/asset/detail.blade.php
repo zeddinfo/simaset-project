@@ -53,43 +53,50 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-foto" role="tab"
-                                aria-controls="tab-dijual-disewa" aria-selected="true"><i
-                                    class="fas fa-image"></i> <b>Foto Asset</b></a>
+                                aria-controls="tab-dijual-disewa" aria-selected="true"><i class="fas fa-image"></i>
+                                <b>Foto Asset</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-map" role="tab"
-                                aria-controls="tab-maintenance" aria-selected="true"><i class="fas fa-map"></i><b> Map</b>
-                                </a>
+                                aria-controls="tab-maintenance" aria-selected="true"><i class="fas fa-map"></i><b>
+                                    Map</b>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-keterangan" role="tab"
-                                aria-controls="tab-maintenance" aria-selected="true"><i class="fas fa-book"></i><b> Keterangan</b>
-                                </a>
+                                aria-controls="tab-maintenance" aria-selected="true"><i class="fas fa-book"></i><b>
+                                    Keterangan</b>
+                            </a>
                         </li>
                     </ul>
 
-                    <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal Keterangan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                    <form role="form" id="frm-keterangan">
+
+                        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Modal Keterangan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Keterangan</label>
+                                            <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="simpan()">Simpan</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control" id="keterangan"></textarea>
-                                      </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Simpan</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  </div>
                             </div>
                         </div>
-                    </div>
+
+                    </form>
 
 
                     <div class="card-body">
@@ -277,7 +284,8 @@
                                             @foreach ($model->dokumentasi as $r)
                                             <div class="col-md-6">
                                                 <span>{{$r->file_name}}</span>
-                                                <img src="{{url('/storage/file/foto/'.$r->file_name)}}" style="width: 400px;margin: 5px;border: 1px solid black;border-radius: 5px;">
+                                                <img src="{{url('/storage/file/foto/'.$r->file_name)}}"
+                                                    style="width: 400px;margin: 5px;border: 1px solid black;border-radius: 5px;">
                                             </div>
                                             @endforeach
                                         </div>
@@ -287,7 +295,8 @@
                                 <div class="tab-pane fade" id="tab-map" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
                                         <div class="form-group row">
-                                        <iframe src="{{isset($model) ? $model->embed_google : '-'}}" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                            <iframe src="{{isset($model) ? $model->embed_google : '-'}}" width="100%"
+                                                height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +304,9 @@
                                 <div class="tab-pane fade" id="tab-keterangan" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
                                         <div class="form-group row">
-                                            <button class="btn btn-primary" type="button" id="btn-keterangan"><i class="fas fa-plus"></i> Tambah Keterangan</button>
+                                            <button class="btn btn-primary" type="button" id="btn-keterangan"><i
+                                                    class="fas fa-plus"></i> Tambah
+                                                Keterangan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -311,13 +322,35 @@
 </section>
 @section('script')
 <script>
-    $(document).ready(function(){
-        $('#btn-keterangan').click(function(){
+       var url = window.location.pathname; 
+        var id = url.substring(url.lastIndexOf('/') + 1);
+    function simpan() {
+     
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: `{{url('md/asset/simpanKeterangan/${id}')}}`,
+            data: $('#frm-keterangan').serialize(),
+            dataType: 'JSON',
+            type: 'POST',
+            success: function (res) {
+                $('#exampleModal').modal('hide');
+                $('#keterangan').text('');
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#btn-keterangan').click(function () {
             $('#exampleModal').modal('show');
             $('.modal-backdrop').css('display', 'none');
 
         });
     });
+
 </script>
 @endsection
 @endsection

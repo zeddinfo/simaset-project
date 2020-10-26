@@ -270,4 +270,15 @@ class AssetController extends Controller
 
         return view('admin.md.asset.detail', compact('model', 'title'));
     }
+
+    public function simpan(Request $request, $id){
+
+        $log = new LogHistory();
+        $log->id_user = $request->session()->get('id');
+        $log->id_asset = $id;
+        $log->status = $request->keterangan;
+        $log->save(); 
+
+        return response()->json('Sukses disimpan');
+    }
 }
