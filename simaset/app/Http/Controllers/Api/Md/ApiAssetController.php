@@ -40,6 +40,17 @@ class ApiAssetController extends Controller
 
             return $button;
         })
+        ->editColumn('image', function($data){
+            $param = count($data->dokumentasi);
+            if($param != 0){
+                $path = $data->dokumentasi[0]->file_name;
+                $image = url('/storage/file/foto/'.$path);
+            } else {
+                $image = url('/storage/file/foto/no-photos.png');
+            }
+            return $image;
+            // dd($image);
+        })
         ->editColumn('harga', function($data){
             if($data->status == 'MAINTENANCE'){
                 $harga = ' - ';

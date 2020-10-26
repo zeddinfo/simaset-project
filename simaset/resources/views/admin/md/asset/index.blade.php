@@ -16,6 +16,21 @@
         z-index: 1100 !important;
     }
 
+    .dataTables_filter {
+        float: right;
+    }
+
+    .table-asset_length {
+        float: left;
+    }
+    img.thumbnail {
+        vertical-align: middle;
+        border-style: none;
+        width: 75px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
 </style>
 <!-- Main Content -->
 <section class="section">
@@ -75,6 +90,7 @@
                                         <th>Ukuran(L x P)</th>
                                         <th>Status</th>
                                         <th>Harga</th>
+                                        <th>Thumbnail</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
@@ -117,145 +133,164 @@
         </div>
     </div>
     </div>
-    </section>
-    @endsection
+</section>
+@endsection
 
-    @section('script')
-    <script>
-        function hapus(id) {
+@section('script')
+<script>
+    function hapus(id) {
 
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: "Jika iya maka data akan dihapus permanen !",
-                imageUrl: '{{url("assets/icons/remove.svg")}}',
-                imageWidth: 400,
-                imageHeight: 200,
-                showCancelButton: true,
-                confirmButtonColor: '#FF0000',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus!'
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
+        swal({
+            title: 'Apakah Anda Yakin?',
+            text: "Jika iya maka data akan dihapus permanen !",
+            imageUrl: '{{url("assets/icons/remove.svg")}}',
+            imageWidth: 400,
+            imageHeight: 200,
+            showCancelButton: true,
+            confirmButtonColor: '#FF0000',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!'
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-                    $.ajax({
-                        url: `{{url('md/asset/delete/${id}')}}`,
-                        type: 'POST',
-                        success: function (res) {
-                            toastr.info(res.message);
-                            $("#table-asset").DataTable().ajax.reload();
-                        }
-                    });
-                } else {
-                    return
+                $.ajax({
+                    url: `{{url('md/asset/delete/${id}')}}`,
+                    type: 'POST',
+                    success: function (res) {
+                        toastr.info(res.message);
+                        $("#table-asset").DataTable().ajax.reload();
+                    }
+                });
+            } else {
+                return
+            }
+        })
+    }
+
+    function loadHistory(id) {
+        var table = $('#table-history').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+
+            ajax: {
+                url: '{{url("api/logHistory")}}',
+                type: 'GET',
+                dataType: 'JSON',
+                data: {
+                    id: id
+                },
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'user',
+                    name: 'user'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'created_at',
+                    name: 'creared_at'
                 }
-            })
-        }
+            ],
+            order: [
+                [0, 'asc']
+            ],
 
-        function loadHistory(id) {
-            var table = $('#table-history').DataTable({
-                processing: true,
-                serverside: true,
-                responsive: true,
-                ajax: {
-                    url: '{{url("api/logHistory")}}',
-                    type: 'GET',
-                    dataType: 'JSON',
-                    data: {
-                        id: id
+        });
+    }
+
+    $(document).ready(function () {
+        $('#table-asset_filter').addClass('float-right');
+        var table = $('#table-asset').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ],
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt'
+                },
+                {
+                    data: 'lb',
+                    name: 'lb'
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function(data, type, full, meta){
+                        return "<img src="+data+" class='thumbnail'/>";
                     },
                 },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'user',
-                        name: 'user'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'created_at',
-                        name: 'creared_at'
-                    }
-                ],
-                order: [
-                    [0, 'asc']
-                ],
-
-            });
-        }
-
-        $(document).ready(function () {
-
-            var table = $('#table-asset').DataTable({
-                processing: true,
-                serverside: true,
-                responsive: true,
-                ajax: {
-                    url: "{{url('api/asset/list')}}",
-                    type: "GET",
-                    dataType: "JSON"
-                },
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'namaasset',
-                        name: 'namaasset'
-                    },
-                    {
-                        data: 'alamat',
-                        name: 'alamat'
-                    },
-                    {
-                        data: 'lt',
-                        name: 'lt'
-                    },
-                    {
-                        data: 'lb',
-                        name: 'lb'
-                    },
-                    {
-                        data: 'ukuran',
-                        name: 'ukuran'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'harga',
-                        name: 'harga'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action'
-                    }
-                ],
-                order: [
-                    [0, 'asc']
-                ]
-            });
-
-            $('#table-asset').on('click', 'tr td:eq(1)', function () {
-                var data = table.row(this).data();
-                var id = data.id;
-                $('#exampleModal').modal('show');
-                $('.modal-backdrop').css('display', 'none');
-                $('#table-history').DataTable().destroy();
-                loadHistory(id);
-
-            });
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '20%'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
         });
 
-    </script>
-    @endsection
+
+
+        $('#table-asset').on('click', 'tr td:eq(1)', function () {
+            var data = table.row(this).data();
+            var id = data.id;
+            $('#exampleModal').modal('show');
+            $('.modal-backdrop').css('display', 'none');
+            $('#table-history').DataTable().destroy();
+            loadHistory(id);
+
+        });
+    });
+
+</script>
+@endsection
