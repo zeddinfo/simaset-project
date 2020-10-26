@@ -172,14 +172,13 @@ class AssetController extends Controller
                     $request->perizinan = json_decode(json_encode($request->perizinan));
                     // dd($request->perizinan);
                     foreach($request->perizinan as $r){
-                        $tbl_perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
-                        $tbl_perizinan->line_no = $r->line_no;
-                        $tbl_perizinan->id_asset = $model->id;
-                        $tbl_perizinan->perizinan = $r->legalitas;
-                        $tbl_perizinan->nomor = $r->nomor;
-                        $tbl_perizinan->tgl_izin = Carbon::createFromFormat('d/m/Y', $r->tgl_izin);
-                        
-                        $tbl_perizinan->save();
+                        $perizinan = empty($r->id) ? new Perizinan() : Perizinan::find($r->id);
+                        $perizinan->line_no = $r->line_no;
+                        $perizinan->nomor = $r->nomor;
+                        $perizinan->perizinan = $r->legalitas;
+                        $perizinan->tgl_izin = date('Y-m-d', strtotime($r->tgl_izin));
+                        $perizinan->id_asset = $model->id;
+                        $perizinan->save();
                     }
                 }
 
