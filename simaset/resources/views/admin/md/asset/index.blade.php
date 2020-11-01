@@ -271,7 +271,7 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '20%'
+                    width: '25%'
                 }
             ],
             order: [

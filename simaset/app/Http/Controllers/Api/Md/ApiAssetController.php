@@ -30,13 +30,17 @@ class ApiAssetController extends Controller
 
             $button .= '&nbsp';
 
-            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger btn-xs"> 
+            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-warning btn-xs"> 
                             <i class="fas fa-fw fa-trash"></i>
                         </button>';
 
             $button .= '&nbsp';
 
             $button .= '<a href="'.url("md/asset/detail/".$data->id).'" title = "Detail" data-id="'.$data->id.'" class="btn btn-info btn-xs"> <i class="fa fa-search"></i></a>';
+
+            $button .= '&nbsp';
+
+            $button .= '<a href="'.url("md/asset/export-pdf/".$data->id).'" title = "Export PDF" data-id="'.$data->id.'" class="btn btn-danger btn-xs"> <i class="fas fa-file-pdf danger"></i></a>';
 
             return $button;
         })

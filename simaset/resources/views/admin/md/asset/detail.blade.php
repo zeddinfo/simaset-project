@@ -98,12 +98,8 @@
 
                     </form>
 
-
                     <div class="card-body">
                         <div class="card">
-                            <div class="card-header">
-                                <h4>{{$title}}</h4>
-                            </div>
                             <div class="tab-content" id="myTabContent" style="padding: 10px">
                                 <div class="tab-pane fade show active" id="tab-asset" role="tabpanel"
                                     aria-labelledby="tab-1">
@@ -322,10 +318,11 @@
 </section>
 @section('script')
 <script>
-       var url = window.location.pathname; 
-        var id = url.substring(url.lastIndexOf('/') + 1);
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+
     function simpan() {
-     
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -347,7 +344,6 @@
         $('#btn-keterangan').click(function () {
             $('#exampleModal').modal('show');
             $('.modal-backdrop').css('display', 'none');
-
         });
     });
 

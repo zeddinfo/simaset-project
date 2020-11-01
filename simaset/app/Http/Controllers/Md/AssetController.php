@@ -13,6 +13,7 @@ use App\Models\Md\Perizinan;
 use DB;
 use Carbon\Carbon;
 use Storage;
+use PDF;
 
 
 class AssetController extends Controller
@@ -106,6 +107,7 @@ class AssetController extends Controller
                 $log = new LogHistory();
                 $log->id_user = $request->session()->get('id');
                 $log->status = 'CREATED ASSET';
+                $log->id_asset = $model->id;
                 $log->save();
 
                 DB::commit();
@@ -263,7 +265,6 @@ class AssetController extends Controller
     }
 
     public function detail(Request $request, $id){
-
         $model = Asset::query()->where(['id' => $request->id])->first();
         // dd($model->dokumentasi);
         $title = 'Detail Asset '.$model->namaasset;
@@ -280,5 +281,12 @@ class AssetController extends Controller
         $log->save(); 
 
         return response()->json('Sukses disimpan');
+    }
+
+    public function export(Request $request, $id){
+        $model = Asset::query()->where(['id' => $request->id])->first();
+
+        $pdf = PDF::loadView('export', compact('model'));
+        return $pdf->download($model->namaasset.'.pdf');
     }
 }

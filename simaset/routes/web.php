@@ -43,6 +43,8 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::post('/update/{id}', 'Md\AssetController@update');
         Route::post('/delete/{id}', 'Md\AssetController@delete');
         Route::get('/detail/{id}', 'Md\AssetController@detail');
+        Route::post('/detail/{id}', 'Md\AssetController@detail');
         Route::post('/simpanKeterangan/{id}', 'Md\AssetController@simpan');
+        Route::get('/export-pdf/{id}', 'Md\AssetController@export');
     });
 });
