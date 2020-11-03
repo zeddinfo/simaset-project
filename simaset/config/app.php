@@ -179,6 +179,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*

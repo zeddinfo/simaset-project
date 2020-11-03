@@ -18,10 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/mobile/assets/', 'Api\Md\ApiAssetController@asset');
+
 
 Route::get('/kategori/list', 'Api\Md\KategoriController@list');
 
 Route::get('/asset/list', 'Api\Md\ApiAssetController@list');
 
 Route::get('/logHistory', 'Api\History\LogHistoryController@list');
+
+Route::post('/mobile/register', 'Api\Mobile\ScafoldController@register');
+Route::post('/mobile/login', 'Api\Mobile\ScafoldController@login');
+Route::post('/mobile/logout', 'Api\Mobile\ScafoldController@logout');
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::get('/mobile/assets/', 'Api\Md\ApiAssetController@asset');
+});

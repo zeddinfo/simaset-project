@@ -1,10 +1,8 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>export - {{$model->namaasset}}</title>
-
     <style>
         .invoice-box {
             max-width: 800px;
