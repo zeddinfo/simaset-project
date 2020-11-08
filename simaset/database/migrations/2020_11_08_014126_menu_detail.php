@@ -14,7 +14,7 @@ class MenuDetail extends Migration
     public function up()
     {
         Schema::create('menu_detail', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            // $table->bigIncrements('id');
             $table->integer('id_menu');
             $table->integer('id_role');
             $table->timestamps();
