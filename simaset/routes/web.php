@@ -47,4 +47,17 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::post('/simpanKeterangan/{id}', 'Md\AssetController@simpan');
         Route::get('/export-pdf/{id}', 'Md\AssetController@export');
     });
+
+    Route::group(['prefix' => 'setting/role'], function () {
+        Route::get('/index', 'Setting\RoleController@index');
+        Route::get('/create', 'Setting\RoleController@create');
+        Route::post('/create', 'Setting\RoleController@create');
+        Route::get('/view/{id}', 'Setting\RoleController@view');
+    });
+
+    Route::group(['prefix' => 'setting/user'], function () {
+        Route::get('/index', 'Setting\UserController@index');
+        Route::post('/create', 'Setting\UserController@create');
+        Route::post('/update/{id}', 'Setting\UserController@update');
+    });
 });

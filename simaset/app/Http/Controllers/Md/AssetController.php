@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Md;
 
 use App\Helpers\UtilCompressImage;
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\History\LogHistory;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ use Storage;
 use PDF;
 
 
-class AssetController extends Controller
+class AssetController extends BaseController
 {
     public function index(){
         $title = 'Master Data Asset';

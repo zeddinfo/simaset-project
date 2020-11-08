@@ -25,7 +25,8 @@ Route::get('/kategori/list', 'Api\Md\KategoriController@list');
 Route::get('/asset/list', 'Api\Md\ApiAssetController@list');
 
 Route::get('/logHistory', 'Api\History\LogHistoryController@list');
-
+Route::get('/user/list', 'Api\Md\ApiUserController@list');
+Route::get('/get-user/{id}', 'Api\Md\ApiuserController@view');
 Route::post('/mobile/register', 'Api\Mobile\ScafoldController@register');
 Route::post('/mobile/login', 'Api\Mobile\ScafoldController@login');
 Route::post('/mobile/logout', 'Api\Mobile\ScafoldController@logout');
