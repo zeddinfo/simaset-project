@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Mobile;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
@@ -13,11 +12,6 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ScafoldController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    // }
-
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -59,7 +53,8 @@ class ScafoldController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
 
         return response()->json(['message' => 'User successfully signed out']);
