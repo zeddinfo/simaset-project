@@ -1,103 +1,5 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>export - {{$model->namaasset}}</title>
-    <style>
-        .invoice-box {
-            max-width: 800px;
-            margin: auto;
-            padding: 30px;
-            border: 1px solid #eee;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-            font-size: 16px;
-            line-height: 24px;
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-            color: #555;
-        }
-
-        .invoice-box table {
-            width: 100%;
-            line-height: inherit;
-            text-align: left;
-        }
-
-        .invoice-box table td {
-            padding: 5px;
-            vertical-align: top;
-        }
-
-        .invoice-box table tr td:nth-child(2) {
-            text-align: right;
-        }
-
-        .invoice-box table tr.top table td {
-            padding-bottom: 20px;
-        }
-
-        .invoice-box table tr.top table td.title {
-            font-size: 45px;
-            line-height: 45px;
-            color: #333;
-        }
-
-        .invoice-box table tr.information table td {
-            padding-bottom: 40px;
-        }
-
-        .invoice-box table tr.heading td {
-            background: #eee;
-            border-bottom: 1px solid #ddd;
-            font-weight: bold;
-        }
-
-        .invoice-box table tr.details td {
-            padding-bottom: 20px;
-        }
-
-        .invoice-box table tr.item td {
-            border-bottom: 1px solid #eee;
-        }
-
-        .invoice-box table tr.item.last td {
-            border-bottom: none;
-        }
-
-        .invoice-box table tr.total td:nth-child(2) {
-            border-top: 2px solid #eee;
-            font-weight: bold;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .invoice-box table tr.top table td {
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
-
-            .invoice-box table tr.information table td {
-                width: 100%;
-                display: block;
-                text-align: center;
-            }
-        }
-
-        /** RTL **/
-        .rtl {
-            direction: rtl;
-            font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        }
-
-        .rtl table {
-            text-align: right;
-        }
-
-        .rtl table tr td:nth-child(2) {
-            text-align: left;
-        }
-
-    </style>
-</head>
 
 <body>
     <div class="invoice-box">
@@ -107,52 +9,237 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png"
-                                    style="width:100%; max-width:300px;">
+                                <img src="https://images.glints.com/unsafe/160x0/glints-dashboard.s3.amazonaws.com/company-logo/539a5914d30d65fd8f781b1912a267a5.jpg"
+                                    style="width:30%; max-width:200px;">
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
 
-            <tr class="heading">
+            <!-- <tr class="heading">
                 <td>
-                    Details
+                    Details Asset
                 </td>
 
                 <td>
 
                 </td>
-            </tr>
+            </tr>  -->
+            <style>
+        body{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color:#333;
+            text-align:center;
+            font-size:18px;
+            margin:0;
+        }
+        .container{
+            margin:0 auto;
+            margin-top:10px;
+            padding:40px;
+            width:100%;
+            height:auto;
+            background-color:#fff;
+            text-align: center;
+        }
+        caption{
+            font-size:28px;
+            margin-bottom:15px;
+            text-align: center;
+        }
+        table{
+            border:1px solid #333;
+            border-collapse:collapse;
+            margin:0 auto;
+            width:100%;
+            text-align: center;
+        }
+        td, tr, th{
+            padding:12px;
+            border:1px solid #333;
+            width:100%;
+            text-align: center;
+        }
+        th{
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h4, p{
+            margin:0px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+             <div class="container">
+        <table>
+            <!-- <caption>
+                Simaset
+            </caption>  -->
+            <thead>
+                <tr class = "heading">
+                    <th colspan="3"><strong>{{$model->namaasset}}</strong></th>
+                    <th>{{$model->created_at}}</th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <h4>Alamat: </h4>
+                        
+                        <p>{{$model->alamat}}
 
-            <tr class="details">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                <h4><b>Nama : </b>{{$model->namaasset}}</h4>
-                                <h4><b>Lokasi : </b>{{$model->lokasi}}</h4>
-                                <br>
-                                <h4><b>LT/LB : </b>{{$model->lt}} / {{$model->lb}} M2</h4>
-                                <h4><b>Lebar x Panjang : </b>{{$model->lebar}} x {{$model->panjang}}</h4>
-                                <h4><b>Ruang / KM : </b>{{$model->kamar}} / {{$model->km}}</h4>
-                                <h4><b>Daya Listrik : </b>{{$model->listrik}}</h4>
-                                <h4><b>Air : </b>{{$model->air}}</h4>
-                                <h4><b>Legalitas : </b>{{$model->legal}} NOMOR {{$model->no_legal}}</h4>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <h4>Harga: </h4>
+                        <p>Harga Jual -> Rp {{$model->harga_jual}}{{$model->satuan_jual}}<br>
+                        Harga Sewa -> Rp {{$model->harga_sewa}}{{$model->satuan_sewa}}<br>
+                        
+                        </p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+            
+                    <th>Status</th>
+                    <th>Legal</th>
+                    <th>no_legal</th>
+                    <th>an_legal</th>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->status}}</td>
+                    <td>{{$model->legal}}</td>
+                    <td>{{$model->no_legal}}</td>
+                    <td>{{$model->an_legal}}</td>
+                </tr>
+                <tr>
+                    <th>Penyewa</th>
+                    <th>Masa Sewa</th>
+                    <th>Tanggal Sewa</th>
+                    <th>Akhir Sewa</th>
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->namapenyewa}}</td>
+                    <td>{{$model->masa_sewa}}</td>
+                    <td>{{$model->tgl_sewa}}</td>
+                    <td>{{$model->masa_akhir}}</td>
+                </tr>
 
-            <tr class="heading">
+                <tr>
+                    <th>L.Tanah</th>
+                    <th>L.Bangunan</th>
+                    <th>Lebar</th>
+                    <th>Panjang</th>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->lt}}</td>
+                    <td>{{$model->lb}}</td>
+                    <td>{{$model->lebar}}</td>
+                    <td>{{$model->panjang}}</td>
+                </tr>
+
+                <tr>
+                    <th>KAMAR</th>
+                    <th>K.Mandi</th>
+                    <th>Listrik</th>
+                    <th>Hadap</th>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->kamar}}</td>
+                    <td>{{$model->km}}</td>
+                    <td>{{$model->listrik}}</td>
+                    <td>{{$model->hadap}}</td>
+                </tr>
+ 
+                <!-- <tr>
+                    <th>line_no</th>
+                    <th>Perizinan</th>
+                    <th>nomor</th>
+                    <th>Tanggal</th>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->line_no}}</td>
+                    <td>{{$model->perizinan}}</td>
+                    <td>{{$model->nomor}}</td>
+                    <td>{{$model->tgl_izin}}</td>
+                </tr>  -->
+
+                
+               
+                <!-- <tr>
+                    <th colspan="3">lebar</th>
+                    <td>{{$model->lebar}}</td>
+                </tr> --> 
+                <!-- <tr>
+                    <th>Pajak</th>
+                    <td></td>
+                    <td>2%</td>
+                    <td>{{$model->kamar}}</td>
+                </tr> -->
+
+            </tbody>
+            <!-- <tfoot> -->
+                <!-- <tr>
+                    <th colspan="3">Listrik</th>
+                    <td>{{$model->listrik}}</td>
+                </tr> -->
+            <!-- </tfoot> -->
+
+
+
+            <!-- <tr class="heading">
                 <td>
                     Gambar
                 </td>
                 <td>
 
                 </td>
-            </tr>
+            </tr> -->
+            <!-- display:inline; -->
+            <table>
+                
+                @foreach ($model->perizinan as $pp)
+                <tr>
+                  <td>
+                      
+                      <tr>
+                    <th>line_no</th>
+                    <th>Perizinan</th>
+                    <th>nomor</th>
+                    <th>Tanggal</th>
+                    
+                    
+                </tr>
+                
+                <tr>
+                    <td>{{$model->line_no}}</td>
+                    <td>{{$model->perizinan.$pp}}</td>
+                    <td>{{$model->nomor.$pp}}</td>
+                    <td>{{$model->tgl_izin.$pp}}</td>
+                </tr> 
+                 
+                  </td>
+                </tr>
+                @endforeach
+            </table>
+
+
             <table>
                 <tr bgcolor='#A9A9A9'>
                     <td colspan="2">
@@ -171,8 +258,7 @@
                 </tr>
                 @endforeach
             </table>
-        </table>
+        
     </div>
 </body>
-
 </html>
