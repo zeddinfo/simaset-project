@@ -68,7 +68,14 @@
     <script>
         $(document).ready(function(){
             $('#table-role').DataTable({
-
+                processing: true,
+                serverside: true,
+                responsive: true,
+                ajax: {
+                    url: '{{url("setting/role/listRole")}}',
+                    type: 'GET',
+                    dataType: 'JSON'
+                },
             });
         });
     </script>

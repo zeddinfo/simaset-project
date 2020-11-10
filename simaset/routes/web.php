@@ -53,6 +53,7 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::get('/create', 'Setting\RoleController@create');
         Route::post('/create', 'Setting\RoleController@create');
         Route::get('/view/{id}', 'Setting\RoleController@view');
+        Route::get('/listRole', 'Setting\RoleController@listRole');
     });
 
     Route::group(['prefix' => 'setting/user'], function () {

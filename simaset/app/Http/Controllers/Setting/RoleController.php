@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Setting\Role;
 use App\Models\Setting\Menu;
 use App\Models\Setting\MenuDetail;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class RoleController extends BaseController
 {
@@ -83,5 +85,34 @@ class RoleController extends BaseController
             }
         }
         return view('admin.setting.role.create', compact('model', 'menu', 'role', 'title'));
+    }
+
+    public function listRole(){
+        $list = Role::get();
+
+        return DataTables::of($list)
+        ->addIndexColumn()
+        ->editColumn('user', function($data){
+            $user = $data->role;
+            return $user;
+        })
+        // ->editColumn('role', function($data){
+        //     $role = $data->namaRole->role;
+        //     return $role;
+        // })
+        ->addColumn('action', function($data){
+            $button = '<button type="button" title="Edit" data-id="'.$data->id.'" onclick="edit('.$data->id.')" class="btn btn-info btn-xs"> 
+             <i class="fas fa-book"></i>
+             </button>';
+
+             $button .= '&nbsp';
+
+            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger btn-xs"> 
+             <i class="fa fa-trash"></i>
+             </button>';
+
+         return $button;
+        })
+        ->make(true);
     }
 }
