@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Md;
 
 use App\Helpers\UtilCompressImage;
+use App\Helpers\UtilUploadFoto;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\History\LogHistory;
@@ -88,18 +89,17 @@ class AssetController extends BaseController
                         // dd($file);
                         $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
                         $fileName = $file->getClientOriginalName();
-                        $path = $file->storeAs('public/file/foto', $fileName);
-                        $filetemp =  $basePath . 'public/file/foto\\' . $fileName;
-                        $fileDest = $basePath . 'public/file/foto\\' . date('Y-m-d-H-i-s') . $fileName;
-                        $realPath = 'public/file/foto\\' . date('Y-m-d-H-i-s') . $fileName;
-                        UtilCompressImage::compressImage($filetemp, $fileDest, 75);
+                        $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
+                        $path = $file->storeAs('public/file/foto/big', $fileName);
+                        
+                        $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
+                        // UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                          /*Remove file Original*/
-                         unlink($filetemp);
-                        $dokumentasi->line_no = $r['line_no'];
-                        $dokumentasi->pathfoto = $fileDest;
-                        $dokumentasi->file_name = $realPath;
-                        $dokumentasi->keterangan = $r['keterangan'];
-                        $dokumentasi->id_asset = $model->id;
+                         $dokumentasi->line_no = $r['line_no'];
+                         $dokumentasi->pathfoto = $upload['path'];
+                         $dokumentasi->file_name = $upload['fileDB'];
+                         $dokumentasi->keterangan = $r['keterangan'];
+                         $dokumentasi->id_asset = $model->id;
 
                         $dokumentasi->save();
                     }
@@ -195,17 +195,14 @@ class AssetController extends BaseController
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
                             $fileName = $file->getClientOriginalName();
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
-                            $path = $file->storeAs('public/file/foto', $fileName);
-                            $filetemp =  $basePath . 'public/file/foto\\' . $fileName;
+                            $path = $file->storeAs('public/file/foto/big', $fileName);
                             
-                            $fileDest = $basePath . 'public/file/foto\\' . date('Y-m-d-H-i-s') . $fileName;
-                            $realPath = date('Y-m-d-H-i-s') . $fileName;
-                            UtilCompressImage::compressImage($filetemp, $fileDest, 75);
+                            $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
+                            // UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                              /*Remove file Original*/
-                             unlink($filetemp);
                              $dokumentasi->line_no = $r['line_no'];
-                             $dokumentasi->pathfoto = $fileNameDB;
-                             $dokumentasi->file_name = $realPath;
+                             $dokumentasi->pathfoto = $upload['path'];
+                             $dokumentasi->file_name = $upload['fileDB'];
                              $dokumentasi->keterangan = $r['keterangan'];
                              $dokumentasi->id_asset = $model->id;
     
