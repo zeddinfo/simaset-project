@@ -101,9 +101,7 @@ class RoleController extends BaseController
         //     return $role;
         // })
         ->addColumn('action', function($data){
-            $button = '<button type="button" title="Edit" data-id="'.$data->id.'" onclick="edit('.$data->id.')" class="btn btn-info btn-xs"> 
-             <i class="fas fa-book"></i>
-             </button>';
+            $button = '<a href="'.url("setting/role/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
 
              $button .= '&nbsp';
 
@@ -114,5 +112,45 @@ class RoleController extends BaseController
          return $button;
         })
         ->make(true);
+    }
+
+    public function update(Request $request, $id){
+        $title = 'Detail Role';
+        $model = Role::where(['id' => $id])->first();
+
+        $role = Role::get();
+        $menu = Menu::where([
+            'parent' => 0,
+        ])
+            ->get();
+
+        if ($request->isMethod('post')) {
+
+            DB::beginTransaction();
+            try {
+                $model->role = strtolower($model->role);
+                $model->save();
+
+                $delete = MenuDetail::where(['id_role' => $id])->delete();
+
+                if (isset($request->menuDetail)) {
+                    foreach ($request->menuDetail as $r) {
+                        $Menu = new MenuDetail();
+                        $Menu->id_menu = $r;
+                        $Menu->id_role = $model->id;
+                        $Menu->save();
+                    }
+                }
+
+                DB::commit();
+                // dd($model);
+                toastr()->success('Data berhasil disimpan');
+                return redirect('/setting/role/view/' . $model->id);
+            } catch (\Exception $e) {
+                DB::rollBack();
+                return $e;
+            }
+        }
+        return view('admin.setting.role.create', compact('model', 'menu', 'role', 'title'));
     }
 }

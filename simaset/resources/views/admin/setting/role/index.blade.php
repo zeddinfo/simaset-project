@@ -76,6 +76,12 @@
                     type: 'GET',
                     dataType: 'JSON'
                 },
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'role', name: 'role'},
+                    {data: 'action', name: 'action'}
+                ],
+                order: [[0, 'asc']]
             });
         });
     </script>
