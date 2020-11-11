@@ -6,6 +6,10 @@ class UtilUploadFoto {
     public static function UploadFoto($file, $basePath, $size){
 
         $thn = date('Y');
+        // Nek bulan e meh di ganti angka
+        // $bln = date('m');
+
+        // Nek bulan e meh diganti string (November)
         $bln = date('F');
         $day = date('d');
         $folder = 'public/file/foto/'.$thn.'/'.$bln.'/'.$day; 
