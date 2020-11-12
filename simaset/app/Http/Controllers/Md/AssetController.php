@@ -97,6 +97,7 @@ class AssetController extends BaseController
                          /*Remove file Original*/
                          $dokumentasi->line_no = $r['line_no'];
                          $dokumentasi->pathfoto = $upload['path'];
+                         $dokumentasi->url = $upload['url'];
                          $dokumentasi->file_name = $upload['fileDB'];
                          $dokumentasi->keterangan = $r['keterangan'];
                          $dokumentasi->id_asset = $model->id;
@@ -202,6 +203,7 @@ class AssetController extends BaseController
                              /*Remove file Original*/
                              $dokumentasi->line_no = $r['line_no'];
                              $dokumentasi->pathfoto = $upload['path'];
+                             $dokumentasi->url = $upload['url'];
                              $dokumentasi->file_name = $upload['fileDB'];
                              $dokumentasi->keterangan = $r['keterangan'];
                              $dokumentasi->id_asset = $model->id;

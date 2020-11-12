@@ -29,6 +29,7 @@ class UtilUploadFoto {
         $data = array(
             'fileDB' => $fileNameDB,
             'path' => $filetemp,
+            'url' => $folder.'/'.$fileNameDB,
         );
 
         return $data;

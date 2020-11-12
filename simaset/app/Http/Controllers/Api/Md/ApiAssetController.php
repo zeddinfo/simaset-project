@@ -21,7 +21,9 @@ class ApiAssetController extends Controller
     }
 
     public function list(Request $request){
-        $list = Asset::where('is_delete', 0)->get();
+        $list = Asset::where('is_delete', 0)
+                ->orderby('id', 'desc')
+                ->get();
 
         return DataTables::of($list)
         ->addIndexColumn()
@@ -47,8 +49,9 @@ class ApiAssetController extends Controller
         ->editColumn('image', function($data){
             $param = count($data->dokumentasi);
             if($param != 0){
-                $path = $data->dokumentasi[0]->file_name;
-                $image = url('/storage/file/foto/'.$path);
+                $img = $data->dokumentasi[0]->file_name;
+                $url = $data->dokumentasi[0]->url;
+                $image = url($url);
             } else {
                 $image = url('/storage/file/foto/no-photos.png');
             }
