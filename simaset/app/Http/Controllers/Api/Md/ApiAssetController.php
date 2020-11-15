@@ -50,7 +50,7 @@ class ApiAssetController extends Controller
             $param = count($data->dokumentasi);
             if($param != 0){
                 $img = $data->dokumentasi[0]->file_name;
-                $url = $data->dokumentasi[0]->url;
+                $url = 'http://localhost/simaset-project/simaset'.$data->dokumentasi[0]->url;
                 $image = url($url);
             } else {
                 $image = url('/storage/file/foto/no-photos.png');

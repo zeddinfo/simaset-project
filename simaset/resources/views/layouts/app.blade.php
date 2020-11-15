@@ -303,7 +303,7 @@
                             <div class="collapse" id="collapse{{$key}}" aria-labelledby="heading{{$key}}">
                                 <div class="bg-white py-2 collapse-inner rounded">
                                   @foreach ($r->sub_menu2 as $s)
-                                    <a class="nav-link {{$currentUrl == $s->link ? 'active' : ''}}" href="{{url($s->link)}}">{{$s->title}}</a>
+                                    <a class="nav-link {{$currentUrl == $s->link ? 'active' : ''}} ml-5" href="{{url($s->link)}}">{{$s->title}}</a>
                                     @if($currentUrl == $s->link)
                                     <script>
                                       $('#collapse{{$key}}').addClass('show');

@@ -14,6 +14,7 @@ class UtilUploadFoto {
         $day = date('d');
         $folder = 'public/file/foto/'.$thn.'/'.$bln.'/'.$day; 
         
+        $linkGbr = '/storage/app/public/file/foto/'.$thn.'/'.$bln.'/'.$day;
         if(!file_exists($folder)){
             mkdir($folder, 0777, true);
         }
@@ -29,7 +30,7 @@ class UtilUploadFoto {
         $data = array(
             'fileDB' => $fileNameDB,
             'path' => $filetemp,
-            'url' => $folder.'/'.$fileNameDB,
+            'url' => $linkGbr.'/'.$fileNameDB,
         );
 
         return $data;

@@ -25,6 +25,7 @@
         format: "dd-mm-yyyy",
         immediateUpdates: true,
         todayBtn: true,
-        todayHighlight: true
-    });
+        todayHighlight: true,
+        startDate: "today",
+    }).datepicker("setDate", "0");
 </script>
