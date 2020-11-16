@@ -280,7 +280,10 @@
                                             @foreach ($model->dokumentasi as $r)
                                             <div class="col-md-6">
                                                 <span>{{$r->file_name}}</span>
-                                                <img src="{{url('/storage/file/foto/'.$r->file_name)}}"
+                                                @php 
+                                                    $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
+                                                @endphp
+                                                <img src="{{$link.$r->url}}"
                                                     style="width: 400px;margin: 5px;border: 1px solid black;border-radius: 5px;">
                                             </div>
                                             @endforeach
