@@ -52,7 +52,7 @@ class AssetController extends BaseController
                 $model->satuan_sewa = $request->satuan_sewa;
                 // $model->jual = $request->harga;
                 $model->harga_jual = $request->harga_jual;
-                $model->tgl_sewa = $request->$tgl;
+                $model->tgl_sewa = $request->tgl_sewa;
                 $model->masa_sewa = $request->masa_sewa;
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
                 $model->masa_akhir = $masa_akhir;
@@ -63,6 +63,7 @@ class AssetController extends BaseController
                 $model->no_legal = $request->no_setipikat;
                 $model->hadap = $request->manghadap;
                 $model->status = $request->status;
+                $model->embed_googl = $request->embed_google;
                 $model->is_delete = '0';
 
                 $model->save();
