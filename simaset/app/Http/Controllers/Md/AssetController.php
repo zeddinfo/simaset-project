@@ -63,7 +63,7 @@ class AssetController extends BaseController
                 $model->no_legal = $request->no_setipikat;
                 $model->hadap = $request->manghadap;
                 $model->status = $request->status;
-                $model->embed_googl = $request->embed_google;
+                $model->embed_google = $request->embed_google;
                 $model->is_delete = '0';
 
                 $model->save();
