@@ -317,7 +317,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
-                                        <textarea class="form-control">{{isset($model) ? $model->embed : ''}}</textarea>
+                                        <textarea class="form-control" name="embed_google">{{isset($model) ? $model->embed : ''}}</textarea>
                                         </div>
                                     </div>
                                 </div>
