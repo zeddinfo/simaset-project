@@ -250,7 +250,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
                                                     placeholder="Password" readonly
-                                                    value="{{isset($model) ? $model->tgl_sewa : ''}}">
+                                                    value="{{isset($model) ? $model->tgl_sewa: ''}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">

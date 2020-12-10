@@ -21,7 +21,7 @@
             placeholder="" required="" value="{{isset($model) ? $model->keterangan : ''}}" data-id="keterangan"
             im-insert="true">
     </td>
-    <td style="width: 25%;padding: 20px">
+    <td style="width: 40%;padding: 30px">
         @php 
         $path = url('/storage/file/foto/'.$model->file_name);
         $defaultImg = url('/assets/icons/image.png');
