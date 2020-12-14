@@ -109,7 +109,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputEmail3"
-                                                    placeholder="Email" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->namaasset : ''}}">
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                                 class="col-sm-3 col-form-label"><b>ALAMAT</b></label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->alamat : ''}}">
                                             </div>
                                         </div>
@@ -127,8 +127,8 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
-                                                    value="{{isset($model) ? $model->lt.'M2'. ' / ' .$model->lb. 'M2' : ''}}">
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? $model->lt.' M2 '. ' /  ' .$model->lb. ' M2' : ''}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -136,7 +136,7 @@
                                                     RUANGAN</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->kamar : '-'}}">
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@
                                                     MANDI</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->km : '-'}}">
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                                     LISTRIK</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->listrik : '-'}}">
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->air : '-'}}">
                                             </div>
                                         </div>
@@ -172,7 +172,7 @@
                                                     JUAL</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? 'Rp ' .$model->harga_jual : 'Rp -'}}">
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@
                                                     SEWA</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? 'Rp ' .$model->harga_sewa : 'Rp -'}}">
                                             </div>
                                         </div>
@@ -196,7 +196,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputEmail3"
-                                                    placeholder="Email" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->legal : '-'}}">
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                                     LEGAL</b></label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->an_legal : ''}}">
                                             </div>
                                         </div>
@@ -215,7 +215,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="-" readonly
                                                     value="{{isset($model) ? $model->no_legal : ''}}">
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputEmail3"
-                                                    placeholder="Email" readonly
+                                                    placeholder="Nama Penyewa" readonly
                                                     value="{{isset($model) ? $model->namapenyewa : '-'}}">
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
                                                     SEWA</b></label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="" readonly
                                                     value="{{isset($model) ? $model->tgl_sewa: ''}}">
                                             </div>
                                         </div>
@@ -258,7 +258,7 @@
                                             </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="" readonly
                                                     value="{{isset($model) ? $model->masa_sewa. ' TAHUN' : ''}}">
                                             </div>
                                         </div>
@@ -267,7 +267,7 @@
                                                     TANGGAL AKHIR SEWA</b> </label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
-                                                    placeholder="Password" readonly
+                                                    placeholder="" readonly
                                                     value="{{isset($model) ? $model->masa_akhir : '00 - 00 - 0000'}}">
                                             </div>
                                         </div>

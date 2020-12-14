@@ -105,8 +105,8 @@
                                                     <td>&bull; Luas Tanah</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <div class="input-group mb-2">
-                                                            <input type="text" class="form-control text-right angka"
+                                                        <div class="input-group mt-3">
+                                                            <input type="text" class="form-control"
                                                             placeholder="" name="lt" id="lt" value="{{isset($model) ? $model->lt : ''}}">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">M<sup>2</sup></div>
@@ -119,7 +119,7 @@
                                                     <td>:</td>
                                                     <td>
                                                         <div class="input-group mb-2">
-                                                            <input type="text" class="form-control text-right angka"
+                                                            <input type="text" class="form-control"
                                                             placeholder="" name="lb" id="lb" value="{{isset($model) ? $model->lb : ''}}">
                                                             <div class="input-group-append">
                                                                 <div class="input-group-text">M<sup>2</sup></div>
@@ -131,9 +131,9 @@
                                                     <td>&bull; Lebar x Panjang</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <input type="text" class="wide-pj angka" placeholder=""
+                                                        <input type="text" class="wide-pj" placeholder=""
                                                         name="lebar" value="{{isset($model) ? $model->lebar : ''}}" id="lb" style="width: 82px">
-                                                        <input type="text" class="wide-lb angka" placeholder=""
+                                                        <input type="text" class="wide-lb" placeholder=""
                                                         name="panjang" value="{{isset($model) ? $model->panjang : ''}}" id="lb"
                                                         style="width: 82px;margin-right: -200px"><small
                                                         id="x">X</small><small id="m"><b>M</b></small>
@@ -259,7 +259,7 @@
                                                     <td>
                                                         <div class="input-group">
                                                             <input type="text" required class="form-control datepicker"
-                                                             id="start_rent" name="tgl_sewa"
+                                                             id="tgl_sewa" name="tgl_sewa"
                                                             placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary" type="button">
@@ -289,6 +289,15 @@
                                     </div>
                                     <div class="form-group ml-3">
                                         <label><strong>HARGA</strong></label>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <input type="text" class="form-control numeric" id="hargaa"
+                                            placeholder="Harga fix" name="hargaa" value="{{isset($model) ? $model->hargaa : ''}}">
+                                                <input type="hidden" name="harga_asset" id="harga_asset">
+                                            </div>
+                                            </div>
+
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <input type="text" class="form-control numeric" id="harga_jual"
@@ -372,7 +381,7 @@
                                                             name="legalitas">
                                                             <option value="{{isset($model) ? $model->legal : ''}}" selected="selected">{{isset($model) && $model->legal ? $model->legal : ' - PILIH -'}}</option>
                                                             <option value="SHM">SHM</option>
-                                                            <option value="SHBG">SHBG</option>
+                                                            <option value="SHGB">SHGB</option>
                                                         </select>
                                                     </td>
                                                     <td>
@@ -506,9 +515,9 @@
             autoclose: true,
             format: "dd/mm/yyyy",
             immediateUpdates: true,
-            todayBtn: true,
-            todayHighlight: true,
-            startDate: "today",
+            // todayBtn: true,
+            // todayHighlight: true,
+            // startDate: "today",
         }).datepicker("setDate", "0");
 
         $(".angka").keypress(function (e) {

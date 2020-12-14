@@ -73,12 +73,14 @@
                                 Maintenance</a>
                         </li>
                     </ul>
-                    <div class="card-header">
-                        <a href="{{url('/md/asset/create')}}" class="btn btn-info active float-right" role="button"
-                            aria-pressed="true"> <i class="fa fa-plus"></i> Tambah Data</a>
-                    </div>
+                    
                     <div class="card-body">
+                    
                         <div class="table-responsive">
+                        
+                        <a href="{{url('/md/asset/create')}}" class="btn btn-info active float-left" role="button"
+                            > <i class="fa fa-plus"></i> Tambah Data</a>
+                    
                             <table class="table table-striped table-bordered" id="table-asset">
                                 <thead>
                                     <tr>

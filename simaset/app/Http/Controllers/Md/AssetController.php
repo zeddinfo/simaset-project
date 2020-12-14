@@ -51,6 +51,7 @@ class AssetController extends BaseController
                 $model->satuan_jual = $request->satuan_jual;
                 $model->satuan_sewa = $request->satuan_sewa;
                 // $model->jual = $request->harga;
+                $model->hargaa = $request->hargaa;
                 $model->harga_jual = $request->harga_jual;
                 $model->tgl_sewa = $request->tgl_sewa;
                 $model->masa_sewa = $request->masa_sewa;
