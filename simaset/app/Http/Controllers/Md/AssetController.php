@@ -90,8 +90,13 @@ class AssetController extends BaseController
  
                         // dd($file);
                         $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
+<<<<<<< Updated upstream
                         $fileName = str_replace(' ','_',$file->getClientOriginalName());
                         $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
+=======
+                        $fileName = $file->getClientOriginalName();
+                        $fileNameDB = date('Y-m-d-H-i-s').$fileName;
+>>>>>>> Stashed changes
                         $path = $file->storeAs('public/file/foto/big', $fileName);
                         
                         $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
@@ -196,9 +201,14 @@ class AssetController extends BaseController
      
                             // dd($file);
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
+<<<<<<< Updated upstream
                             $fileName = str_replace(' ','_',$file->getClientOriginalName());
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
                             dd($fileNameDB);
+=======
+                            $fileName = $file->getClientOriginalName();
+                            $fileNameDB = date('Y-m-d-H-i-s').$fileName;
+>>>>>>> Stashed changes
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
                             $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
