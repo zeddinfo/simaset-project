@@ -90,7 +90,7 @@ class AssetController extends BaseController
  
                         // dd($file);
                         $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
-                        $fileName = $file->getClientOriginalName();
+                        $fileName = str_replace(' ','_',$file->getClientOriginalName());
                         $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
                         $path = $file->storeAs('public/file/foto/big', $fileName);
                         
@@ -100,7 +100,7 @@ class AssetController extends BaseController
                          $dokumentasi->line_no = $r['line_no'];
                          $dokumentasi->pathfoto = $upload['path'];
                          $dokumentasi->url = $upload['url'];
-                         $dokumentasi->file_name = $upload['fileDB'];
+                         $dokumentasi->file_name = $fileNameDB;
                          $dokumentasi->keterangan = $r['keterangan'];
                          $dokumentasi->id_asset = $model->id;
 
@@ -196,8 +196,9 @@ class AssetController extends BaseController
      
                             // dd($file);
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
-                            $fileName = $file->getClientOriginalName();
+                            $fileName = str_replace(' ','_',$file->getClientOriginalName());
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
+                            dd($fileNameDB);
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
                             $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
@@ -206,7 +207,7 @@ class AssetController extends BaseController
                              $dokumentasi->line_no = $r['line_no'];
                              $dokumentasi->pathfoto = $upload['path'];
                              $dokumentasi->url = $upload['url'];
-                             $dokumentasi->file_name = $upload['fileDB'];
+                             $dokumentasi->file_name = $fileNameDB;
                              $dokumentasi->keterangan = $r['keterangan'];
                              $dokumentasi->id_asset = $model->id;
     
