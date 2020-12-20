@@ -30,7 +30,5 @@ Route::get('/get-user/{id}', 'Api\Md\ApiuserController@view');
 Route::post('/mobile/register', 'Api\Mobile\ScafoldController@register');
 Route::post('/mobile/login', 'Api\Mobile\ScafoldController@login');
 Route::post('/mobile/logout', 'Api\Mobile\ScafoldController@logout');
-
-Route::group(['middleware' => ['jwt.verify']], function () {
-    Route::get('/mobile/assets/', 'Api\Md\ApiAssetController@asset');
-});
+Route::get('/mobile/assets/', 'Api\Mobile\AssetController@getAll');
+Route::get('/mobile/asset/{id}', 'Api\Mobile\AssetController@getById');
