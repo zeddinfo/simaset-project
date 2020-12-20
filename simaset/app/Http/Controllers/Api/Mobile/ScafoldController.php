@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Http\Request;
 use App\User;
+use Facade\FlareClient\Http\Response;
 use JWTAuth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -42,15 +43,30 @@ class ScafoldController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
-            }
-        } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+        $data = User::where([
+            ['username', $credentials['username']],
+            ['password', $credentials['password']]
+        ])
+        ->get();
+        // dd($data);
+
+
+        ///kurang logi
+        if(empty($data)){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Username / Password salah'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Successfully',
+                'data' => base64_encode(date('Y-m-d').$data),
+                'token' => base64_encode(date('Y-m-d-H:i:s').$data),
+            ]);
         }
 
-        return response()->json(compact('token'));
+       
     }
 
     public function logout()

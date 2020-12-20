@@ -20,9 +20,14 @@ use PDF;
 
 class AssetController extends BaseController
 {
-    public function index(){
+    public function index(Request $request){
+        $user = $request->session()->get('role');
+        
         $title = 'Master Data Asset';
-        return view('admin.md.asset.index', compact('title'));
+        $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+        > <i class="fa fa-plus"></i> Tambah Data</a>';
+        $workflow = $user == 'admin' ? $create : '';
+        return view('admin.md.asset.index', compact('title', 'workflow'));
     }
     public function create(Request $request){
         $model = new Asset();
@@ -90,13 +95,8 @@ class AssetController extends BaseController
  
                         // dd($file);
                         $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
-<<<<<<< Updated upstream
                         $fileName = str_replace(' ','_',$file->getClientOriginalName());
                         $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
-=======
-                        $fileName = $file->getClientOriginalName();
-                        $fileNameDB = date('Y-m-d-H-i-s').$fileName;
->>>>>>> Stashed changes
                         $path = $file->storeAs('public/file/foto/big', $fileName);
                         
                         $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
@@ -201,14 +201,9 @@ class AssetController extends BaseController
      
                             // dd($file);
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
-<<<<<<< Updated upstream
                             $fileName = str_replace(' ','_',$file->getClientOriginalName());
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
                             dd($fileNameDB);
-=======
-                            $fileName = $file->getClientOriginalName();
-                            $fileNameDB = date('Y-m-d-H-i-s').$fileName;
->>>>>>> Stashed changes
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
                             $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);

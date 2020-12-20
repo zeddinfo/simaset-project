@@ -21,22 +21,57 @@ class ApiAssetController extends Controller
     }
 
     public function list(Request $request){
-        $list = Asset::where('is_delete', 0)
-                ->orderby('id', 'desc')
-                ->get();
-
+        $type = $request->type;
+        if($type == 'sewa'){
+            $list = Asset::where([
+                ['is_delete', 0],
+                ['status', 'DISEWAKAN']
+                ])
+            ->orderby('id', 'desc')
+            ->get();
+        } else if($type == 'jual'){
+            $list = Asset::where([
+                ['is_delete', 0],
+                ['status', 'DIJUAL']
+                ])
+            ->orderby('id', 'desc')
+            ->get();
+        } else if($type == 'jual-sewa'){
+            $list = Asset::where([
+                ['is_delete', 0],
+                ['status', 'DIJUAL/DISEWAKAN']
+                ])
+            ->orderby('id', 'desc')
+            ->get();
+        } else if($type == 'maintenance'){
+            $list = Asset::where([
+                ['is_delete', 0],
+                ['status', 'MAINTENANCE']
+                ])
+            ->orderby('id', 'desc')
+            ->get();
+        } else {
+            $list = Asset::where('is_delete', 0)
+            ->orderby('id', 'desc')
+            ->get();
+        }
+     
+        $user = $request->session()->get('role');
         return DataTables::of($list)
         ->addIndexColumn()
-        ->addColumn('action', function($data){
-            $button = '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
+        ->addColumn('action', function($data) use ($user){
+            $button = '';
+            if($user == 'admin'){
+                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
 
-            $button .= '&nbsp';
-
-            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-warning btn-xs"> 
-                            <i class="fas fa-fw fa-trash"></i>
-                        </button>';
-
-            $button .= '&nbsp';
+                $button .= '&nbsp';
+    
+                $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-warning btn-xs"> 
+                                <i class="fas fa-fw fa-trash"></i>
+                            </button>';
+    
+                $button .= '&nbsp';
+            }
 
             $button .= '<a href="'.url("md/asset/detail/".$data->id).'" title = "Detail" data-id="'.$data->id.'" class="btn btn-info btn-xs"> <i class="fa fa-search"></i></a>';
 
