@@ -167,6 +167,17 @@
                                                     value="{{isset($model) ? $model->air : '-'}}">
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
+                                                    Fix</b> </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? 'Rp ' .$model->hargaa : 'Rp -'}}">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
                                                     JUAL</b> </label>
@@ -304,21 +315,21 @@
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <button class="btn btn-primary" type="button" id="btn-keterangan"><i
-                                                    class="fas fa-plus"></i> Tambah
-                                                Keterangan</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                                    class="fas fa-plus"></i> Tambah 
+                                                Keterangan</button> 
+                                        </div> 
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div> 
+ 
+                    </div> 
+                </div> 
+            </div> 
+        </div>  
+    </div> 
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section>
+</section> 
 @section('script')
 <script>
     var url = window.location.pathname;

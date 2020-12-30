@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.app') 
+ 
 @section('content')
 <style>
     .nav-tabs {
@@ -73,34 +73,37 @@
                                 Maintenance</a>
                         </li>
                     </ul>
+
                     
+                   
                     <div class="card-body">
                     
-                        <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="table-asset">
                         
                         <a href="{{url('/md/asset/create')}}" class="btn btn-info active float-left" role="button"
-                            > <i class="fa fa-plus"></i> Tambah Data</a>
+                            aria-pressed="true"> <i class="fa fa-plus"></i> Tambah Data</a>
                     
-                            <table class="table table-striped table-bordered" id="table-asset">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Asset</th>
-                                        <th>Alamat</th>
-                                        <th>LT(M<sup>2</sup>)</th>
-                                        <th>LB(M<sup>2</sup>)</th>
-                                        <th>Ukuran(L x P)</th>
-                                        <th>Status</th>
-                                        <th>Harga</th>
-                                        <th>Thumbnail</th>
-                                        <th>Opsi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                            <thead>
+                            
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Asset</th>
+                                    <th>Alamat</th>
+                                    <th>LT(M<sup>2</sup>)</th>
+                                    <th>LB(M<sup>2</sup>)</th>
+                                    <th>Ukuran(L x P)</th>
+                                    <th>Status</th>
+                                    <th>Harga</th>
+                                    <th>Thumbnail</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

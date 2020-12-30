@@ -19,7 +19,8 @@ class UtilUploadFoto {
             mkdir($folder, 0777, true);
         }
 
-        $fileName = $file->getClientOriginalName();
+        // $fileName = $file->getClientOriginalName();
+        $fileName = str_replace(' ','_',$file->getClientOriginalName());
         $path = $file->storeAs($folder, $fileName);
         $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
         $filetemp =  $basePath . $folder.'\\' . $fileName;
