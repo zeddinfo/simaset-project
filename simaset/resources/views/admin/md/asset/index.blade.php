@@ -1,5 +1,5 @@
-@extends('layouts.app') 
- 
+@extends('layouts.app')
+
 @section('content')
 <style>
     .nav-tabs {
@@ -23,6 +23,7 @@
     .table-asset_length {
         float: left;
     }
+
     img.thumbnail {
         vertical-align: middle;
         border-style: none;
@@ -74,36 +75,155 @@
                         </li>
                     </ul>
 
-                    
-                   
                     <div class="card-body">
-                    
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered" id="table-asset">
-                        
-                        <a href="{{url('/md/asset/create')}}" class="btn btn-info active float-left" role="button"
-                            aria-pressed="true"> <i class="fa fa-plus"></i> Tambah Data</a>
-                    
-                            <thead>
-                            
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Asset</th>
-                                    <th>Alamat</th>
-                                    <th>LT(M<sup>2</sup>)</th>
-                                    <th>LB(M<sup>2</sup>)</th>
-                                    <th>Ukuran(L x P)</th>
-                                    <th>Status</th>
-                                    <th>Harga</th>
-                                    <th>Thumbnail</th>
-                                    <th>Opsi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                            <div class="tab-content" id="myTabContent" style="padding: 10px">
+                                <div class="tab-pane fade show active" id="tab-list" role="tabpanel"
+                                    aria-labelledby="tab-1">
+                                
+                                        <div class="table-responsive">
+                                            
+                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            float-left" role="button"
+                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+
+                                            <table class="table table-striped table-bordered" id="table-asset">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Asset</th>
+                                                        <th>Alamat</th>
+                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>LB(M<sup>2</sup>)</th>
+                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Status</th>
+                                                        <th>Harga</th>
+                                                        <th>Thumbnail</th>
+                                                        <th>Opsi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-pane fade show" id="tab-dijual" role="tabpanel"
+                                    aria-labelledby="tab-1">
+                                
+                                        <div class="table-responsive">
+                                             <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            float-left" role="button"
+                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+
+                                            <table class="table table-striped table-bordered" id="table-jual">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Asset</th>
+                                                        <th>Alamat</th>
+                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>LB(M<sup>2</sup>)</th>
+                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Status</th>
+                                                        <th>Harga</th>
+                                                        <th>Thumbnail</th>
+                                                        <th>Opsi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade show " id="tab-disewa" role="tabpanel"
+                                    aria-labelledby="tab-1">
+                                
+                                        <div class="table-responsive">
+                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            float-left" role="button"
+                                            > <i class="fa fa-plus"></i> Tambah Data</a> 
+
+                                            <table class="table table-striped table-bordered" id="table-sewa">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Asset</th>
+                                                        <th>Alamat</th>
+                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>LB(M<sup>2</sup>)</th>
+                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Status</th>
+                                                        <th>Harga</th>
+                                                        <th>Thumbnail</th>
+                                                        <th>Opsi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade show" id="tab-dijual-disewa" role="tabpanel"
+                                    aria-labelledby="tab-1">
+                                
+                                        <div class="table-responsive">
+                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            float-left" role="button"
+                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+
+                                            <table class="table table-striped table-bordered" id="table-jual-sewa">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Asset</th>
+                                                        <th>Alamat</th>
+                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>LB(M<sup>2</sup>)</th>
+                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Status</th>
+                                                        <th>Harga</th>
+                                                        <th>Thumbnail</th>
+                                                        <th>Opsi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade show" id="tab-maintenance" role="tabpanel"
+                                    aria-labelledby="tab-1">
+                                
+                                        <div class="table-responsive">
+                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            float-left" role="button"
+                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+
+                                            <table class="table table-striped table-bordered" id="table-maintenance">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Asset</th>
+                                                        <th>Alamat</th>
+                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>LB(M<sup>2</sup>)</th>
+                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Status</th>
+                                                        <th>Harga</th>
+                                                        <th>Thumbnail</th>
+                                                        <th>Opsi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -222,16 +342,12 @@
             serverside: true,
             responsive: true,
             lengthChange: false,
-            dom: 'Bfrtip',
-            buttons: [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-            ],
             ajax: {
                 url: "{{url('api/asset/list')}}",
                 type: "GET",
+                data: {
+                    type: 'all',
+                },
                 dataType: "JSON"
             },
             columns: [{
@@ -269,8 +385,261 @@
                 {
                     data: 'image',
                     name: 'image',
-                    render: function(data, type, full, meta){
-                        return "<img src="+data+" class='thumbnail'/>";
+                    render: function (data, type, full, meta) {
+                        return "<img src=" + data + " class='thumbnail'/>";
+                    },
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '25%'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
+        });
+
+
+        $('#table-sewa').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                data: {
+                    type: 'sewa'
+                },
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt'
+                },
+                {
+                    data: 'lb',
+                    name: 'lb'
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function (data, type, full, meta) {
+                        return "<img src=" + data + " class='thumbnail'/>";
+                    },
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '25%'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
+        });
+
+        $('#table-jual').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                data: {
+                    type: 'jual'
+                },
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt'
+                },
+                {
+                    data: 'lb',
+                    name: 'lb'
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function (data, type, full, meta) {
+                        return "<img src=" + data + " class='thumbnail'/>";
+                    },
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '25%'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
+        });
+
+        $('#table-jual-sewa').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                data: {
+                    type: 'jual-sewa'
+                },
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt'
+                },
+                {
+                    data: 'lb',
+                    name: 'lb'
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function (data, type, full, meta) {
+                        return "<img src=" + data + " class='thumbnail'/>";
+                    },
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width: '25%'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
+        });
+
+        $('#table-maintenance').DataTable({
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                data: {
+                    type: 'maintenance'
+                },
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt'
+                },
+                {
+                    data: 'lb',
+                    name: 'lb'
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga'
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function (data, type, full, meta) {
+                        return "<img src=" + data + " class='thumbnail'/>";
                     },
                 },
                 {

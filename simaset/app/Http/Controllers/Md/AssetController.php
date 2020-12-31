@@ -20,9 +20,14 @@ use PDF;
 
 class AssetController extends BaseController
 {
-    public function index(){
+    public function index(Request $request){
+        $user = $request->session()->get('role');
+        
         $title = 'Master Data Asset';
-        return view('admin.md.asset.index', compact('title'));
+        $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+        > <i class="fa fa-plus"></i> Tambah Data</a>';
+        $workflow = $user == 'admin' ? $create : '';
+        return view('admin.md.asset.index', compact('title', 'workflow'));
     }
     public function create(Request $request){
         $model = new Asset();
@@ -50,7 +55,6 @@ class AssetController extends BaseController
                 $model->harga_sewa = $request->harga_sewa;
                 $model->satuan_jual = $request->satuan_jual;
                 $model->satuan_sewa = $request->satuan_sewa;
-                $model->satuan_sewa = $request->satuan_fix;
                 // $model->jual = $request->harga;
                 $model->hargaa = $request->hargaa;
                 $model->harga_jual = $request->harga_jual;
@@ -159,7 +163,7 @@ class AssetController extends BaseController
                 $model->satuan_jual = $request->satuan_jual;
                 // $model->jual = $request->harga;
                 $model->satuan_jual= $request->satuan_jual;
-                $model->tgl_sewa = $request->tgl_sewa;
+                $model->tgl_sewa = $request->$tgl;
                 $model->masa_sewa = $request->masa_sewa;
                 $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_sewa)->format('d-m-Y');
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
@@ -199,7 +203,7 @@ class AssetController extends BaseController
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
                             $fileName = str_replace(' ','_',$file->getClientOriginalName());
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
-                            // dd($fileNameDB);
+                            dd($fileNameDB);
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
                             $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
