@@ -39,7 +39,7 @@ class ApiAssetController extends Controller
         } else if($type == 'jual-sewa'){
             $list = Asset::where([
                 ['is_delete', 0],
-                ['status', 'DIJUAL/DISEWAKAN']
+                ['status', 'DIJUAL / DISEWAKAN']
                 ])
             ->orderby('id', 'desc')
             ->get();

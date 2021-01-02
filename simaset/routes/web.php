@@ -31,6 +31,7 @@ Route::get('/', 'Auth\LoginController@index');
 Route::post('/auth', 'Auth\LoginController@auth');
 Route::get('auth/logout', 'Auth\LoginController@logout');
 
+
 Route::group(['middleware' => ['authLogin']], function () {
     Route::get('/view/attachment/{url}', 'AttachmentController@index');
     Route::get('/md/kategori', 'Md\KategoriController@index');
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['authLogin']], function () {
     Route::group(['prefix' => 'md/asset'], function () {
         Route::get('/index', 'Md\AssetController@index');
         Route::get('/create', 'Md\AssetController@create');
+        Route::get('/laravel_google_chart', 'Md\AssetController@chart');
         Route::post('/create', 'Md\AssetController@create');
         Route::get('/update/{id}', 'Md\AssetController@update');
         Route::post('/update/{id}', 'Md\AssetController@update');

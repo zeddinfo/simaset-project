@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected $layout = "layouts.app";
     public function auth(Request $request){
         if(Session::get('/login')){
-            return redirect('/dashboard');
+            return redirect('/index');
         }
 
         if($request->isMethod('post')){
@@ -73,7 +73,7 @@ class LoginController extends Controller
                 }
                 
                 toastr()->success('Authentikasi Berhasil');
-                return redirect('/dashboard');
+                return redirect('/md/asset/index');
             }
             toastr()->error('USername atau Password Salah');
             return redirect('/');

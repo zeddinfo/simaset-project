@@ -12,7 +12,7 @@ use App\Models\Md\Asset;
 use App\Models\Md\Dokumentasi;
 use App\Models\Md\Penyewa;
 use App\Models\Md\Perizinan;
-use DB;
+use DB; 
 use Carbon\Carbon;
 use Storage;
 use PDF;
@@ -27,6 +27,19 @@ class AssetController extends BaseController
         $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
         > <i class="fa fa-plus"></i> Tambah Data</a>';
         $workflow = $user == 'admin' ? $create : '';
+
+        $data = DB::table('asset')
+       ->select(
+        DB::raw('status as status'),
+        DB::raw('count(*) as number'))
+       ->groupBy('status')
+       ->get();
+     $array[] = ['Status', 'Number'];
+     foreach($data as $key => $value)
+     {
+      $array[++$key] = [$value->status, $value->number];
+     }
+
         return view('admin.md.asset.index', compact('title', 'workflow'));
     }
     public function create(Request $request){
@@ -296,5 +309,20 @@ class AssetController extends BaseController
 
         $pdf = PDF::loadView('export', compact('model'));
         return $pdf->download($model->namaasset.'.pdf');
+    }
+    function chart()
+    {
+     $data = DB::table('asset')
+       ->select(
+        DB::raw('status as status'),
+        DB::raw('count(*) as number'))
+       ->groupBy('status')
+       ->get();
+     $array[] = ['Status', 'Number'];
+     foreach($data as $key => $value)
+     {
+      $array[++$key] = [$value->status, $value->number];
+     }
+     return view('admin.md.asset.index')->with('status', json_encode($array));
     }
 }
