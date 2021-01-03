@@ -1,40 +1,30 @@
 @extends('layouts.app')
 
-@section('content')
-
-<style>
-    .nav-tabs {
-        border-bottom: 1px solid #dee2e6;
-        background-color: #6777ef;
-    }
-
-    .nav-tabs .nav-item .nav-link {
-        color: white;
-    }
-
-    .modal-content {
-        margin: 2px auto;
-        z-index: 1100 !important;
-    }
-
+@section('content')<style>.nav - tabs {
+    border - bottom : 1 px solid #dee2e6;
+    background - color : #6777ef;
+}.nav - tabs.nav - item.nav - link {
+    color : white;
+}.modal - content {
+    margin : 2 px auto;
+    z - index : 1100 !important;
+}
     .dataTables_filter {
-        float: right;
+        float : right;
+    }
+    .table - asset_length {
+        float : left;
     }
 
-    .table-asset_length {
-        float: left;
-    }
-
-    img.thumbnail {
-        vertical-align: middle;
-        border-style: none;
-        width: 75px;
-        border: 1px solid black;
-        border-radius: 5px;
-    }
-
-</style>
-<!-- <head>
+    img
+    .thumbnail {
+        vertical - align : middle;
+        border - style : none;
+        width : 75 px;
+        border : 1 px solid black;
+        border - radius : 5 px;
+    }</style>
+    <!-- <head>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -331,27 +321,26 @@
             dataType: 'JSON',
             success: function(res){
                 console.log(res);
-            }
-        })
-    });
-
-Chart.defaults.global.legend.labels.usePointStyle = true;
-var ctx = document.getElementById("chart").getContext('2d');
+                var label = [];
+                var total = [];
+                for (var i in res){
+                    label.push(res[i].status);
+                    total.push(res[i].total);
+                }
+                Chart.defaults.global.legend.labels.usePointStyle = true;
+    var ctx = document.getElementById("chart").getContext('2d');
 		var myChart = new Chart(ctx, {
 			type: 'pie',
 			data: {
-			    labels: [
-        "Saudi Arabia",
-        "Russia",
-        "Iraq",
-    ],
+			    labels: label,
     datasets: [
         {
-            data: [133.3, 86.2, 52.2, 51.2, 50.2],
+            data: total,
             backgroundColor: [
-                "#FF6384",
-                "#63FF84",
+                "#FF1493",
+                "#00BFFF",
                 "#84FF63",
+                "#FFFF00",
             ]
         }]
 			},
@@ -363,6 +352,12 @@ var ctx = document.getElementById("chart").getContext('2d');
                 }
 			}
 		});
+
+            }
+        })
+    });
+
+
 
     function hapus(id) {
 

@@ -121,8 +121,7 @@ class ApiAssetController extends Controller
         ->make(true);
     }
     public function chart(){
-        $data = DB::select("
-        SELECT DISTINCT(status) as t1, (SELECT COUNT(status) FROM asset WHERE status = t1) as total FROM asset");
+        $data = DB::select("SELECT status, COUNT(status) as total FROM asset GROUP BY(status)");
 
         return response()->json($data);
     }

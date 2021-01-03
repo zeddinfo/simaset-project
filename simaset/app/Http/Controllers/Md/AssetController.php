@@ -24,9 +24,9 @@ class AssetController extends BaseController
         $user = $request->session()->get('role');
         
         $title = 'Master Data Asset';
-        $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
-        > <i class="fa fa-plus"></i> Tambah Data</a>';
-        $workflow = ($user == 'admin') ? $create : ($user == 'operasional') ? $create : '';
+        // $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+        // > <i class="fa fa-plus"></i> Tambah Data</a>';
+        // $workflow = ($user == 'admin') ? $create : ($user == 'operasional') ? $create : '';
 
         $data = DB::table('asset')
        ->select(
@@ -40,7 +40,7 @@ class AssetController extends BaseController
       $array[++$key] = [$value->status, $value->number];
      }
 
-        return view('admin.md.asset.index', compact('title', 'workflow'));
+        return view('admin.md.asset.index', compact('title'));
     }
     public function create(Request $request){
         $model = new Asset();
