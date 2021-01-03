@@ -90,10 +90,19 @@
             <div class="breadcrumb-item">DataTables</div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4 card">
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
+    </div>
     
     <div class="section-body">
-    
+        {{-- {{$workflow}} --}}
         <div class="row">
+      
             <div class="col-12">
                 <div class="card">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -124,16 +133,20 @@
                     </ul>
 
                     <div class="card-body">
+                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
                             <div class="tab-content" id="myTabContent" style="padding: 10px">
                                 <div class="tab-pane fade show active" id="tab-list" role="tabpanel"
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            
+                                            {{-- @if(Session::get('admin') || Session::get('operasional'))
                                             <a href="{{url('/md/asset/create')}}" class="btn btn-info active
                                             float-left" role="button"
                                             > <i class="fa fa-plus"></i> Tambah Data</a>
-
+                                            @endif --}}
                                             <table class="table table-striped table-bordered" id="table-asset">
                                                 <thead>
                                                     <tr>
@@ -159,9 +172,9 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                             <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                             {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
                                             float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
 
                                             <table class="table table-striped table-bordered" id="table-jual">
                                                 <thead>
@@ -188,9 +201,9 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
                                             float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a> 
+                                            > <i class="fa fa-plus"></i> Tambah Data</a>  --}}
 
                                             <table class="table table-striped table-bordered" id="table-sewa">
                                                 <thead>
@@ -217,9 +230,9 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
                                             float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
 
                                             <table class="table table-striped table-bordered" id="table-jual-sewa">
                                                 <thead>
@@ -246,9 +259,9 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
+                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
                                             float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a>
+                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
 
                                             <table class="table table-striped table-bordered" id="table-maintenance">
                                                 <thead>
@@ -311,6 +324,46 @@
 
 @section('script')
 <script>
+    $(document).ready(function(){
+        $.ajax({
+            url: "{{url('api/chart')}}",
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(res){
+                console.log(res);
+            }
+        })
+    });
+
+Chart.defaults.global.legend.labels.usePointStyle = true;
+var ctx = document.getElementById("chart").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+			    labels: [
+        "Saudi Arabia",
+        "Russia",
+        "Iraq",
+    ],
+    datasets: [
+        {
+            data: [133.3, 86.2, 52.2, 51.2, 50.2],
+            backgroundColor: [
+                "#FF6384",
+                "#63FF84",
+                "#84FF63",
+            ]
+        }]
+			},
+			options: {
+                legend: {
+                    position: 'bottom',
+                    align: 'center',
+                    display: true,
+                }
+			}
+		});
+
     function hapus(id) {
 
         swal({

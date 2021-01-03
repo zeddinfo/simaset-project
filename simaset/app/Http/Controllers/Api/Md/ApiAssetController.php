@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Md;
 use App\Http\Controllers\Controller;
 use App\Models\Md\Asset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class ApiAssetController extends Controller
@@ -71,6 +72,11 @@ class ApiAssetController extends Controller
                             </button>';
     
                 $button .= '&nbsp';
+            } else if($user == 'operasional'){
+                $button = '';
+                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
+
+                $button .= '&nbsp';
             }
 
             $button .= '<a href="'.url("md/asset/detail/".$data->id).'" title = "Detail" data-id="'.$data->id.'" class="btn btn-info btn-xs"> <i class="fa fa-search"></i></a>';
@@ -113,5 +119,11 @@ class ApiAssetController extends Controller
             return $uk;
         })
         ->make(true);
+    }
+    public function chart(){
+        $data = DB::select("
+        SELECT DISTINCT(status) as t1, (SELECT COUNT(status) FROM asset WHERE status = t1) as total FROM asset");
+
+        return response()->json($data);
     }
 }

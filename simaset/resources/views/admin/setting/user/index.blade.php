@@ -152,7 +152,7 @@
         } else {
             $.ajax({
                 url: `{{url('setting/user/update/${id}')}}`,
-                data: $('#frm-modal').serailize(),
+                data: $('#frm-modal').serialize(),
                 dataType: 'JSON',
                 type: 'POST',
                 success: function(res){

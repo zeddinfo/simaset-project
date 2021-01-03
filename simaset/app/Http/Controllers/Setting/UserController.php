@@ -29,10 +29,11 @@ class UserController extends BaseController
     }
 
     public function update(Request $request, $id){
+        // dd($request->all());
         $model = UserRole::where(['id' => $id])->first();
 
-        $model->id_user = $request->id_user;
-        $model->id_role = $request->id_role;
+        $model->id_user = $request->user;
+        $model->id_role = $request->role;
         $model->save();
 
         return response()->json('Data Berhasil disimpan');
