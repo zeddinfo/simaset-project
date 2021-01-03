@@ -349,6 +349,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{url('assets/js/stisla.js')}}"></script>
     <script src="{{url('assets/plugins/datetime/datetime.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 
     <!-- JS Libraies -->
     {{-- <script src="{{url('node_modules/jquery-sparkline/jquery.sparkline.min.js')}}"></script>

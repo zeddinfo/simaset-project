@@ -23,6 +23,8 @@ Route::get('/home2', function () {
 
 Auth::routes();
 
+Route::get('api/chart', 'Api\Md\ApiAssetController@chart');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/category','CategoryController');
@@ -57,6 +59,7 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::get('/view/{id}', 'Setting\RoleController@view');
         Route::get('/listRole', 'Setting\RoleController@listRole');
         Route::get('/update/{id}', 'Setting\RoleController@update');
+        Route::post('/update/{id}', 'Setting\RoleController@update');
     });
 
     Route::group(['prefix' => 'setting/user'], function () {

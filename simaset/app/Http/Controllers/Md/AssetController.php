@@ -26,7 +26,7 @@ class AssetController extends BaseController
         $title = 'Master Data Asset';
         $create = '<a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
         > <i class="fa fa-plus"></i> Tambah Data</a>';
-        $workflow = $user == 'admin' ? $create : '';
+        $workflow = ($user == 'admin') ? $create : ($user == 'operasional') ? $create : '';
 
         $data = DB::table('asset')
        ->select(
