@@ -40,7 +40,7 @@ class ApiAssetController extends Controller
         } else if($type == 'jual-sewa'){
             $list = Asset::where([
                 ['is_delete', 0],
-                ['status', 'DIJUAL / DISEWAKAN']
+                ['status', 'DIJUALatauDISEWA']
                 ])
             ->orderby('id', 'desc')
             ->get();
@@ -63,7 +63,7 @@ class ApiAssetController extends Controller
         ->addColumn('action', function($data) use ($user){
             $button = '';
             if($user == 'admin'){
-                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
+                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fas fa-edit"></i></a>';
 
                 $button .= '&nbsp';
     
@@ -74,7 +74,7 @@ class ApiAssetController extends Controller
                 $button .= '&nbsp';
             } else if($user == 'operasional'){
                 $button = '';
-                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fa fa-book"></i></a>';
+                $button .= '<a href="'.url("md/asset/update/".$data->id).'" title = "Edit" data-id="'.$data->id.'" class="btn btn-primary btn-xs"> <i class="fas fa-edit"></i></a>';
 
                 $button .= '&nbsp';
             }
@@ -125,4 +125,5 @@ class ApiAssetController extends Controller
 
         return response()->json($data);
     }
+
 }

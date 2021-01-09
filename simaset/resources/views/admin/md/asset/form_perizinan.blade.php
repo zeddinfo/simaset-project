@@ -8,7 +8,8 @@
 
         <option value="{{isset($model) ? $model->perizinan : ''}}" selected="selected">{{isset($model) && $model->perizinan ? $model->perizinan : ' - PILIH -'}}</option>
         <option value="IMB">IMB</option>
-        <option value="SHGB">SHGB</option>
+        <option value="AMDAL">AMDAL</option>
+        <option value="HO">HO</option>
     </select>
     </td>
     <td>

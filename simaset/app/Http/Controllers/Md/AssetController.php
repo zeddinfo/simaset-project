@@ -51,7 +51,7 @@ class AssetController extends BaseController
         if($request->isMethod('post')){
             DB::beginTransaction();
             try{
-                // dd($request->all());
+                dd($request->all());
                 $model = new Asset();
                 $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_sewa)->format('d-m-Y');
                 $model->namaasset = $request->namaasset;
@@ -216,7 +216,7 @@ class AssetController extends BaseController
                             $dokumentasi = empty($r['id']) ? new Dokumentasi() : Dokumentasi::find($r['id']);
                             $fileName = str_replace(' ','_',$file->getClientOriginalName());
                             $fileNameDB = date('Y-m-d-H-i-s') . $fileName;
-                            dd($fileNameDB);
+                            // dd($fileNameDB);
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
                             $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);

@@ -1,98 +1,63 @@
 @extends('layouts.app')
 
-@section('content')<style>.nav - tabs {
-    border - bottom : 1 px solid #dee2e6;
-    background - color : #6777ef;
-}.nav - tabs.nav - item.nav - link {
-    color : white;
-}.modal - content {
-    margin : 2 px auto;
-    z - index : 1100 !important;
-}
+@section('content')
+<style>
+    .nav-tabs {
+        border-bottom: 1px solid #dee2e6;
+        background-color: #6777ef;
+    }
+
+    .nav-tabs .nav-item .nav-link {
+        color: white;
+    }
+
+    .modal-content {
+        margin: 2px auto;
+        z-index: 1100 !important;
+    }
+
     .dataTables_filter {
-        float : right;
-    }
-    .table - asset_length {
-        float : left;
+        float: right;
     }
 
-    img
-    .thumbnail {
-        vertical - align : middle;
-        border - style : none;
-        width : 75 px;
-        border : 1 px solid black;
-        border - radius : 5 px;
-    }</style>
-    <!-- <head>
+    .table-asset_length {
+        float: left;
+    }
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    img.thumbnail {
+        vertical-align: middle;
+        border-style: none;
+        width: 80px;
+        height: 80px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
 
-  <script type="text/javascript">
-        var analytics = <?php echo $status ?? ''; ?>
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart()
-        {
-            var data = new google.visualization.arrayToDataTable(analytics);
-            data.addColumn('string', 'Topping');
-      data.addColumn('number', 'Slices');
-      data.addRows([
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1], 
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
-      ]);
-            var options = {
-            title : 'Percentage of Male and Female Employee'
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
-            chart.draw(data, options);
-        }
-    </script>
- </head>
- <body>
-    <br />
-    <div class="container">
-    
-    <div class="panel panel-default">
-        <div class="panel-heading">
-        <h3 class="panel-title">Presentase Aset</h3>
-        </div>
-        <div class="panel-body" align="center">
-        <div id="pie_chart" style="width:300px; height:200px;">
-
-        </div>
-        </div>
-    </div> -->
-
+</style>
 <!-- Main Content -->
 <section class="section">
     <div class="section-header">
-        <h1>DataTables</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Modules</a></div>
-            <div class="breadcrumb-item">DataTables</div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-4 card">
-                <canvas id="chart"></canvas>
+            <h1>DataTables</h1>
+            <div class="section-header-breadcrumb">
+                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Modules</a></div>
+                <div class="breadcrumb-item">DataTables</div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4 card">
+                    <canvas id="chart"></canvas>
+                </div>
+            </div>
+        </div>
+    
     
     <div class="section-body">
         {{-- {{$workflow}} --}}
         <div class="row">
-      
+        
             <div class="col-12">
                 <div class="card">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -113,7 +78,7 @@
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-dijual-disewa" role="tab"
                                 aria-controls="tab-dijual-disewa" aria-selected="true"><i
-                                    class="fas fa-money-bill-wave-alt"></i> Dijual/Disewa</a>
+                                    class="fas fa-money-bill-wave-alt"></i> DijualatauDisewa</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-maintenance" role="tab"
@@ -256,7 +221,7 @@
                                             <table class="table table-striped table-bordered" id="table-maintenance">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>Id aset</th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
@@ -363,9 +328,9 @@
 
         swal({
             title: 'Apakah Anda Yakin?',
-            text: "Jika iya maka data akan dihapus permanen !",
+            
             imageUrl: '{{url("assets/icons/remove.svg")}}',
-            imageWidth: 400,
+            imageWidth: 200,
             imageHeight: 200,
             showCancelButton: true,
             confirmButtonColor: '#FF0000',
@@ -447,8 +412,8 @@
                 dataType: "JSON"
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'namaasset',
@@ -488,11 +453,11 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '25%'
+                    width: '100%'
                 }
             ],
             order: [
-                [0, 'asc']
+                [0, 'des']
             ]
         });
 
@@ -556,7 +521,7 @@
                 }
             ],
             order: [
-                [0, 'asc']
+                [0, 'des']
             ]
         });
 

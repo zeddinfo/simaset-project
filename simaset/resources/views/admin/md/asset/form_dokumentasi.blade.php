@@ -26,7 +26,7 @@
         $path = url('/storage/file/foto/'.$model->file_name);
         $defaultImg = url('/assets/icons/image.png');
         @endphp
-        <img id="dokumentasi" src="{{isset($model) ? $path : $defaultImg}}" style="width: 150px">
+        <img id="dokumentasi" src="{{isset($model) ? $path : $defaultImg}}" style="width: 100px">
     </td>
 </tr>
 <script>

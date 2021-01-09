@@ -2,6 +2,17 @@
 
 @section('content')
 <style>
+    .box{
+    color: #000;
+    padding: 20px;
+    display: none;
+    margin-top: 20px;
+    }
+    .DIJUAL{ background: #fff; }
+    .DISEWAKAN{ background: #fff; }
+    .MAINTENANCE{ background: #fff; }
+    .DIJUALatauDISEWA{ background: #fff; }
+
     #wajib {
         color: red;
     }
@@ -97,6 +108,7 @@
                                         <label><b>ALAMAT ASSET</b><span id="wajib"> *</span></label>
                                     <textarea class="form-control" name="alamat">{{isset($model) ? $model->alamat : ''}}</textarea>
                                     </div>
+                                        
                                     <div class="form-group">
                                         <label><strong>UKURAN</strong></label>
                                         <table border="0" cellpadding="7" cellspacing="0">
@@ -105,7 +117,7 @@
                                                     <td>&bull; Luas Tanah</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <div class="input-group mt-3">
+                                                        <div class="input-group col-md-12">
                                                             <input type="text" class="form-control"
                                                             placeholder="" name="lt" id="lt" value="{{isset($model) ? $model->lt : ''}}">
                                                             <div class="input-group-append">
@@ -118,7 +130,7 @@
                                                     <td>&bull; Luas Bangunan</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <div class="input-group mb-2">
+                                                        <div class="input-group col-md-12">
                                                             <input type="text" class="form-control"
                                                             placeholder="" name="lb" id="lb" value="{{isset($model) ? $model->lb : ''}}">
                                                             <div class="input-group-append">
@@ -131,9 +143,9 @@
                                                     <td>&bull; Lebar x Panjang</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <input type="text" class="wide-pj" placeholder=""
-                                                        name="lebar" value="{{isset($model) ? $model->lebar : ''}}" id="lb" style="width: 82px">
-                                                        <input type="text" class="wide-lb" placeholder=""
+                                                        <input type="text" class="wide-pj col-md-6" placeholder=""
+                                                        name="lebar" value="{{isset($model) ? $model->lebar : ''}}" id="lb" style="width: 60px">
+                                                        <input type="text" class="wide-lb col-md-6" placeholder=""
                                                         name="panjang" value="{{isset($model) ? $model->panjang : ''}}" id="lb"
                                                         style="width: 82px;margin-right: -200px"><small
                                                         id="x">X</small><small id="m"><b>M</b></small>
@@ -153,8 +165,8 @@
 
                                                 </tr>
                                                 <tr>
-                                                    <td style="width:200px"><select name="kamar"
-                                                            title="Kamar Tidur / Ruangan" style="width:170px" id="kamar"
+                                                    <td style="col-md-6"><select name="kamar"
+                                                            title="Kamar Tidur / Ruangan" style="col-md-6" id="kamar"
                                                             class="custom-select wide" />
                                                             <option value="{{isset($model) ? $model->kamar : ''}}" selected="selected">{{isset($model) && $model->kamar ? $model->kamar : ' - PILIH -'}}</option>
                                                             <option value="1">1</option>
@@ -165,8 +177,8 @@
                                                         </select>
                                                     </td>
 
-                                                    <td style="width:200px"><select name="km" title="Kamar Mandi"
-                                                            style="width:170px" id="km" class="custom-select wide" />
+                                                    <td style="col-md-6"><select name="km" title="Kamar Mandi"
+                                                            style="col-md-6" id="km" class="custom-select wide" />
                                                             <option value="{{isset($model) ? $model->km : ''}}" selected="selected">{{isset($model) && $model->km ? $model->km : ' - PILIH -'}}</option>
                                                             <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -188,8 +200,8 @@
 
                                                 </tr>
                                                 <tr>
-                                                    <td style="width:200px"><select name="listrik" title="Daya Listrik"
-                                                            style="width:170px" id="listrik" 
+                                                    <td style="col-md-6"><select name="listrik" title="Daya Listrik"
+                                                            style="wcol-md-6" id="listrik" 
                                                             class="custom-select wide" />
                                                             <option value="{{isset($model) ? $model->listrik : ''}}" selected="selected">{{isset($model) && $model->listrik ? $model->listrik : ' - PILIH -'}}</option>
                                                             <option value="1.300">1.300</option>
@@ -202,8 +214,8 @@
                                                         </select>
                                                     </td>
 
-                                                    <td style="width:200px"><select name="air" title="Air"
-                                                            style="width:170px" id="air" class="custom-select wide">
+                                                    <td style="col-md-6"><select name="air" title="Air"
+                                                            style="col-md-6" id="air" class="custom-select wide">
                                                             <option value="{{isset($model) ? $model->air : ''}}" selected="selected">{{isset($model) && $model->air ? $model->air : ' - PILIH -'}}</option>
                                                             <option value="Artetis">Artetis</option>
                                                         <option value="Sumur">Sumur</option>
@@ -219,17 +231,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-row ml-2">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputCity"><b>STATUS</b></label>
-                                            <select id="inputState" class="form-control" name="status">
-                                                <option value="{{isset($model) ? $model->status : ''}}" selected="selected">{{isset($model) && $model->status ? $model->status : ' - PILIH -'}}</option>
-                                                <option value="DIJUAL">DIJUAL</option>
-                                                <option value="DISEWAKAN">DISEWAKAN</option>
-                                                <option value="DIJUAL / DISEWAKAN">DIJUAL / DISEWAKAN</option>
-                                                <option value="MAINTENANCE">MAINTENANCE</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
+
+                                    <div class="form-group col-md-6">
                                             <label for="inputState"><b>MENGHADAP</b></label>
                                             <select id="inputState" class="form-control" name="manghadap">
                                                 <option value="{{isset($model) ? $model->hadap : ''}}" selected="selected">{{isset($model) && $model->hadap ? $model->hadap : ' - PILIH -'}}</option>
@@ -244,22 +247,52 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group row ml-3">
-                                        <label for="inputEmail4"><b>NAMA PENYEWA</b><span id="wajib"> *</span></label>
-                                    <input type="text" class="form-control" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
-                                            placeholder="Masukan Nama Penyewa ..." style="width: 97%" name="nama_penyewa">
-                                    </div>
-                                    <div class="form-group ml-3">
-                                        <label><strong>MASA SEWA</strong></label>
-                                        <table border="0" cellpadding="7" cellspacing="0">
-                                            <tbody>
+                                        <div class="form-group col-md-12">
+                                            <label for="inputCity"><b>STATUS</b></label>
+                                            <select id="condition" class="form-control" name="status">
+                                                <option value="{{isset($model) ? $model->status : ''}}" selected="selected">{{isset($model) && $model->status ? $model->status : ' - PILIH -'}}</option>
+                                                <option value="DIJUAL">DIJUAL</option>
+                                                <option value="DISEWAKAN">DISEWAKAN</option>
+                                                <option value="DIJUALatauDISEWA">DIJUAL / DISEWAKAN</option>
+                                                <option value="MAINTENANCE">MAINTENANCE</option>
+                                            </select>
+                                            
+                                            
+                                            
+                                            
+                                            <div class="DISEWAKAN box col-md-12 disewakan">
+                                            <div class="form-group col-md-12">
+                                            
+                                        <label><strong>DISEWAKAN</strong></label>
+                                        <br>
+                                        
+                                        <!-- <table border="0" cellpadding="7" cellspacing="0"> -->
+                                            <tbody class="col-md-12">
+                                            <tr>
+                                                    <td>&bull; Nama Penyewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+
+                                                    <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-right"
+                                                        placeholder="" name="nama_penyewa" value="{{isset($model) ? $model->nama_penyewa : ''}}"
+                                                                id="condition">
+                                                            <div class="input-group-append">
+                                                            <div class="input-group-text showing"></div>
+                                                            </div>
+                                                        </div>
+<!--                                                     
+                                                        <input type="text" class="form-control col-md-12" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
+                                                                placeholder="Masukan Nama Penyewa ..."  name="nama_penyewa"> -->
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td>&bull; Mulai Disewa</td>
-                                                    <td>:</td>
+                                                    <!-- <td>:</td> -->
                                                     <td>
-                                                        <div class="input-group">
+                                                        <div class="input-group col-md-12">
                                                             <input type="text" required class="form-control datepicker"
-                                                             id="tgl_sewa" name="tgl_sewa"
+                                                            id="condition" name="tgl_sewa"
                                                             placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
                                                             <div class="input-group-append">
                                                                 <button class="btn btn-primary" type="button">
@@ -273,57 +306,289 @@
                                                     <td>&bull; Masa Sewa</td>
                                                     <td>:</td>
                                                     <td>
-                                                        <div class="input-group mb-2">
-                                                            <input type="text" class="form-control text-right angka"
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-left angka"
                                                         placeholder="" name="masa_sewa" value="{{isset($model) ? $model->masa_sewa : ''}}"
-                                                                id="lb">
-                                                            <div class="input-group-append">
-                                                                <div class="input-group-text">Tahun</div>
+                                                        id="condition">
+                                                            <div class="input-group-append ">
+                                                                <div class="input-group-text showing">/ Tahun</div>
                                                             </div>
                                                         </div>
-
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>&bull; Harga Sewa</td>
+                                                    
+                                                    
+                                                    <div class="input-group col-md-12">
+                                                        
+                                                            <input type="text showing" class="form-control numeric col-md-8" id="harga_sewa" name="harga_sewa"
+                                                                placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
+                                                                <input type="hidden" name="harga_asset" id="condition">
+                                                        
+                                                        
+                                                            <select id="condition showing" class="form-control col-md-4" name="satuan_sewa">
+                                                                <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
+                                                                <option value="/ Tahun">/ Tahun</option>    
+                                                            </select> 
+                                                        </div> 
+                                                    
+                                                </tr>
                                             </tbody>
-                                        </table>
+                                        
                                     </div>
-                                    <div class="form-group ml-3">
-                                        <label><strong>HARGA</strong></label>
+                                            
+                                            </div>
+                                            
 
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="hargaa"
-                                            placeholder="Harga fix" name="hargaa" value="{{isset($model) ? $model->hargaa : ''}}">
-                                                <input type="hidden" name="harga_asset" id="harga_asset">
-                                            </div>
+                                            <div class="DIJUAL box col-md-12 dijual">
+                                            <div class="form-group col-md-12">
+                                            
+                                        <label><strong>DIJUAL</strong></label>
+                                        <br>
+                                        
+                                        <!-- <table border="0" cellpadding="7" cellspacing="0"> -->
+                                            <tbody class="col-md-12">
+                                            <tr>
+                                                    <td>&bull; Nama Penyewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+
+                                                    <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-right"
+                                                        placeholder="" name="nama_penyewa" value="{{isset($model) ? $model->nama_penyewa : ''}}"
+                                                                id="condition">
+                                                            <div class="input-group-append">
+                                                            <div class="input-group-text dijual"></div>
+                                                            </div>
+                                                        </div>
+<!--                                                     
+                                                        <input type="text" class="form-control col-md-12" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
+                                                                placeholder="Masukan Nama Penyewa ..."  name="nama_penyewa"> -->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Mulai Disewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" required class="form-control datepicker"
+                                                            id="condition" name="tgl_sewa"
+                                                            placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-primary" type="button">
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Masa Sewa</td>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-left angka"
+                                                        placeholder="" name="masa_sewa" value="{{isset($model) ? $model->masa_sewa : ''}}"
+                                                        id="condition">
+                                                            <div class="input-group-append ">
+                                                                <div class="input-group-text showing">/ Tahun</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Harga Sewa</td>
+                                                    
+                                                    
+                                                    <div class="input-group col-md-12">
+                                                        
+                                                            <input type="text showing" class="form-control numeric col-md-8" id="harga_sewa" name="harga_sewa"
+                                                                placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
+                                                                <input type="hidden" name="harga_asset" id="condition">
+                                                        
+                                                        
+                                                            <select id="condition showing" class="form-control col-md-4" name="satuan_sewa">
+                                                                <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
+                                                                <option value="/ Tahun">/ Tahun</option>    
+                                                            </select> 
+                                                        </div> 
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        
+                                    </div>
+                                            
                                             </div>
 
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="harga_jual"
-                                            placeholder="JUAL" name="harga_jual" value="{{isset($model) ? $model->harga_jual : ''}}">
-                                                <input type="hidden" name="harga_asset" id="harga_asset">
+
+
+
+
+
+
+
+                                            <div class="DIJUALatauDISEWA box col-md-12 dijualataudisewa">
+                                            <div class="form-group col-md-12">
+                                            
+                                        <label><strong>DIJUAL/DISEWAKAN</strong></label>
+                                        <br>
+                                        
+                                        <!-- <table border="0" cellpadding="7" cellspacing="0"> -->
+                                            <tbody class="col-md-12">
+                                            <tr>
+                                                    <td>&bull; Nama Penyewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+
+                                                    <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-right"
+                                                        placeholder="" name="nama_penyewa" value="{{isset($model) ? $model->nama_penyewa : ''}}"
+                                                                id="namapenyewa">
+                                                            <div class="input-group-append">
+                                                            <div class="input-group-text"></div>
+                                                            </div>
+                                                        </div>
+<!--                                                     
+                                                        <input type="text" class="form-control col-md-12" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
+                                                                placeholder="Masukan Nama Penyewa ..."  name="nama_penyewa"> -->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Mulai Disewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" required class="form-control datepicker"
+                                                            id="tgl_sewa" name="tgl_sewa"
+                                                            placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-primary" type="button">
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Masa Sewa</td>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-left angka"
+                                                        placeholder="" name="masa_sewa" value="{{isset($model) ? $model->masa_sewa : ''}}"
+                                                        id="masa_sewa">
+                                                            <div class="input-group-append ">
+                                                                <div class="input-group-text showing">/ Tahun</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Harga Sewa</td>
+                                                    
+                                                    
+                                                    <div class="input-group col-md-12">
+                                                        
+                                                            <input type="text showing" class="form-control numeric col-md-8" id="harga_sewa" name="harga_sewa"
+                                                                placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
+                                                                <input type="hidden" name="harga_asset" id="harga_sewa">
+                                                        
+                                                        
+                                                            <select id="harga_sewa" class="form-control col-md-4" name="satuan_sewa">
+                                                                <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
+                                                                <option value="/ Tahun">/ Tahun</option>    
+                                                            </select> 
+                                                        </div> 
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        
+                                    </div>
+                                            
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <select id="inputState" class="form-control" name="satuan_jual">
-                                                    <option value="{{isset($model) ? $model->satuan_jual : ''}}" selected="selected">{{isset($model) && $model->satuan_jual ? $model->satuan_jual : ' - PILIH -'}}</option>
-                                                    <option value="/ Meter">/ Meter</option>
-                                                </select>
+
+
+                                            <div class="MAINTENANCE box col-md-12 maintenance">
+                                            <div class="form-group col-md-12">
+                                            
+                                        <label><strong>Maintenance</strong></label>
+                                        <br>
+                                        
+                                        <!-- <table border="0" cellpadding="7" cellspacing="0"> -->
+                                            <tbody class="col-md-12">
+                                            <tr>
+                                                    <td>&bull; Nama Penyewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+
+                                                    <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-right"
+                                                        placeholder="" name="nama_penyewa" value="{{isset($model) ? $model->nama_penyewa : ''}}"
+                                                                id="condition">
+                                                            <div class="input-group-append">
+                                                            <div class="input-group-text showing"></div>
+                                                            </div>
+                                                        </div>
+<!--                                                     
+                                                        <input type="text" class="form-control col-md-12" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
+                                                                placeholder="Masukan Nama Penyewa ..."  name="nama_penyewa"> -->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Mulai Disewa</td>
+                                                    <!-- <td>:</td> -->
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" required class="form-control datepicker"
+                                                            id="condition" name="tgl_sewa"
+                                                            placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-primary" type="button">
+                                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Masa Sewa</td>
+                                                    <td>:</td>
+                                                    <td>
+                                                        <div class="input-group col-md-12">
+                                                            <input type="text" class="form-control text-left angka"
+                                                        placeholder="" name="masa_sewa" value="{{isset($model) ? $model->masa_sewa : ''}}"
+                                                        id="condition">
+                                                            <div class="input-group-append ">
+                                                                <div class="input-group-text showing">/ Tahun</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&bull; Harga Sewa</td>
+                                                    
+                                                    
+                                                    <div class="input-group col-md-12">
+                                                        
+                                                            <input type="text showing" class="form-control numeric col-md-8" id="harga_sewa" name="harga_sewa"
+                                                                placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
+                                                                <input type="hidden" name="harga_asset" id="condition">
+                                                        
+                                                        
+                                                            <select id="condition showing" class="form-control col-md-4" name="satuan_sewa">
+                                                                <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
+                                                                <option value="/ Tahun">/ Tahun</option>    
+                                                            </select> 
+                                                        </div> 
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        
+                                    </div>
+                                            
                                             </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <input type="text" class="form-control numeric" id="harga_sewa" name="harga_sewa"
-                                                    placeholder="SEWA" name="harga_sewa" value="{{isset($model) ? $model->harga_sewa : ''}}">
-                                                    <input type="hidden" name="harga_asset" id="harga_asset">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <select id="inputState" class="form-control" name="satuan_sewa">
-                                                    <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
-                                                    <option value="/ Tahun">/ Tahun</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
                                         <textarea class="form-control" name="embed_google">{{isset($model) ? $model->embed : ''}}</textarea>
@@ -470,6 +735,41 @@
 
 @section('script')
 <script>
+
+$(document).ready(function(){
+        $('.dijual').hide();
+        $('.disewakan').hide();
+        $('.dijualatausewa').hide();
+        $('.maintenance').hide();
+        $('#condition').change(
+            function(){
+                if(this.value == "DIJUAL"){
+                    $('.dijual').show();
+                    $('.disewakan').hide();
+                    $('.dijualataudisewa').hide();
+                    $('.maintenance').hide();
+                } 
+                else if(this.value == "DISEWAKAN"){
+                    $('.disewakan').show();
+                    $('.dijual').hide();
+                    $('.dijualataudisewa').hide();
+                    $('.maintenance').hide();
+                }
+                else if(this.value == "DIJUALatauDISEWA"){
+                    $('.dijualataudisewa').show();
+                    $('.disewakan').hide();
+                    $('.dijual').hide();
+                    $('.maintenance').hide();
+                }
+                else if(this.value == "MAINTENANCE"){
+                    $('.maintenance').show();
+                    $('.disewakan').hide();
+                    $('.dijual').hide();
+                    $('.dijualataudisewa').hide();
+                }
+            }
+        )
+    });
     var index = {{$model->perizinan->count()-1}};
     var index1 = {{$model->dokumentasi->count()-1}};
 
@@ -540,3 +840,5 @@
 
 </script>
 @endsection
+
+

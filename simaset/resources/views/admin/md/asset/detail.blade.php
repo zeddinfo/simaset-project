@@ -169,9 +169,18 @@
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
+                                                    FIX</b> </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control numeric bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? 'Rp ' .$model->hargaa : 'Rp -'}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
                                                     JUAL</b> </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                <input type="text" class="form-control numeric bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
                                                     value="{{isset($model) ? 'Rp ' .$model->harga_jual : 'Rp -'}}">
                                             </div>
@@ -180,7 +189,7 @@
                                             <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
                                                     SEWA</b> </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                <input type="text" class="form-control numeric bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
                                                     value="{{isset($model) ? 'Rp ' .$model->harga_sewa : 'Rp -'}}">
                                             </div>
@@ -278,13 +287,13 @@
                                     <div class="card-body">
                                         <div class="form-group row">
                                             @foreach ($model->dokumentasi as $r)
-                                            <div class="col-md-6">
-                                                <span>{{$r->file_name}}</span>
+                                            <div class="col-md-3">
+                                                <!-- <span>{{$r->file_name}}</span> -->
                                                 @php 
                                                     $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
                                                 @endphp
                                                 <img src="{{$link.$r->url}}"
-                                                    style="width: 400px;margin: 5px;border: 1px solid black;border-radius: 5px;">
+                                                    style="width: 200px;height: 200px;margin: 5px;border: 1px solid black;border-radius: 5px;">
                                             </div>
                                             @endforeach
                                         </div>
