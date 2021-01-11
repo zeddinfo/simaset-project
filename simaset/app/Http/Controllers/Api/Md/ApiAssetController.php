@@ -103,12 +103,12 @@ class ApiAssetController extends Controller
             if($data->status == 'MAINTENANCE'){
                 $harga = ' - ';
             } else if($data->status == 'DIJUAL / DISEWAKAN') {
-                $harga = 'Rp'. $data->harga_jual. '' .$data->satuan_jual. ' - ';
-                $harga .= 'Rp'. $data->harga_sewa. '' .$data->satuan_sewa;
+                $harga = 'Rp '. $data->harga_jual. '' .$data->satuan_jual. ' - ';
+                $harga .= 'Rp '. $data->harga_sewa. '' .$data->satuan_sewa;
             } else if($data->status == 'DIJUAL') {
-                $harga = 'Rp'. $data->harga_jual. '' .$data->satuan_jual;
+                $harga = $data->harga_jual. '' .$data->satuan_jual;
             } else if($data->status == 'DISEWAKAN') {
-                $harga = 'Rp'. $data->harga_sewa. '' .$data->satuan_sewa;
+                $harga = 'Rp '. $data->harga_sewa. '' .$data->satuan_sewa;
             } else {
                 $harga = '0';
             }
@@ -119,6 +119,9 @@ class ApiAssetController extends Controller
             return $uk;
         })
         ->make(true);
+        // else if($data->status == 'DIJUAL') {
+        //     $harga = 'Rp '. $data->harga_jual. '' .$data->satuan_jual;
+        
     }
     public function chart(){
         $data = DB::select("SELECT status, COUNT(status) as total FROM asset GROUP BY(status)");

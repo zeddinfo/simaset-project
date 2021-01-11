@@ -479,7 +479,7 @@
                                                         placeholder="" name="masa_sewa" value="{{isset($model) ? $model->masa_sewa : ''}}"
                                                         id="masa_sewa">
                                                             <div class="input-group-append ">
-                                                                <div class="input-group-text showing">/ Tahun</div>
+                                                                <div class="input-group-text">/ Tahun</div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -650,11 +650,11 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control angka" required
+                                                        <input type="text" class="form-control angka" 
                                                     name="no_setipikat" value="{{isset($model) ? $model->no_legal : ''}}">
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" required
+                                                        <input type="text" class="form-control" 
                                                         name="an_setipikat" value="{{isset($model) ? $model->an_legal : ''}}">
                                                     </td>
                                                 </tr>

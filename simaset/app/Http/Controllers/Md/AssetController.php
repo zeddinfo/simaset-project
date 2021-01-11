@@ -51,7 +51,7 @@ class AssetController extends BaseController
         if($request->isMethod('post')){
             DB::beginTransaction();
             try{
-                dd($request->all());
+                // dd($request->all());
                 $model = new Asset();
                 $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_sewa)->format('d-m-Y');
                 $model->namaasset = $request->namaasset;

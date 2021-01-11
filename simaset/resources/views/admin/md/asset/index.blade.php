@@ -2,6 +2,20 @@
 
 @section('content')
 <style>
+/* td{
+
+            width:10px;
+            text-align: left;
+} */
+/* 
+    table{
+    margin: 0 auto;
+    width: 100%;
+    clear: both;
+    border-collapse: collapse;
+    table-layout: fixed; 
+    word-wrap:break-word; 
+    } */
     .nav-tabs {
         border-bottom: 1px solid #dee2e6;
         background-color: #6777ef;
@@ -27,8 +41,8 @@
     img.thumbnail {
         vertical-align: middle;
         border-style: none;
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         border: 1px solid black;
         border-radius: 5px;
     }
@@ -88,21 +102,17 @@
                     </ul>
 
                     <div class="card-body">
-                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
-                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
-                        > <i class="fa fa-plus"></i> Tambah Data</a>
-                        @endif
+                        
                             <div class="tab-content" id="myTabContent" style="padding: 10px">
                                 <div class="tab-pane fade show active" id="tab-list" role="tabpanel"
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            {{-- @if(Session::get('admin') || Session::get('operasional'))
-                                            <a href="{{url('/md/asset/create')}}" class="btn btn-info active
-                                            float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a>
-                                            @endif --}}
-                                            <table class="table table-striped table-bordered" id="table-asset">
+                                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
+                                            <table class="table table-striped table-bordered display" id="table-asset" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -110,7 +120,7 @@
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
-                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Ukuran</th>
                                                         <th>Status</th>
                                                         <th>Harga</th>
                                                         <th>Thumbnail</th>
@@ -127,19 +137,19 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                             {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
-                                            float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
-
+                                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
                                             <table class="table table-striped table-bordered" id="table-jual">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Nama Asset</th>
+                                                        <td>Nama Asset </th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
-                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Ukuran</th>
                                                         <th>Status</th>
                                                         <th>Harga</th>
                                                         <th>Thumbnail</th>
@@ -152,14 +162,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade show " id="tab-disewa" role="tabpanel"
+                                    <div class="tab-pane fade show" id="tab-disewa" role="tabpanel"
                                     aria-labelledby="tab-1">
+                                    
                                 
                                         <div class="table-responsive">
-                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
-                                            float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a>  --}}
-
+                                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
                                             <table class="table table-striped table-bordered" id="table-sewa">
                                                 <thead>
                                                     <tr>
@@ -168,7 +179,7 @@
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
-                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Ukuran</th>
                                                         <th>Status</th>
                                                         <th>Harga</th>
                                                         <th>Thumbnail</th>
@@ -185,19 +196,19 @@
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
-                                            float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
-
+                                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
                                             <table class="table table-striped table-bordered" id="table-jual-sewa">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Asset</th>
-                                                        <th>Alamat</th>
+                                                        <td >Alamat</td>
                                                         <th>LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
-                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Ukuran</th>
                                                         <th>Status</th>
                                                         <th>Harga</th>
                                                         <th>Thumbnail</th>
@@ -210,23 +221,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="tab-pane fade show" id="tab-maintenance" role="tabpanel"
+                                    <div class="tab-pane fade show " id="tab-maintenance" role="tabpanel"
                                     aria-labelledby="tab-1">
                                 
                                         <div class="table-responsive">
-                                            {{-- <a href="{{url('/md/asset/create')}}" class="btn btn-info active
-                                            float-left" role="button"
-                                            > <i class="fa fa-plus"></i> Tambah Data</a> --}}
-
+                                        @if (Session::get('role') == 'admin' || Session::get('role') == 'operasional')
+                        <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
+                        > <i class="fa fa-plus"></i> Tambah Data</a>
+                        @endif
                                             <table class="table table-striped table-bordered" id="table-maintenance">
                                                 <thead>
                                                     <tr>
-                                                        <th>Id aset</th>
+                                                        <th data-field="id" data sortable="true">id</th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
-                                                        <th>Ukuran(L x P)</th>
+                                                        <th>Ukuran</th>
                                                         <th>Status</th>
                                                         <th>Harga</th>
                                                         <th>Thumbnail</th>
@@ -350,6 +361,10 @@
                     success: function (res) {
                         toastr.info(res.message);
                         $("#table-asset").DataTable().ajax.reload();
+                        $("#table-sewa").DataTable().ajax.reload();
+                        $("#table-jual").DataTable().ajax.reload();
+                        $("#table-jual-sewa").DataTable().ajax.reload();
+                        $("#table-maintenance").DataTable().ajax.reload();
                     }
                 });
             } else {
@@ -363,7 +378,7 @@
             processing: true,
             serverside: true,
             responsive: true,
-
+            
             ajax: {
                 url: '{{url("api/logHistory")}}',
                 type: 'GET',
@@ -403,6 +418,7 @@
             serverside: true,
             responsive: true,
             lengthChange: false,
+            
             ajax: {
                 url: "{{url('api/asset/list')}}",
                 type: "GET",
@@ -422,18 +438,22 @@
                 {
                     data: 'alamat',
                     name: 'alamat'
+                    
                 },
                 {
                     data: 'lt',
-                    name: 'lt'
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'lb',
-                    name: 'lb'
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'ukuran',
-                    name: 'ukuran'
+                    name: 'ukuran',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
@@ -441,7 +461,9 @@
                 },
                 {
                     data: 'harga',
-                    name: 'harga'
+                    name: 'number',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
                     data: 'image',
@@ -453,31 +475,35 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '100%'
+                    width:'30%'
                 }
             ],
             order: [
-                [0, 'des']
+                [0, 'desc']
             ]
         });
 
 
-        $('#table-sewa').DataTable({
+        
+        $('#table-asset_filter').addClass('float-right');
+        var table = $('#table-sewa').DataTable({
+            
             processing: true,
             serverside: true,
             responsive: true,
             lengthChange: false,
+            
             ajax: {
                 url: "{{url('api/asset/list')}}",
                 type: "GET",
                 data: {
-                    type: 'sewa'
+                    type: 'sewa',
                 },
                 dataType: "JSON"
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'namaasset',
@@ -485,19 +511,21 @@
                 },
                 {
                     data: 'alamat',
-                    name: 'alamat'
+                    name: 'alamat',
                 },
                 {
                     data: 'lt',
-                    name: 'lt'
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'lb',
-                    name: 'lb'
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'ukuran',
-                    name: 'ukuran'
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
@@ -505,7 +533,9 @@
                 },
                 {
                     data: 'harga',
-                    name: 'harga'
+                    name: 'number',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
                     data: 'image',
@@ -517,13 +547,14 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '25%'
+                    sWidth: '30%'
                 }
             ],
             order: [
-                [0, 'des']
+                [0, 'desc']
             ]
         });
+        
 
         $('#table-jual').DataTable({
             processing: true,
@@ -580,7 +611,7 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '25%'
+                    width: '20%'
                 }
             ],
             order: [
@@ -643,7 +674,7 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '25%'
+                    width: '20%'
                 }
             ],
             order: [
@@ -706,7 +737,7 @@
                 {
                     data: 'action',
                     name: 'action',
-                    width: '25%'
+                    width: '30%'
                 }
             ],
             order: [
@@ -725,7 +756,11 @@
             loadHistory(id);
 
         });
+
+       
     });
+    
+    
 
 </script>
 @endsection

@@ -23,14 +23,14 @@ class ApiUserController extends Controller
             return $role;
         })
         ->addColumn('action', function($data){
-            $button = '<button type="button" title="Edit" data-id="'.$data->id.'" onclick="edit('.$data->id.')" class="btn btn-info btn-xs"> 
-             <i class="fas fa-book"></i>
+            $button = '<button type="button" title="Edit" data-id="'.$data->id.'" onclick="edit('.$data->id.')" class="btn btn-info btn-sm"> 
+            <i class="fas fa-edit-sm"></i></a>
              </button>';
 
              $button .= '&nbsp';
 
-            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger btn-xs"> 
-             <i class="fa fa-trash"></i>
+            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger btn-sm"> 
+             <i class="fa fa-trash-sm"></i>
              </button>';
 
          return $button;
