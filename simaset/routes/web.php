@@ -34,6 +34,7 @@ Route::post('/auth', 'Auth\LoginController@auth');
 Route::get('auth/logout', 'Auth\LoginController@logout');
 
 
+
 Route::group(['middleware' => ['authLogin']], function () {
     Route::get('/view/attachment/{url}', 'AttachmentController@index');
     Route::get('/md/kategori', 'Md\KategoriController@index');

@@ -81,11 +81,38 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label>Keterangan</label>
-                                            <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+                                    <div class="modal-body col-md-12">
+                                    <div class="form-row">
+                                            <textarea class="form-control col-md-4" placeholder="Keterangan" id="keterangan" name="keterangan"></textarea>
+                                            <!-- <label>OLEH</label>
+                                            <textarea class="form-control col-md-3" placeholder="oleh" id="oleh" name="oleh"></textarea> -->
+                                            <textarea class="form-control col-md-4" placeholder="Oleh" id="oleh" name="oleh"></textarea>
+                                            <div class="input-group col-md-4" >
+                                                    <input type="text" name="tgl_tawar"  id="tgl_tawar" placeholder="tanggal" class="input-group date form-control">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </span>
+                                                    </div>
+                                            
+                                            
+
                                         </div>
+                                        
+                                        <!-- <div class="form-row">
+                                            
+                                            <textarea class="form-control col-md-3" placeholder="keterangan" id="keterangan" name="keterangan"></textarea>
+                                            <textarea class="form-control col-md-3" placeholder="oleh" id="oleh" name="oleh"></textarea>
+                                                <div class="col-md-3">
+                                                <div class="input-group">
+                                                    <input type="text" name="tgl_tawar"  id="tgl_tawar" placeholder="tanggal" class="input-group date form-control">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                                <textarea class="form-control col-md-3" placeholder="by" id="by" name="by"></textarea>
+                                        </div> -->
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" onclick="simpan()">Simpan</button>
@@ -167,15 +194,7 @@
                                                     value="{{isset($model) ? $model->air : '-'}}">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
-                                                    FIX</b> </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control numeric bg-white" id="inputPassword3"
-                                                    placeholder="-" readonly
-                                                    value="{{isset($model) ? 'Rp ' .$model->hargaa : 'Rp -'}}">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group row">
                                             <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
                                                     JUAL</b> </label>
@@ -292,8 +311,11 @@
                                                 @php 
                                                     $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
                                                 @endphp
+                                                <a href="{{$link.$r->url}}" target="_blank">
                                                 <img src="{{$link.$r->url}}"
                                                     style="width: 200px;height: 200px;margin: 5px;border: 1px solid black;border-radius: 5px;">
+                                                </a>
+                                                
                                             </div>
                                             @endforeach
                                         </div>
@@ -316,6 +338,21 @@
                                                     class="fas fa-plus"></i> Tambah
                                                 Keterangan</button>
                                         </div>
+                                            <table class="table table-striped table-bordered" id="logTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>Status</th>
+                                                        <th>Tanggal Tawar</th>
+                                                        <th>Penawar</th>
+                                                        <th>by</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                     
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -348,6 +385,7 @@
             success: function (res) {
                 $('#exampleModal').modal('hide');
                 $('#keterangan').text('');
+
             }
         });
     }
@@ -358,6 +396,54 @@
             $('.modal-backdrop').css('display', 'none');
         });
     });
+
+          
+      $('.date').datepicker({
+                    format: 'dd-mm-yyyy',
+                    autoclose:true,
+                    todayHighlight: true,
+                    todayBtn: true,
+                    todayHighlight: true,  
+      });
+     
+      $('#logTable').DataTable({
+           bAutoWidth: false,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{{url("api/listLog/list")}}',
+                type: 'GET',
+                dataType: 'JSON',
+                data:{
+                    id: id
+                }
+            },
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'tgl_tawar',
+                    name: 'tgl_tawar'
+                },
+                {
+                    data: 'oleh',
+                    name: 'oleh'
+                },
+                {
+                    data: 'username',
+                    name: 'username'
+                }
+            ],
+            order: [
+                [0, 'asc']
+            ]
+        });
+
 
 </script>
 @endsection

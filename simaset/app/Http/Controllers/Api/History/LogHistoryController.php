@@ -11,7 +11,7 @@ class LogHistoryController extends Controller
 {
     public function list(Request $request){
         $list = LogHistory::where(['id_asset' => $request->id])->get();
-
+        
         return DataTables::of($list)
         ->addIndexColumn()
         ->editColumn( 'user',function($data){

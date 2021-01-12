@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Md;
 
 use App\Http\Controllers\Controller;
 use App\Models\Md\Asset;
+use App\Models\History\LogHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -19,6 +20,37 @@ class ApiAssetController extends Controller
             'data' => $list,
         ]);
 
+    }
+
+
+
+    // public function log(Request $request){
+    //     $list = LogHistory;
+
+    //     return response()->json([
+    //         'status' => '200 OK',
+    //         'message' => 'Get Asset Successfull',
+    //         'data' => $list,
+    //     ]);
+
+    // }
+
+    public function listLog(Request $request){
+        $id = $request->id;
+        
+        $list = LogHistory::where('id_asset', $id)
+        ->with('asset')
+        ->orderby('id', 'DESC')
+        ->get();
+
+        return DataTables::of($list)
+        ->editColumn('asset',function($data){
+            return $data->asset->namaasset;
+        })
+        ->make(true);
+        // else if($data->status == 'DIJUAL') {
+        //     $harga = 'Rp '. $data->harga_jual. '' .$data->satuan_jual;
+        
     }
 
     public function list(Request $request){
@@ -102,13 +134,13 @@ class ApiAssetController extends Controller
         ->editColumn('harga', function($data){
             if($data->status == 'MAINTENANCE'){
                 $harga = ' - ';
-            } else if($data->status == 'DIJUAL / DISEWAKAN') {
-                $harga = 'Rp '. $data->harga_jual. '' .$data->satuan_jual. ' - ';
-                $harga .= 'Rp '. $data->harga_sewa. '' .$data->satuan_sewa;
+            } else if($data->status == 'DIJUALatauDISEWA') {
+                $harga = $data->harga_jual. '' .$data->satuan_jual. ' - ';
+                $harga .= $data->harga_sewa. '' .$data->satuan_sewa;
             } else if($data->status == 'DIJUAL') {
                 $harga = $data->harga_jual. '' .$data->satuan_jual;
             } else if($data->status == 'DISEWAKAN') {
-                $harga = 'Rp '. $data->harga_sewa. '' .$data->satuan_sewa;
+                $harga = $data->harga_sewa. '' .$data->satuan_sewa;
             } else {
                 $harga = '0';
             }
@@ -119,14 +151,12 @@ class ApiAssetController extends Controller
             return $uk;
         })
         ->make(true);
-        // else if($data->status == 'DIJUAL') {
-        //     $harga = 'Rp '. $data->harga_jual. '' .$data->satuan_jual;
-        
     }
     public function chart(){
         $data = DB::select("SELECT status, COUNT(status) as total FROM asset GROUP BY(status)");
 
         return response()->json($data);
     }
+
 
 }

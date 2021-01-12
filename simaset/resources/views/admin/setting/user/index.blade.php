@@ -31,13 +31,25 @@
                     <form role="form" id="frm-modal">
                         <div class="form-group">
                             <label><b>User</b></label>
+                            <input type="text" class="form-control" name="user" id="nama" value={{isset($model) ? $model->namauser : '' }}>
+                        </div>
+                        <div class="form-group">
+                            <label><b>Username</b></label>
+                            <input type="text" class="form-control" name="username" id="username" value={{isset($model) ? $model->username : '' }}>
+                        </div>
+                        <div class="form-group">
+                            <label><b>Password</b></label>
+                            <input type="password" class="form-control" name="password" id="password" value={{isset($model) ? $model->password : '' }}>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label><b>User</b></label>
                             <select class="form-control" id="user" name="user" placeholder="Silahkan Pilih User">
                                 <option> -- PILIH USER --</option>
                                 @foreach ($user as $r)
                                 <option value="{{$r->id}}">{{$r->name}}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> -->
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
                             <label><b>Role</b></label>
@@ -175,6 +187,9 @@
                 var role = `<option value="${res.nama_role.id}" selected="selected">${res.nama_role.role}</option>`;
                 $('#user').append(user);
                 $('#role').append(role);
+                $('#nama').val(res.nama_user.name);
+                $('#username').val(res.nama_user.username);
+                $('#password').val(res.nama_user.password);
                 $('#id').val(res.id);
                 
                 $('#modal-user').modal('show');

@@ -141,7 +141,7 @@
                         <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
                         > <i class="fa fa-plus"></i> Tambah Data</a>
                         @endif
-                                            <table class="table table-striped table-bordered" id="table-jual">
+                                            <table class="table table-striped table-bordered" id="table-jual" cellspacing="0" width="100%"> 
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -171,7 +171,7 @@
                         <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
                         > <i class="fa fa-plus"></i> Tambah Data</a>
                         @endif
-                                            <table class="table table-striped table-bordered" id="table-sewa">
+                                            <table class="table table-striped table-bordered" id="table-sewa" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -200,13 +200,13 @@
                         <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
                         > <i class="fa fa-plus"></i> Tambah Data</a>
                         @endif
-                                            <table class="table table-striped table-bordered" id="table-jual-sewa">
+                                            <table class="table table-striped table-bordered" id="table-jual-sewa" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
                                                         <th>Nama Asset</th>
-                                                        <td >Alamat</td>
-                                                        <th>LT(M<sup>2</sup>)</th>
+                                                        <th>Alamat</th>
+                                                        <th >LT(M<sup>2</sup>)</th>
                                                         <th>LB(M<sup>2</sup>)</th>
                                                         <th>Ukuran</th>
                                                         <th>Status</th>
@@ -229,7 +229,7 @@
                         <a href="{{url("/md/asset/create")}}" class="btn btn-info active float-left" role="button"
                         > <i class="fa fa-plus"></i> Tambah Data</a>
                         @endif
-                                            <table class="table table-striped table-bordered" id="table-maintenance">
+                                            <table class="table table-striped table-bordered" id="table-maintenance" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th data-field="id" data sortable="true">id</th>
@@ -433,12 +433,13 @@
                 },
                 {
                     data: 'namaasset',
-                    name: 'namaasset'
+                    name: 'namaasset',
+                    width: '20%'
                 },
                 {
                     data: 'alamat',
-                    name: 'alamat'
-                    
+                    name: 'alamat',
+                    width: '25%'
                 },
                 {
                     data: 'lt',
@@ -461,7 +462,7 @@
                 },
                 {
                     data: 'harga',
-                    name: 'number',
+                    name: 'harga',
                     render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
@@ -469,7 +470,8 @@
                     data: 'image',
                     name: 'image',
                     render: function (data, type, full, meta) {
-                        return "<img src=" + data + " class='thumbnail'/>";
+                        // return "<img src=" + data + " class='thumbnail'/>";
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/>/></a>"
                     },
                 },
                 {
@@ -487,7 +489,7 @@
         
         $('#table-asset_filter').addClass('float-right');
         var table = $('#table-sewa').DataTable({
-            
+            bAutoWidth: false,
             processing: true,
             serverside: true,
             responsive: true,
@@ -507,12 +509,15 @@
                 },
                 {
                     data: 'namaasset',
-                    name: 'namaasset'
+                    name: 'namaasset',
+                    width: '20%'
                 },
                 {
                     data: 'alamat',
                     name: 'alamat',
+                    width: '25%'
                 },
+                
                 {
                     data: 'lt',
                     name: 'lt',
@@ -533,7 +538,7 @@
                 },
                 {
                     data: 'harga',
-                    name: 'number',
+                    name: 'harga',
                     render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
@@ -541,7 +546,8 @@
                     data: 'image',
                     name: 'image',
                     render: function (data, type, full, meta) {
-                        return "<img src=" + data + " class='thumbnail'/>";
+                        // return "<img src=" + data + " class='thumbnail'/>";
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/>/></a>"
                     },
                 },
                 {
@@ -557,6 +563,7 @@
         
 
         $('#table-jual').DataTable({
+            bAutoWidth: false,
             processing: true,
             serverside: true,
             responsive: true,
@@ -575,23 +582,28 @@
                 },
                 {
                     data: 'namaasset',
-                    name: 'namaasset'
+                    name: 'namaasset',
+                    width: '20%'
                 },
                 {
                     data: 'alamat',
-                    name: 'alamat'
+                    name: 'alamat',
+                    width: '25%'
                 },
                 {
                     data: 'lt',
-                    name: 'lt'
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'lb',
-                    name: 'lb'
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'ukuran',
-                    name: 'ukuran'
+                    name: 'ukuran',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
@@ -599,7 +611,8 @@
                 },
                 {
                     data: 'harga',
-                    name: 'harga'
+                    name: 'harga',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
                 },
                 {
                     data: 'image',
@@ -620,6 +633,7 @@
         });
 
         $('#table-jual-sewa').DataTable({
+            bAutoWidth: false,
             processing: true,
             serverside: true,
             responsive: true,
@@ -638,31 +652,38 @@
                 },
                 {
                     data: 'namaasset',
-                    name: 'namaasset'
+                    name: 'namaasset',
+                    width: '20%'
                 },
                 {
                     data: 'alamat',
-                    name: 'alamat'
+                    name: 'alamat',
+                    width: '25%'
                 },
                 {
                     data: 'lt',
-                    name: 'lt'
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'lb',
-                    name: 'lb'
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'ukuran',
-                    name: 'ukuran'
+                    name: 'ukuran',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'harga',
-                    name: 'harga'
+                    name: 'harga',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
                 },
                 {
                     data: 'image',
@@ -683,6 +704,7 @@
         });
 
         $('#table-maintenance').DataTable({
+            bAutoWidth: false,
             processing: true,
             serverside: true,
             responsive: true,
@@ -701,23 +723,28 @@
                 },
                 {
                     data: 'namaasset',
-                    name: 'namaasset'
+                    name: 'namaasset',
+                    width: '20%'
                 },
                 {
                     data: 'alamat',
-                    name: 'alamat'
+                    name: 'alamat',
+                    width: '25%'
                 },
                 {
                     data: 'lt',
-                    name: 'lt'
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'lb',
-                    name: 'lb'
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'ukuran',
-                    name: 'ukuran'
+                    name: 'ukuran',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
@@ -725,7 +752,8 @@
                 },
                 {
                     data: 'harga',
-                    name: 'harga'
+                    name: 'harga',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
                 },
                 {
                     data: 'image',

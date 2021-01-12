@@ -15,7 +15,7 @@ class Asset extends Model
     public function dokumentasi(){
         return $this->hasMany('App\Models\Md\Dokumentasi', 'id_asset', 'id');
     }
-
+    
     public function penyewa(){
         return $this->hasOne('App\Models\Md\Penyewa', 'id_asset', 'id');
     }

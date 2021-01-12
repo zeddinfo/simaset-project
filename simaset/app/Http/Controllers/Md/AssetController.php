@@ -63,16 +63,15 @@ class AssetController extends BaseController
                 $model->listrik = $request->listrik;
                 $model->panjang = $request->panjang;
                 $model->hadap = $request->hadap;
-                $model->namapenyewa = $request->nama_penyewa;
-                $model->harga_jual = $request->harga_jual;
-                $model->harga_sewa = $request->harga_sewa;
-                $model->satuan_jual = $request->satuan_jual;
-                $model->satuan_sewa = $request->satuan_sewa;
+                $model->namapenyewa = empty($request->nama_penyewa) ? '-' : $request->nama_penyewa;
+                $model->harga_jual = empty($request->harga_jual) ? '0' : $request->harga_jual;
+                $model->harga_sewa = empty($request->harga_sewa) ? '0' : $request->harga_sewa;
+                $model->satuan_jual = empty($request->satuan_jual) ? '-' : $request->satuan_jual;
+                $model->satuan_sewa = empty($request->satuan_sewa) ? '-' : $request->sataun_sewa;
                 // $model->jual = $request->harga;
-                $model->hargaa = $request->hargaa;
-                $model->harga_jual = $request->harga_jual;
-                $model->tgl_sewa = $request->tgl_sewa;
-                $model->masa_sewa = $request->masa_sewa;
+                $model->hargaa = empty($request->hargaa) ? '0' : $request->hargaa;
+                $model->tgl_sewa = empty($request->tgl_sewa) ? '-' : $request->tgl_sewa;
+                $model->masa_sewa = empty($request->masa_sewa) ? '0' : $request->masa_sewa;
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
                 $model->masa_akhir = $masa_akhir;
                 $model->lebar = $request->lebar;
@@ -128,8 +127,11 @@ class AssetController extends BaseController
 
                 $log = new LogHistory();
                 $log->id_user = $request->session()->get('id');
+                $log->id_user = $request->session()->get('username');
                 $log->status = 'CREATED ASSET';
                 $log->id_asset = $model->id;
+                $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_tawar)->format('d-m-Y');
+                $log->tgl_tawar = $request->$tgl;
                 $log->save();
 
                 DB::commit();
@@ -243,7 +245,9 @@ class AssetController extends BaseController
 
                 $log = new LogHistory();
                 $log->id_user = $request->session()->get('id');
-                $log->status = 'CREATED ASSET';
+                $log->id_user = $request->session()->get('username');
+                $log->status = 'CHANGE ASSET';
+                
                 $log->save();
 
                 DB::commit();
@@ -297,8 +301,12 @@ class AssetController extends BaseController
 
         $log = new LogHistory();
         $log->id_user = $request->session()->get('id');
+        $log->username = $request->session()->get('username');
         $log->id_asset = $id;
         $log->status = $request->keterangan;
+        $log->tgl_tawar = $request->tgl_tawar;
+        $log->oleh = $request->oleh;
+
         $log->save(); 
 
         return response()->json('Sukses disimpan');
