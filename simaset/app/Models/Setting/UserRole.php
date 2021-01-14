@@ -15,4 +15,7 @@ class UserRole extends Model
     public function namaRole(){
         return $this->hasOne('App\Models\Setting\Role', 'id', 'id_role');
     }
+    public function user(){
+        return $this->hasMany('App\Models\Md\User', 'id', 'id_user','username');
+    }
 }

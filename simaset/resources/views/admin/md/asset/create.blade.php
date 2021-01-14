@@ -362,7 +362,7 @@
                                                             <input type="hidden" name="harga_asset" id="condition">
 
 
-                                                            <select id="condition showing" class="form-control col-md-4"
+                                                            <select id="condition" class="form-control col-md-4"
                                                                 name="satuan_sewa">
                                                                 <option
                                                                     value="{{isset($model) ? $model->satuan_sewa : ''}}"
@@ -481,6 +481,7 @@
                                                             <td>:</td>
                                                             <td>
                                                                 <div class="input-group">
+                                                                
                                                                     <input type="text" required class="form-control datepicker"
                                                                      id="tgl_sewa" name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
@@ -539,7 +540,7 @@
                                                             <input type="hidden" name="harga_asset" id="harga_asset">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <select id="inputState" class="form-control" name="satuan_sewa">
+                                                        <select id="satuan_sewa" class="form-control" name="satuan_sewa">
                                                             <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
                                                             <option value="/ Tahun">/ Tahun</option>
                                                         </select>
@@ -575,7 +576,7 @@
                                                             <input type="hidden" name="harga_asset" id="harga_asset">
                                                     </div>
                                                     <div class="form-group col-md-4">
-                                                        <select id="inputState" class="form-control" name="satuan_sewa">
+                                                        <select id="satuan_sewa" class="form-control" name="satuan_sewa">
                                                             <option value="{{isset($model) ? $model->satuan_sewa : ''}}"selected="selected">{{isset($model) && $model->satuan_sewa ? $model->satuan_sewa : ' - PILIH -'}}</option>
                                                             <option value="/ Tahun">/ Tahun</option>
                                                         </select>
@@ -792,7 +793,8 @@
                                         <div class="form-group mt-3" id="section-embde-google">
                                             <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
                                             <textarea class="form-control"
-                                                name="embed_google">{{isset($model) ? $model->embed : ''}}</textarea>
+                                            
+                                                name="embed_google">{{isset($model) ? $model->embed_google : ''}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -1043,21 +1045,25 @@
             if(value == 'DISEWAKAN'){
                 $('#section-header').show();
                 $('#penyewa').show();
+                $('#tgl_sewa').show();
                 $('#label-nama').html('NAMA PENYEWA');
                 $('#label-masa').html('MASA SEWA');
                 $('#section-harga').show();
                 $('#section-harga-sewa').show();
+                $('#section-harga-jual').hide();
                 $('#label-harga').html('HARGA SEWA');
             } else if(value == 'DIJUAL'){
-                $('#section-header').show();
+                $('#section-header').hide();
                 $('#penyewa').hide();
-                $('#label-masa').html('MULAI DIJUAL');
+                $('#tgl_sewa').hide();
+                // $('#label-masa').html('MULAI DIJUAL');
                 $('#section-harga').show();
                 $('#section-harga-jual').show();
                 $('#label-harga').html('HARGA JUAL');
             } else if(value == 'DIJUALatauDISEWA'){
                 $('#section-header').show();
                 $('#penyewa').show();
+                $('#tgl_sewa').show();
                 $('#label-nama').html('NAMA PENYEWA');
                 $('#label-masa').html('MASA SEWA');
                 $('#section-harga-sewa').show();
@@ -1066,6 +1072,7 @@
             } else if(value == 'MAINTENANCE'){
                 $('#section-header').show();
                 $('#penyewa').show();
+                $('#tgl_sewa').show();
                 $('#label-nama').html('NAMA VENDOR');
                 $('#label-masa').html('MULAI MAINTENANCE');
                 $('#section-harga').hide();

@@ -46,9 +46,9 @@
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
                       <div class="float-right">
-                        <a href="auth-forgot-password.html" class="text-small">
+                        <!-- <a href="auth-forgot-password.html" class="text-small">
                           Forgot Password?
-                        </a>
+                        </a> -->
                       </div>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
@@ -57,12 +57,12 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
                       <label class="custom-control-label" for="remember-me">Remember Me</label>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
@@ -72,11 +72,9 @@
                 </form>
               </div>
             </div>
-            <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="auth-register.html">Create One</a>
-            </div>
+            
             <div class="simple-footer">
-              Copyright &copy; 
+               Simaset &copy Rasanto Group
             </div>
           </div>
         </div>

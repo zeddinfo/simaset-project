@@ -68,7 +68,7 @@
         <table>
                 <tr> 
                     <th colspan="4">
-                        <h4>{{$model->namaasset}}  </h4>
+                        <h4>SIA-{{$model->id}}  </h4>
                     </th>
                     <!-- <th colspan="2">
                         <h4>Harga </h4>
@@ -78,6 +78,8 @@
                 <tr>   
                     <td colspan="4">
             <pre>
+            Nama Asset      ->  {{$model->namaasset}}<br>
+            Status          ->  {{$model->status}}<br>
             Lokasi          -> {{$model->alamat}}<br>
             LT / LB         ->  {{$model->lt}} / {{$model->lb}}<br>
             Lebar x Panjang ->  {{$model->lebar}} x {{$model->panjang}}<br>

@@ -67,7 +67,7 @@ class AssetController extends BaseController
                 $model->harga_jual = empty($request->harga_jual) ? '0' : $request->harga_jual;
                 $model->harga_sewa = empty($request->harga_sewa) ? '0' : $request->harga_sewa;
                 $model->satuan_jual = empty($request->satuan_jual) ? '-' : $request->satuan_jual;
-                $model->satuan_sewa = empty($request->satuan_sewa) ? '-' : $request->sataun_sewa;
+                $model->satuan_sewa = empty($request->satuan_sewa) ? '-' : $request->satuan_sewa;
                 // $model->jual = $request->harga;
                 $model->hargaa = empty($request->hargaa) ? '0' : $request->hargaa;
                 $model->tgl_sewa = empty($request->tgl_sewa) ? '-' : $request->tgl_sewa;
@@ -127,11 +127,10 @@ class AssetController extends BaseController
 
                 $log = new LogHistory();
                 $log->id_user = $request->session()->get('id');
-                $log->id_user = $request->session()->get('username');
+                // $log->id_user = $request->session()->get('username');
                 $log->status = 'CREATED ASSET';
-                $log->id_asset = $model->id;
-                $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_tawar)->format('d-m-Y');
-                $log->tgl_tawar = $request->$tgl;
+                // $log->id_asset = $model->id;
+                
                 $log->save();
 
                 DB::commit();
@@ -188,6 +187,7 @@ class AssetController extends BaseController
                 $model->legal = $request->legalitas;
                 $model->an_legal = $request->an_setipikat;
                 $model->no_legal = $request->no_setipikat;
+                $model->embed_google = $request->embed_google;
                 $model->hadap = $request->manghadap;
                 $model->status = $request->status;
                 $model->is_delete = '0';
@@ -245,7 +245,7 @@ class AssetController extends BaseController
 
                 $log = new LogHistory();
                 $log->id_user = $request->session()->get('id');
-                $log->id_user = $request->session()->get('username');
+                // $log->id_user = $request->session()->get('username');
                 $log->status = 'CHANGE ASSET';
                 
                 $log->save();

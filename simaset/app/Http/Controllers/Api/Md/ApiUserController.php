@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ApiUserController extends Controller
 {
+
     public function list(){
         $list = UserRole::where('is_delete', 0)->get();
 
@@ -29,9 +30,11 @@ class ApiUserController extends Controller
 
              $button .= '&nbsp';
 
-            $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-danger"> 
+             $button .= '<button type="button" title="Hapus" data-id="'.$data->id.'" onclick="hapus('.$data->id.')" class="btn btn-warning btn-xs"> 
              <i class="fas fa-fw fa-trash"></i>
-             </button>';
+         </button>';
+
+            $button .= '&nbsp';
 
          return $button;
         })
@@ -41,5 +44,13 @@ class ApiUserController extends Controller
     public function view($id){
         $data = UserRole::where(['id' => $id])->with('namaUser', 'namaRole')->first();
         return response()->json($data);
+    }
+
+    public function delete($id){
+        $model = Asset::where(['id' => $id])->first();
+
+        if (empty($model)) {
+            abort(404);
+        }
     }
 }

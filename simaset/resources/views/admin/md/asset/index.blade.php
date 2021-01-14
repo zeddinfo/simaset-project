@@ -51,21 +51,21 @@
 <!-- Main Content -->
 <section class="section">
     <div class="section-header">
-            <h1>DataTables</h1>
+            <h1>SIMASET</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Modules</a></div>
-                <div class="breadcrumb-item">DataTables</div>
+                <!-- <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="#">Modules</a></div> -->
+                <div class="breadcrumb-item">Data Aset</div>
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12">
                 <div class="col-md-4 card">
                     <canvas id="chart"></canvas>
                 </div>
             </div>
-        </div>
+        </div> -->
     
     
     <div class="section-body">
@@ -115,7 +115,7 @@
                                             <table class="table table-striped table-bordered display" id="table-asset" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>id</th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
@@ -144,7 +144,7 @@
                                             <table class="table table-striped table-bordered" id="table-jual" cellspacing="0" width="100%"> 
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>id</th>
                                                         <td>Nama Asset </th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
@@ -174,7 +174,7 @@
                                             <table class="table table-striped table-bordered" id="table-sewa" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>id</th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
@@ -203,7 +203,7 @@
                                             <table class="table table-striped table-bordered" id="table-jual-sewa" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>No</th>
+                                                        <th>id</th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th >LT(M<sup>2</sup>)</th>
@@ -232,7 +232,7 @@
                                             <table class="table table-striped table-bordered" id="table-maintenance" cellspacing="0" width="100%">
                                                 <thead>
                                                     <tr>
-                                                        <th data-field="id" data sortable="true">id</th>
+                                                        <th>id</th></th>
                                                         <th>Nama Asset</th>
                                                         <th>Alamat</th>
                                                         <th>LT(M<sup>2</sup>)</th>
@@ -463,7 +463,8 @@
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '25%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -471,7 +472,7 @@
                     name: 'image',
                     render: function (data, type, full, meta) {
                         // return "<img src=" + data + " class='thumbnail'/>";
-                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/>/></a>"
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/></a>"
                     },
                 },
                 {
@@ -517,7 +518,6 @@
                     name: 'alamat',
                     width: '25%'
                 },
-                
                 {
                     data: 'lt',
                     name: 'lt',
@@ -530,16 +530,19 @@
                 },
                 {
                     data: 'ukuran',
+                    name: 'ukuran',
                     render: $.fn.dataTable.render.number( '.', ',', 0)
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    
                 },
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '25%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -547,13 +550,13 @@
                     name: 'image',
                     render: function (data, type, full, meta) {
                         // return "<img src=" + data + " class='thumbnail'/>";
-                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/>/></a>"
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/></a>"
                     },
                 },
                 {
                     data: 'action',
                     name: 'action',
-                    sWidth: '30%'
+                    width:'30%'
                 }
             ],
             order: [
@@ -577,8 +580,8 @@
                 dataType: "JSON"
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'namaasset',
@@ -612,23 +615,26 @@
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '25%'
+                    // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
                     data: 'image',
                     name: 'image',
                     render: function (data, type, full, meta) {
-                        return "<img src=" + data + " class='thumbnail'/>";
+                        // return "<img src=" + data + " class='thumbnail'/>";
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/></a>"
                     },
                 },
                 {
                     data: 'action',
                     name: 'action',
-                    width: '20%'
+                    width:'30%'
                 }
             ],
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ]
         });
 
@@ -647,79 +653,8 @@
                 dataType: "JSON"
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
-                },
-                {
-                    data: 'namaasset',
-                    name: 'namaasset',
-                    width: '20%'
-                },
-                {
-                    data: 'alamat',
-                    name: 'alamat',
-                    width: '25%'
-                },
-                {
-                    data: 'lt',
-                    name: 'lt',
-                    render: $.fn.dataTable.render.number( '.', ',', 0)
-                },
-                {
-                    data: 'lb',
-                    name: 'lb',
-                    render: $.fn.dataTable.render.number( '.', ',', 0)
-                },
-                {
-                    data: 'ukuran',
-                    name: 'ukuran',
-                    render: $.fn.dataTable.render.number( '.', ',', 0)
-                },
-                {
-                    data: 'status',
-                    name: 'status',
-                    render: $.fn.dataTable.render.number( '.', ',', 0)
-                },
-                {
-                    data: 'harga',
-                    name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
-                },
-                {
-                    data: 'image',
-                    name: 'image',
-                    render: function (data, type, full, meta) {
-                        return "<img src=" + data + " class='thumbnail'/>";
-                    },
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    width: '20%'
-                }
-            ],
-            order: [
-                [0, 'asc']
-            ]
-        });
-
-        $('#table-maintenance').DataTable({
-            bAutoWidth: false,
-            processing: true,
-            serverside: true,
-            responsive: true,
-            lengthChange: false,
-            ajax: {
-                url: "{{url('api/asset/list')}}",
-                type: "GET",
-                data: {
-                    type: 'maintenance'
-                },
-                dataType: "JSON"
-            },
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'namaasset',
@@ -753,23 +688,99 @@
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' )
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '25%'
+                    // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
                     data: 'image',
                     name: 'image',
                     render: function (data, type, full, meta) {
-                        return "<img src=" + data + " class='thumbnail'/>";
+                        // return "<img src=" + data + " class='thumbnail'/>";
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/></a>"
                     },
                 },
                 {
                     data: 'action',
                     name: 'action',
-                    width: '30%'
+                    width:'30%'
                 }
             ],
             order: [
-                [0, 'asc']
+                [0, 'desc']
+            ]
+        });
+
+        $('#table-maintenance').DataTable({
+            bAutoWidth: false,
+            processing: true,
+            serverside: true,
+            responsive: true,
+            lengthChange: false,
+            ajax: {
+                url: "{{url('api/asset/list')}}",
+                type: "GET",
+                data: {
+                    type: 'maintenance'
+                },
+                dataType: "JSON"
+            },
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'namaasset',
+                    name: 'namaasset',
+                    width: '20%'
+                },
+                {
+                    data: 'alamat',
+                    name: 'alamat',
+                    width: '25%'
+                },
+                {
+                    data: 'lt',
+                    name: 'lt',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
+                },
+                {
+                    data: 'lb',
+                    name: 'lb',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
+                },
+                {
+                    data: 'ukuran',
+                    name: 'ukuran',
+                    render: $.fn.dataTable.render.number( '.', ',', 0)
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'harga',
+                    name: 'harga',
+                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '25%'
+                    // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
+                },
+                {
+                    data: 'image',
+                    name: 'image',
+                    render: function (data, type, full, meta) {
+                        // return "<img src=" + data + " class='thumbnail'/>";
+                        return "<a href="+data+" target='_blank'> <img src="+data+" class='thumbnail'/></a>"
+                    },
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    width:'30%'
+                }
+            ],
+            order: [
+                [0, 'desc']
             ]
         });
 

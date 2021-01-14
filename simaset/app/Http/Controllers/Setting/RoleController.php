@@ -30,7 +30,6 @@ class RoleController extends BaseController
         
         // dd($model, $menu);
         return view('admin.setting.role.view', compact('model', 'menu', 'title'));
-
     }
 
     public function create(Request $request){

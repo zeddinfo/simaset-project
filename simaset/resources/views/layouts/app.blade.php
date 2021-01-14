@@ -45,10 +45,10 @@
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
                                     class="fas fa-bars"></i></a></li>
-                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
-                                    class="fas fa-search"></i></a></li>
+                        <!-- <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                                    class="fas fa-search"></i></a></li> -->
                     </ul>
-                    <div class="search-element">
+                    <!-- <div class="search-element">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                             data-width="250">
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
@@ -113,10 +113,10 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                    <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                             class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">Messages
@@ -182,8 +182,8 @@
                                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
-                    </li>
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+                    </li> -->
+                    <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
                             class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
                             <div class="dropdown-header">Notifications
@@ -242,7 +242,7 @@
                                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{url('assets/img/avatar/avatar-1.png')}}"
@@ -271,10 +271,10 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="index.html">Stisla</a>
+                        <a href="index.html">Simaset</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">St</a>
+                        <a href="index.html">1.0</a>
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
@@ -357,7 +357,9 @@
     <script src="../node_modules/summernote/dist/summernote-bs4.js"></script>
     <script src="../node_modules/chocolat/dist/js/jquery.chocolat.min.js"></script> --}}
 
-    <!-- Template JS File -->
+    <!-- Template JS File and currency -->
+    <script type="text/javascript" src="scripts/jquery-1.2.6.js"></script>
+    <script type="text/javascript" src="scripts/jquery.formatCurrency.js"></script>
     <script src="{{url('assets/js/scripts.js')}}"></script>
     <script src="{{url('assets/js/custom.js')}}"></script>
 

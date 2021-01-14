@@ -26,9 +26,7 @@ Auth::routes();
 Route::get('api/chart', 'Api\Md\ApiAssetController@chart');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('/category','CategoryController');
-
 Route::get('/', 'Auth\LoginController@index');
 Route::post('/auth', 'Auth\LoginController@auth');
 Route::get('auth/logout', 'Auth\LoginController@logout');
@@ -67,5 +65,6 @@ Route::group(['middleware' => ['authLogin']], function () {
         Route::get('/index', 'Setting\UserController@index');
         Route::post('/create', 'Setting\UserController@create');
         Route::post('/update/{id}', 'Setting\UserController@update');
+        Route::post('/delete/{id}', 'Setting\UserController@delete');
     });
 });

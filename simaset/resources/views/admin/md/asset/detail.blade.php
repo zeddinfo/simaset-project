@@ -196,21 +196,31 @@
                                         </div>
                                         
                                         <div class="form-group row">
-                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
+                                            <label for="inputPassword3" class="col-sm-3"><b>HARGA
                                                     JUAL</b> </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control numeric bg-white" id="inputPassword3"
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
-                                                    value="{{isset($model) ? 'Rp ' .$model->harga_jual : 'Rp -'}}">
+                                                    value="{{'Rp '.number_format($model->harga_jual,0 , ',','.')}}">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? $model->satuan_jual : '-'}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>HARGA
+                                            <label for="inputPassword3" class="col-sm-3 col-form-label numeric"><b>HARGA
                                                     SEWA</b> </label>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-6">
                                                 <input type="text" class="form-control numeric bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
-                                                    value="{{isset($model) ? 'Rp ' .$model->harga_sewa : 'Rp -'}}">
+                                                    value="{{'Rp '.number_format($model->harga_sewa,0 , ',','.')}}">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? $model->satuan_sewa : '-'}}">
                                             </div>
                                         </div>
                                     </div>
@@ -383,7 +393,10 @@
             dataType: 'JSON',
             type: 'POST',
             success: function (res) {
+                toastr.info('berhasil disimpan,silahkan di cek');
+                $("#logTable").DataTable().ajax.reload();
                 $('#exampleModal').modal('hide');
+                $("#logTable").DataTable().ajax.reload();
                 $('#keterangan').text('');
 
             }
@@ -400,10 +413,7 @@
           
       $('.date').datepicker({
                     format: 'dd-mm-yyyy',
-                    autoclose:true,
-                    todayHighlight: true,
-                    todayBtn: true,
-                    todayHighlight: true,  
+                    autoclose:true  
       });
      
       $('#logTable').DataTable({
@@ -440,7 +450,7 @@
                 }
             ],
             order: [
-                [0, 'asc']
+                [0, 'desc']
             ]
         });
 

@@ -78,7 +78,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="btn btn-info btn-tambah float-right" id="btn-tambah"><i class="fas fa-plus"></i>
-                            Tambah Data
+                            Tambah User
                         </div>
                     </div>
                     <div class="card-body">
@@ -106,6 +106,44 @@
 
 @section('script')
 <script>
+
+
+function hapus(id) {
+
+swal({
+    title: 'Apakah Anda Yakin?',
+    
+    imageUrl: '{{url("assets/icons/remove.svg")}}',
+    imageWidth: 200,
+    imageHeight: 200,
+    showCancelButton: true,
+    confirmButtonColor: '#FF0000',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Hapus!'
+}, function (isConfirm) {
+    if (isConfirm) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: `{{url('setting/user/delete/${id}')}}`,
+            type: 'POST',
+            success: function (res) {
+                toastr.info('User berhasil dihapus');
+                $('#table-user').DataTable().ajax.reload();
+                
+            }
+        });
+    } else {
+        return
+    }
+})
+}
+
+
     function load_data() {
         $('#table-user').DataTable({
             processing: true,
@@ -116,8 +154,8 @@
                 type: 'GET'
             },
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex'
+                    data: 'id',
+                    name: 'id'
                 },
                 {
                     data: 'user',

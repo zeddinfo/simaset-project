@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -19,16 +20,13 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     //use AuthenticatesUsers;
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -38,7 +36,7 @@ class LoginController extends Controller
     // {
     //     $this->middleware('guest')->except('logout');
     // }
-
+    
     public function index(){
         $title = 'Login Administrator';
         return view('auth.login', compact('title'));
@@ -53,7 +51,6 @@ class LoginController extends Controller
             $data = DB::select("
             select a.*, b.*, c.* from users a left join user_role b on b.id_user = a.id left join role c on c.id = b.id_role where username = '$request->username' limit 1
             ");
-
             // dd($data);
  
             if($data && $data[0]->password == md5($request->password)){

@@ -133,7 +133,7 @@ class ApiAssetController extends Controller
         })
         ->editColumn('harga', function($data){
             if($data->status == 'MAINTENANCE'){
-                $harga = ' - ';
+                $harga = $data->harga_sewa. '' .$data->satuan_sewa;
             } else if($data->status == 'DIJUALatauDISEWA') {
                 $harga = $data->harga_jual. '' .$data->satuan_jual. ' - ';
                 $harga .= $data->harga_sewa. '' .$data->satuan_sewa;
