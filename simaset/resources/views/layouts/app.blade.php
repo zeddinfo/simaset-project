@@ -273,13 +273,13 @@
                     <div class="sidebar-brand">
                         <a href="index.html">Simaset</a>
                     </div>
-                    <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">1.0</a>
-                    </div>
+                    <!-- <div class="sidebar-brand sidebar-brand-sm">
+                        <a href="index.html"></a>
+                    </div> -->
                     <ul class="sidebar-menu">
-                        <li class="menu-header">Dashboard</li>
-                        <li class="menu-header">Master Data</li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="menu-header">Dashboard</li> -->
+                        <li class="menu-header">Master Data
+                        <!-- <li class="nav-item dropdown"> -->
 
                             @php
                             $currentUrl = explode('/', Route::getCurrentRoute()->uri());

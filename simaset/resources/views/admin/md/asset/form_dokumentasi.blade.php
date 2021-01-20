@@ -21,13 +21,13 @@
             placeholder="" required="" value="{{isset($model) ? $model->keterangan : ''}}" data-id="keterangan"
             im-insert="true">
     </td>
-    <td style="width: 40%;padding: 30px">
+    <!-- <td style="width: 40%;padding: 30px">
         @php 
         $path = url('/storage/file/foto/'.$model->file_name);
         $defaultImg = url('/assets/icons/image.png');
         @endphp
         <img id="dokumentasi" src="{{isset($model) ? $path : $defaultImg}}" style="width: 100px">
-    </td>
+    </td> -->
 </tr>
 <script>
     $('#{{$name}}_{{$i}}_customFile').on("change", function () {

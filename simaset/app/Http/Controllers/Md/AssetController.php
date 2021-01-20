@@ -168,7 +168,15 @@ class AssetController extends BaseController
                 $model->listrik = $request->listrik;
                 $model->panjang = $request->panjang;
                 $model->hadap = $request->hadap;
-                
+                $model->namapenyewa = empty($request->nama_penyewa) ? '-' : $request->nama_penyewa;
+                $model->harga_jual = empty($request->harga_jual) ? '0' : $request->harga_jual;
+                $model->harga_sewa = empty($request->harga_sewa) ? '0' : $request->harga_sewa;
+                $model->satuan_jual = empty($request->satuan_jual) ? '-' : $request->satuan_jual;
+                $model->satuan_sewa = empty($request->satuan_sewa) ? '-' : $request->satuan_sewa;
+                // $model->jual = $request->harga;
+                $model->hargaa = empty($request->hargaa) ? '0' : $request->hargaa;
+                $model->tgl_sewa = empty($request->tgl_sewa) ? '-' : $request->tgl_sewa;
+                $model->masa_sewa = empty($request->masa_sewa) ? '0' : $request->masa_sewa;
                 $model->namapenyewa = $request->nama_penyewa;
                 $model->harga = $request->harga_jual & $request->harga_sewa ;
                 $model->harga_jual = $request->harga_jual;
@@ -179,7 +187,6 @@ class AssetController extends BaseController
                 $model->satuan_jual= $request->satuan_jual;
                 $model->tgl_sewa = $request->$tgl;
                 $model->masa_sewa = $request->masa_sewa;
-                $tgl = Carbon::createFromFormat('d/m/Y',$request->tgl_sewa)->format('d-m-Y');
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
                 $model->masa_akhir = $masa_akhir;
                 $model->lebar = $request->lebar;
@@ -306,6 +313,7 @@ class AssetController extends BaseController
         $log->status = $request->keterangan;
         $log->tgl_tawar = $request->tgl_tawar;
         $log->oleh = $request->oleh;
+        $log->nohp = $request->nohp;
 
         $log->save(); 
 

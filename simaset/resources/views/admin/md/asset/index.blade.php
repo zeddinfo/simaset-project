@@ -16,6 +16,10 @@
     table-layout: fixed; 
     word-wrap:break-word; 
     } */
+    .red {
+        
+        /* color:blue !important; */
+}
     .nav-tabs {
         border-bottom: 1px solid #dee2e6;
         background-color: #6777ef;
@@ -53,8 +57,7 @@
     <div class="section-header">
             <h1>SIMASET</h1>
             <div class="section-header-breadcrumb">
-                <!-- <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Modules</a></div> -->
+                
                 <div class="breadcrumb-item">Data Aset</div>
             </div>
         </div>
@@ -92,7 +95,7 @@
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-dijual-disewa" role="tab"
                                 aria-controls="tab-dijual-disewa" aria-selected="true"><i
-                                    class="fas fa-money-bill-wave-alt"></i> DijualatauDisewa</a>
+                                    class="fas fa-money-bill-wave-alt"></i> DIJUAL / DISEWA</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="tab-1" data-toggle="tab" href="#tab-maintenance" role="tab"
@@ -414,6 +417,7 @@
     $(document).ready(function () {
         $('#table-asset_filter').addClass('float-right');
         var table = $('#table-asset').DataTable({
+            bAutoWidth: false,
             processing: true,
             serverside: true,
             responsive: true,
@@ -458,13 +462,14 @@
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    width: '13%'
                 },
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
-                    width: '25%'
+                    // render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '15%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -483,7 +488,15 @@
             ],
             order: [
                 [0, 'desc']
-            ]
+            ],
+            "createdRow": function( row, data, dataIndex,cells ) {
+             if ( data ['status'] == "DIJUAL" ) {        
+         $(cells[6]).addClass('red');
+     
+       }
+      
+
+    }
         });
 
 
@@ -536,13 +549,13 @@
                 {
                     data: 'status',
                     name: 'status',
-                    
+                    width: '13%'
                 },
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
-                    width: '25%'
+                    // render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '15%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -610,13 +623,14 @@
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    width: '13%'
                 },
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
-                    width: '25%'
+                    // render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '15%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -683,13 +697,14 @@
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    width: '13%'
                 },
                 {
                     data: 'harga',
                     name: 'harga',
                     render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
-                    width: '25%'
+                    width: '15%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {
@@ -756,13 +771,14 @@
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    name: 'status',
+                    width: '13%'
                 },
                 {
                     data: 'harga',
                     name: 'harga',
-                    render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
-                    width: '25%'
+                    // render: $.fn.dataTable.render.number( '.', ',', 0, 'Rp. ' ),
+                    width: '15%'
                     // render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
                 },
                 {

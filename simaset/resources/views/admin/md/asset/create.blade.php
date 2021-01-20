@@ -10,15 +10,15 @@
     }
 
     .DIJUAL {
-        background: #fff;
+        background: ##FFFF99;
     }
 
     .DISEWAKAN {
-        background: #fff;
+        background: ##90EE90;
     }
 
     .MAINTENANCE {
-        background: #fff;
+        background: #00BFFF;
     }
 
     .DIJUALatauDISEWA {
@@ -113,13 +113,13 @@
                             <div class="form-row mt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="inputEmail4"><b>NAMA ASSET</b><span id="wajib"> *</span></label>
+                                        <label for="inputEmail4"><b>NAMA ASSET</b><span id="wajib"></span></label>
                                         <input type="text" class="form-control" id="nama_asset" name="namaasset"
                                             placeholder="Masukan Nama Asset ..."
                                             value="{{isset($model) ? $model->namaasset : ''}}">
                                     </div>
                                     <div class="form-group">
-                                        <label><b>ALAMAT ASSET</b><span id="wajib"> *</span></label>
+                                        <label><b>ALAMAT ASSET</b><span id="wajib"></span></label>
                                         <textarea class="form-control"
                                             name="alamat">{{isset($model) ? $model->alamat : ''}}</textarea>
                                     </div>
@@ -288,7 +288,7 @@
                                             </option>
                                             <option value="DIJUAL" id="dijual">DIJUAL</option>
                                             <option value="DISEWAKAN" id="disewakan">DISEWAKAN</option>
-                                            <option value="DIJUALatauDISEWA" id="jual-sewa">DIJUAL / DISEWAKAN</option>
+                                            <option value="DIJUAL/DISEWA" id="jual-sewa">DIJUAL / DISEWA</option>
                                             <option value="MAINTENANCE" id="maintenance">MAINTENANCE</option>
                                         </select>
 
@@ -322,7 +322,7 @@
                                                         <!-- <td>:</td> -->
                                                         <td>
                                                             <div class="input-group col-md-12">
-                                                                <input type="text" required
+                                                                <input type="text"
                                                                     class="form-control datepicker" id="condition"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
@@ -408,7 +408,7 @@
                                                         <!-- <td>:</td> -->
                                                         <td>
                                                             <div class="input-group col-md-12">
-                                                                <input type="text" required
+                                                                <input type="text"
                                                                     class="form-control datepicker" id="condition"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
@@ -468,7 +468,7 @@
 
                                         <div class="form-group mt-3" id="section-header" style="display: none">
                                             <div class="form-group row ml-3" id="penyewa">
-                                                <label for="inputEmail4" id="label-nama"><b>NAMA PENYEWA</b><span id="wajib"> *</span></label>
+                                                <label for="inputEmail4" id="label-nama"><b>NAMA PENYEWA</b><span id="wajib"></span></label>
                                             <input type="text" class="form-control" id="nama_penyewa" value="{{isset($model) ? $model->namapenyewa : ''}}"
                                                     placeholder="Masukan Nama Penyewa ..." style="width: 97%" name="nama_penyewa">
                                             </div>
@@ -482,7 +482,7 @@
                                                             <td>
                                                                 <div class="input-group">
                                                                 
-                                                                    <input type="text" required class="form-control datepicker"
+                                                                    <input type="text" class="form-control datepicker"
                                                                      id="tgl_sewa" name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
                                                                     <div class="input-group-append">
@@ -594,7 +594,7 @@
                                         {{-- <div class="DIJUALatauDISEWA box col-md-12 dijualataudisewa">
                                             <div class="form-group col-md-12">
 
-                                                <label><strong>DIJUAL/DISEWAKAN</strong></label>
+                                                <label><strong>DIJUALatauDISEWA</strong></label>
                                                 <br>
 
                                                 <!-- <table border="0" cellpadding="7" cellspacing="0"> -->
@@ -623,7 +623,7 @@
                                                         <!-- <td>:</td> -->
                                                         <td>
                                                             <div class="input-group col-md-12">
-                                                                <input type="text" required
+                                                                <input type="text" 
                                                                     class="form-control datepicker" id="tgl_sewa"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
@@ -730,7 +730,7 @@
                                                         <!-- <td>:</td> -->
                                                         <td>
                                                             <div class="input-group col-md-12">
-                                                                <input type="text" required
+                                                                <input type="text" 
                                                                     class="form-control datepicker" id="condition"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
@@ -791,7 +791,7 @@
                                         </div> --}}
 
                                         <div class="form-group mt-3" id="section-embde-google">
-                                            <label><b>EMBED GOOGLE MAPS</b><span id="wajib"> *</span></label>
+                                            <label><b>EMBED GOOGLE MAPS</b><span id="wajib"></span></label>
                                             <textarea class="form-control"
                                             
                                                 name="embed_google">{{isset($model) ? $model->embed_google : ''}}</textarea>
@@ -909,7 +909,7 @@
                                                     <th>No</th>
                                                     <th>Pilih Foto</th>
                                                     <th>Keterangan</th>
-                                                    <th>File Terupload</th>
+                                                    <!-- <th>File Terupload</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -917,7 +917,9 @@
                                                 @include('admin.md.asset.form_dokumentasi', ['i' => $i, 'model' =>
                                                 $dokumentasi,
                                                 'name' => 'dokumentasi'])
+                                                
                                                 @endforeach
+                                                
                                             </tbody>
                                         </table>
                                         {{-- <div id="delete"></div> --}}
@@ -1043,6 +1045,7 @@
         $('#condition').change(function(){
             var value = $(this).val();
             if(value == 'DISEWAKAN'){
+                
                 $('#section-header').show();
                 $('#penyewa').show();
                 $('#tgl_sewa').show();
@@ -1059,8 +1062,9 @@
                 // $('#label-masa').html('MULAI DIJUAL');
                 $('#section-harga').show();
                 $('#section-harga-jual').show();
+                $('#section-harga-sewa').hide();
                 $('#label-harga').html('HARGA JUAL');
-            } else if(value == 'DIJUALatauDISEWA'){
+            } else if(value == 'DIJUAL/DISEWA'){
                 $('#section-header').show();
                 $('#penyewa').show();
                 $('#tgl_sewa').show();
@@ -1075,8 +1079,9 @@
                 $('#tgl_sewa').show();
                 $('#label-nama').html('NAMA VENDOR');
                 $('#label-masa').html('MULAI MAINTENANCE');
-                $('#section-harga').hide();
-                $('#section-harga-sewa').hide();
+                $('#section-harga').show();
+                $('#section-harga-jual').show();
+                $('#section-harga-sewa').show();
                 $('#label-harga').html('HARGA JUAL');
             } else {
                 alert('Tidak Satupun Pilihan Benar')

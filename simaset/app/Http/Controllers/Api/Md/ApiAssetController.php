@@ -13,7 +13,7 @@ class ApiAssetController extends Controller
 {
     public function asset(Request $request){
         $list = Asset::where('is_delete', 0)->with('dokumentasi', 'perizinan')->get();
-
+        
         return response()->json([
             'status' => '200 OK',
             'message' => 'Get Asset Successfull',
@@ -72,7 +72,7 @@ class ApiAssetController extends Controller
         } else if($type == 'jual-sewa'){
             $list = Asset::where([
                 ['is_delete', 0],
-                ['status', 'DIJUALatauDISEWA']
+                ['status', 'DIJUAL/DISEWA']
                 ])
             ->orderby('id', 'desc')
             ->get();
@@ -133,23 +133,41 @@ class ApiAssetController extends Controller
         })
         ->editColumn('harga', function($data){
             if($data->status == 'MAINTENANCE'){
-                $harga = $data->harga_sewa. '' .$data->satuan_sewa;
-            } else if($data->status == 'DIJUALatauDISEWA') {
-                $harga = $data->harga_jual. '' .$data->satuan_jual. ' - ';
-                $harga .= $data->harga_sewa. '' .$data->satuan_sewa;
+                $harga = 'Rp '. number_format($data->harga_jual,0,',','.'). '' .$data->satuan_jual. ' / ';
+                $harga .= 'Rp '. number_format($data->harga_sewa,0,',','.'). '' .$data->satuan_sewa;
+                
+            } else if($data->status == 'DIJUAL / DISEWA') {
+                $harga = 'Rp '. number_format($data->harga_jual,0,',','.'). '' .$data->satuan_jual. ' / ';
+                $harga .= 'Rp '. number_format($data->harga_sewa,0,',','.'). '' .$data->satuan_sewa;
             } else if($data->status == 'DIJUAL') {
-                $harga = $data->harga_jual. '' .$data->satuan_jual;
+                $harga = 'Rp '. number_format($data->harga_jual,0,',','.'). '' .$data->satuan_jual;
             } else if($data->status == 'DISEWAKAN') {
-                $harga = $data->harga_sewa. '' .$data->satuan_sewa;
+                $harga = 'Rp '. number_format($data->harga_sewa,0,',','.'). '' .$data->satuan_sewa;
             } else {
-                $harga = '0';
+                $harga = 'Rp '. number_format($data->harga_jual,0,',','.'). '' .$data->satuan_jual. ' / ';
+                $harga .= 'Rp '. number_format($data->harga_sewa,0,',','.'). '' .$data->satuan_sewa;
             }
             return $harga;
+
         })
         ->editColumn('ukuran', function($data){
             $uk = $data->lebar * $data->panjang;
             return $uk;
         })
+        ->addColumn('status', function($data) {
+            if($data->status == 'DIJUAL'){
+                return '<label class="badge badge-success">DIJUAL</label>';
+            }else if($data->status == 'DISEWAKAN') {
+                return '<label class="badge badge-primary">DISEWAKAN</label>';
+            } 
+            else if($data->status == 'DIJUAL/DISEWA') {
+                return '<label class="badge badge-warning">DIJUAL / DISEWA</label>';
+            } 
+            else if($data->status == 'MAINTENANCE') {
+                return '<label class="badge badge-danger">MAINTENANCE</label>';
+            } 
+        })
+        ->rawColumns(['action','status'])
         ->make(true);
     }
     public function chart(){

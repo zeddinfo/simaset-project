@@ -80,7 +80,7 @@
             <pre>
             Nama Asset      ->  {{$model->namaasset}}<br>
             Status          ->  {{$model->status}}<br>
-            Lokasi          -> {{$model->alamat}}<br>
+            Lokasi          ->  {{$model->alamat}}<br>
             LT / LB         ->  {{$model->lt}} / {{$model->lb}}<br>
             Lebar x Panjang ->  {{$model->lebar}} x {{$model->panjang}}<br>
             Ruang / KM      ->  {{$model->kamar}} / {{$model->km}}<br>

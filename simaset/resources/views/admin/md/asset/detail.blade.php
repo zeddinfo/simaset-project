@@ -23,9 +23,9 @@
     <div class="section-header">
         <h1>Detail Asset</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Modules</a></div>
-            <div class="breadcrumb-item">Detail Asset</div>
+            <!-- <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="#">Modules</a></div> -->
+            <!-- <div class="breadcrumb-item">Detail Asset</div> -->
         </div>
     </div>
 
@@ -83,11 +83,12 @@
                                     </div>
                                     <div class="modal-body col-md-12">
                                     <div class="form-row">
-                                            <textarea class="form-control col-md-4" placeholder="Keterangan" id="keterangan" name="keterangan"></textarea>
+                                            <textarea class="form-control col-md-3" placeholder="Keterangan" id="keterangan" name="keterangan"></textarea>
                                             <!-- <label>OLEH</label>
                                             <textarea class="form-control col-md-3" placeholder="oleh" id="oleh" name="oleh"></textarea> -->
-                                            <textarea class="form-control col-md-4" placeholder="Oleh" id="oleh" name="oleh"></textarea>
-                                            <div class="input-group col-md-4" >
+                                            <textarea class="form-control col-md-3" placeholder="Oleh" id="oleh" name="oleh"></textarea>
+                                            <textarea class="form-control col-md-3" placeholder="No Telepon" id="nohp" name="nohp"></textarea>
+                                            <div class="input-group col-md-3" >
                                                     <input type="text" name="tgl_tawar"  id="tgl_tawar" placeholder="tanggal" class="input-group date form-control">
                                                     <span class="input-group-addon">
                                                         <i class="glyphicon glyphicon-calendar"></i>
@@ -131,6 +132,7 @@
                                 <div class="tab-pane fade show active" id="tab-asset" role="tabpanel"
                                     aria-labelledby="tab-1">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-3 col-form-label "><b>NAMA ASSET</b>
                                             </label>
@@ -138,6 +140,15 @@
                                                 <input type="text" class="form-control bg-white" id="inputEmail3"
                                                     placeholder="-" readonly
                                                     value="{{isset($model) ? $model->namaasset : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPassword3"
+                                                class="col-sm-3 col-form-label"><b>STATUS</b></label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? $model->status : ''}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -156,6 +167,15 @@
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
                                                     value="{{isset($model) ? $model->lt.' M2 '. ' /  ' .$model->lb. ' M2' : ''}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPassword3" class="col-sm-3 col-form-label"><b>Panjang / Lebar</b>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control bg-white" id="inputPassword3"
+                                                    placeholder="-" readonly
+                                                    value="{{isset($model) ? $model->panjang.' M2 '. ' /  ' .$model->lebar. ' M2' : ''}}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -221,7 +241,7 @@
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
                                                     placeholder="-" readonly
                                                     value="{{isset($model) ? $model->satuan_sewa : '-'}}">
-                                            </div>
+                                            </div></div>
                                         </div>
                                     </div>
                                 </div>
@@ -229,6 +249,7 @@
                                 <div class="tab-pane fade show" id="tab-perizinan" role="tabpanel"
                                     aria-labelledby="tab-1">
                                     <div class="card-body">
+                                    <!-- <div class="table-responsive"> -->
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-3 col-form-label "><b>LEGALITAS</b>
                                             </label>
@@ -268,10 +289,12 @@
                                         @include('admin.md.asset.component.perizinan2');
                                         @endif
                                     </div>
+                                    
                                 </div>
 
                                 <div class="tab-pane fade show" id="tab-tenant" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="form-group row">
                                             <label for="inputEmail3" class="col-sm-3 col-form-label "><b>NAMA
                                                     PENYEWA</b>
@@ -288,7 +311,8 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control bg-white" id="inputPassword3"
                                                     placeholder="" readonly
-                                                    value="{{isset($model) ? $model->tgl_sewa: ''}}">
+                                                    value="{{isset($model) ? $model->tgl_sewa: '00 - 00 - 0000'}}">
+                                                    
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -308,12 +332,14 @@
                                                     placeholder="" readonly
                                                     value="{{isset($model) ? $model->masa_akhir : '00 - 00 - 0000'}}">
                                             </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="tab-foto" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="form-group row">
                                             @foreach ($model->dokumentasi as $r)
                                             <div class="col-md-3">
@@ -329,25 +355,30 @@
                                             </div>
                                             @endforeach
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="tab-map" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
+                                    <div class="table-responsive">
                                         <div class="form-group row">
                                             <iframe src="{{isset($model) ? $model->embed_google : '-'}}" width="100%"
                                                 height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                                        </div>
+                                        </div></div>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="tab-keterangan" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="card-body">
                                         <div class="form-group row">
+                                        <div class="table-responsive">
                                             <button class="btn btn-primary" type="button" id="btn-keterangan"><i
                                                     class="fas fa-plus"></i> Tambah
                                                 Keterangan</button>
                                         </div>
+                                        </div>
+                                        <div class="table-responsive">
                                             <table class="table table-striped table-bordered" id="logTable">
                                                 <thead>
                                                     <tr>
@@ -355,14 +386,15 @@
                                                         <th>Status</th>
                                                         <th>Tanggal Tawar</th>
                                                         <th>Penawar</th>
+                                                        <th>No Telepon</th>
                                                         <th>by</th>
+                                                        <th>Created_at</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                </tbody>
+                                                
                                             </table>
-                                     
-                                    </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -393,11 +425,12 @@
             dataType: 'JSON',
             type: 'POST',
             success: function (res) {
-                toastr.info('berhasil disimpan,silahkan di cek');
+                toastr.info('data berhasil disimpan,silahkan di cek');
                 $("#logTable").DataTable().ajax.reload();
                 $('#exampleModal').modal('hide');
                 $("#logTable").DataTable().ajax.reload();
                 $('#keterangan').text('');
+                
 
             }
         });
@@ -417,9 +450,10 @@
       });
      
       $('#logTable').DataTable({
-           bAutoWidth: false,
+            bAutoWidth: false,
             processing: true,
             serverSide: true,
+            
             ajax: {
                 url: '{{url("api/listLog/list")}}',
                 type: 'GET',
@@ -431,6 +465,7 @@
             columns: [{
                     data: 'id',
                     name: 'id'
+                    
                 },
                 {
                     data: 'status',
@@ -445,8 +480,17 @@
                     name: 'oleh'
                 },
                 {
+                    data: 'nohp',
+                    name: 'nohp'
+                },
+                {
                     data: 'username',
                     name: 'username'
+                }
+                ,
+                {
+                    data: 'created_at',
+                    name: 'created_at'
                 }
             ],
             order: [

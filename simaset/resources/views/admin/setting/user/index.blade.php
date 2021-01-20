@@ -186,6 +186,7 @@ swal({
         });
 
         var id = $('#id').val();
+        // alert(id);
 
         if (id == '' || id == undefined) {
             $.ajax({
