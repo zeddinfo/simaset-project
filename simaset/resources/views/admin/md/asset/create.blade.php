@@ -110,6 +110,7 @@
                     <div class="card-body">
                         <form action="{{url()->current()}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <div class="table-responsive">
                             <div class="form-row mt-3">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -124,15 +125,15 @@
                                             name="alamat">{{isset($model) ? $model->alamat : ''}}</textarea>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <label><strong>UKURAN</strong></label>
-                                        <table border="0" cellpadding="7" cellspacing="0">
+                                        <table border="0" cellpadding="10" cellspacing="0">
                                             <tbody>
                                                 <tr>
                                                     <td>&bull; Luas Tanah</td>
-                                                    <td>:</td>
+                                                    <td> : </td>
                                                     <td>
-                                                        <div class="input-group col-md-12">
+                                                        <div class="input-group col-md-8">
                                                             <input type="text" class="form-control" placeholder=""
                                                                 name="lt" id="lt"
                                                                 value="{{isset($model) ? $model->lt : ''}}">
@@ -144,9 +145,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>&bull; Luas Bangunan</td>
-                                                    <td>:</td>
+                                                    <td> : </td>
                                                     <td>
-                                                        <div class="input-group col-md-12">
+                                                        <div class="input-group col-md-8">
                                                             <input type="text" class="form-control" placeholder=""
                                                                 name="lb" id="lb"
                                                                 value="{{isset($model) ? $model->lb : ''}}">
@@ -165,7 +166,7 @@
                                                             id="lb" style="width: 60px">
                                                         <input type="text" class="wide-lb col-md-6" placeholder=""
                                                             name="panjang"
-                                                            value="{{isset($model) ? $model->panjang : ''}}" id="lb"
+                                                            value="{{isset($model) ? $model->panjang : ''}}" id="lb" 
                                                             style="width: 82px;margin-right: -200px"><small
                                                             id="x">X</small><small id="m"><b>M</b></small>
                                                     </td>
@@ -326,7 +327,7 @@
                                                                     class="form-control datepicker" id="condition"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
-                                                                    value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                                    value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                 <div class="input-group-append">
                                                                     <button class="btn btn-primary" type="button">
                                                                         <i class="fa fa-calendar"
@@ -484,7 +485,7 @@
                                                                 
                                                                     <input type="text" class="form-control datepicker"
                                                                      id="tgl_sewa" name="tgl_sewa"
-                                                                    placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                                    placeholder="Silahkan Pilih Tanggal ..." value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-primary" type="button">
                                                                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -627,7 +628,7 @@
                                                                     class="form-control datepicker" id="tgl_sewa"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
-                                                                    value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                                    value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                 <div class="input-group-append">
                                                                     <button class="btn btn-primary" type="button">
                                                                         <i class="fa fa-calendar"
@@ -734,7 +735,7 @@
                                                                     class="form-control datepicker" id="condition"
                                                                     name="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
-                                                                    value="{{isset($model) ? $model->mulai_sewa : ''}}">
+                                                                    value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                 <div class="input-group-append">
                                                                     <button class="btn btn-primary" type="button">
                                                                         <i class="fa fa-calendar"
@@ -798,6 +799,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <template class="tmp-line">@include('admin.md.asset.form_perizinan', [
@@ -909,6 +911,8 @@
                                                     <th>No</th>
                                                     <th>Pilih Foto</th>
                                                     <th>Keterangan</th>
+                                                    <th>File Preview</th>
+                                                    <th>Aksi</th>
                                                     <!-- <th>File Terupload</th> -->
                                                 </tr>
                                             </thead>
@@ -920,9 +924,10 @@
                                                 
                                                 @endforeach
                                                 
+                                                
                                             </tbody>
                                         </table>
-                                        {{-- <div id="delete"></div> --}}
+                                        <div id="delete"></div> 
                                     </div>
                                 </div>
 
@@ -980,6 +985,20 @@
 
     function autoNumeric() {
         $(".numeric").inputmask('decimal');
+    }
+
+    function removeLine(index){
+        var $tr = $('[data-index-dokumentasi="' + index + '"]');
+        var line_id = $tr.find('[data-id="id"]').val();
+        if (line_id !== '') {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'deleteLine[]',
+                value: line_id
+            }).appendTo('#delete');
+        }
+        $tr.remove();
+        renumberLineDokumentasi();
     }
 
     function addLine() {
@@ -1072,7 +1091,7 @@
                 $('#label-masa').html('MASA SEWA');
                 $('#section-harga-sewa').show();
                 $('#section-harga-jual').show();
-                $('#label-harga').html('HARGA SEWA');
+                $('#label-harga').html('HARGA JUAL/SEWA');
             } else if(value == 'MAINTENANCE'){
                 $('#section-header').show();
                 $('#penyewa').show();
@@ -1082,7 +1101,7 @@
                 $('#section-harga').show();
                 $('#section-harga-jual').show();
                 $('#section-harga-sewa').show();
-                $('#label-harga').html('HARGA JUAL');
+                $('#label-harga').html('HARGA JUAL/SEWA');
             } else {
                 alert('Tidak Satupun Pilihan Benar')
             }

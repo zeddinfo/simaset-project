@@ -2,7 +2,7 @@
 namespace App\Helpers;
 
 class UtilCompressImage {
-    public static function compressImage($source, $destination, $quality){
+    public static function compressImage($source, $destination, $quality = 75){
         // dd($source, $destination, $quality);
         $info = getimagesize($source);
         if($info['mime'] == 'image/jpeg')

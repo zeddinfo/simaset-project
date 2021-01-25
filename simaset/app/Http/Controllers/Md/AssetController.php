@@ -100,6 +100,10 @@ class AssetController extends BaseController
                     }
                 }
 
+                if(isset($request->deleteLine)){
+                    Dokumentasi::whereIn('id', $request->deleteLine)->where('id_asset', $model->id)->delete();
+                }
+
                 if($request->dokumentasi){
                     foreach($request->dokumentasi as $r){
                         $file = $r['file'];
@@ -215,6 +219,10 @@ class AssetController extends BaseController
                     }
                 }
 
+                if(isset($request->deleteLine)){
+                    Dokumentasi::whereIn('id', $request->deleteLine)->where('id_asset', $model->id)->delete();
+                }
+
                 if($request->dokumentasi){
                     foreach($request->dokumentasi as $r){
                         if(isset($r['file'])){
@@ -228,7 +236,7 @@ class AssetController extends BaseController
                             // dd($fileNameDB);
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
-                            $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
+                            $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 90);
                             // UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                              /*Remove file Original*/
                              $dokumentasi->line_no = $r['line_no'];
