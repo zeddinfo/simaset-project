@@ -325,7 +325,7 @@
                                                             <div class="input-group col-md-12">
                                                                 <input type="text"
                                                                     class="form-control datepicker" id="condition"
-                                                                    name="tgl_sewa"
+                                                                    name="tgl_sewa" id="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
                                                                     value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                 <div class="input-group-append">
@@ -410,8 +410,8 @@
                                                         <td>
                                                             <div class="input-group col-md-12">
                                                                 <input type="text"
-                                                                    class="form-control datepicker" id="condition"
-                                                                    name="tgl_sewa"
+                                                                    class="form-control datepicker" 
+                                                                    name="tgl_sewa" id="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
                                                                     value="{{isset($model) ? $model->mulai_sewa : ''}}">
                                                                 <div class="input-group-append">
@@ -733,7 +733,7 @@
                                                             <div class="input-group col-md-12">
                                                                 <input type="text" 
                                                                     class="form-control datepicker" id="condition"
-                                                                    name="tgl_sewa"
+                                                                    name="tgl_sewa" id="tgl_sewa"
                                                                     placeholder="Silahkan Pilih Tanggal ..."
                                                                     value="{{isset($model) ? $model->tgl_sewa : ''}}">
                                                                 <div class="input-group-append">
@@ -912,8 +912,8 @@
                                                     <th>Pilih Foto</th>
                                                     <th>Keterangan</th>
                                                     <th>File Preview</th>
+                                                    <th>File Terupload</th>
                                                     <th>Aksi</th>
-                                                    <!-- <th>File Terupload</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1039,11 +1039,12 @@
         $('.datepicker').datepicker({
             autoclose: true,
             format: "dd/mm/yyyy",
-            immediateUpdates: true,
+            // immediateUpdates: true,
             // todayBtn: true,
-            // todayHighlight: true,
+            todayHighlight: true,
             // startDate: "today",
-        }).datepicker("setDate", "0");
+        });
+    // }).datepicker("setDate", "0");
 
         $(".angka").keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {

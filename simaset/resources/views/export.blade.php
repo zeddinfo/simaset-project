@@ -19,7 +19,7 @@
         }
         .container{
             margin:0 auto;
-            width:100%;
+            
             height:auto;
             background-color:#fff;
             text-align: center;
@@ -34,27 +34,28 @@
             border:1px solid #333;
             border-collapse:collapse;
             margin:0 auto;
-            width:100%;
             text-align: center;
         }
         pre{
             border:1px solid #333;
             border-collapse:collapse;
             margin:0 auto;
-            width:100%;
+            table-layout: auto;
+  width: 200px; 
             text-align: left;
         }
         td, tr, th{
             padding:12px;
             border:1px solid #333;
             margin-left:100px;
-            width:70%;
+           
             text-align: left;
         }
         th{
             background-color: #969da3;
             text-align: center;
             color:#ffffff;
+            
         }
         h4, p{
             margin:1px;
@@ -64,10 +65,10 @@
     </style>
 </head>
 <body>
-             <div class="container">
+             <div class="container" >
         <table>
                 <tr> 
-                    <th colspan="4">
+                    <th colspan="4" >
                         <h4>SIA-{{$model->id}}  </h4>
                     </th>
                     <!-- <th colspan="2">
@@ -76,8 +77,8 @@
                 </tr>
 
                 <tr>   
-                    <td colspan="4">
-            <pre>
+                    <td colspan="4" >
+            <pre >
             Nama Asset      ->  {{$model->namaasset}}<br>
             Status          ->  {{$model->status}}<br>
             Lokasi          ->  {{$model->alamat}}<br>
@@ -104,7 +105,7 @@
 
             <table>
                 <tr bgcolor='#FFFAFA'>
-                    <td colspan="2">
+                    <td colspan="2" >
                         <center>
                           FOTO ASSET
                           <center>

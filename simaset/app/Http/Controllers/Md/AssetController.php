@@ -189,7 +189,7 @@ class AssetController extends BaseController
                 $model->satuan_jual = $request->satuan_jual;
                 // $model->jual = $request->harga;
                 $model->satuan_jual= $request->satuan_jual;
-                $model->tgl_sewa = $request->$tgl;
+                
                 $model->masa_sewa = $request->masa_sewa;
                 $masa_akhir = Carbon::parse($tgl)->addYears($request->masa_sewa)->format('Y-m-d');
                 $model->masa_akhir = $masa_akhir;
@@ -236,7 +236,7 @@ class AssetController extends BaseController
                             // dd($fileNameDB);
                             $path = $file->storeAs('public/file/foto/big', $fileName);
                             
-                            $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 90);
+                            $upload =  UtilUploadFoto::UploadFoto($file, $basePath, 75);
                             // UtilCompressImage::compressImage($filetemp, $fileDest, 75);
                              /*Remove file Original*/
                              $dokumentasi->line_no = $r['line_no'];

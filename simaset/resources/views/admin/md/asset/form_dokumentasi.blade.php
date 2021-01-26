@@ -21,7 +21,7 @@
             placeholder="" required="" value="{{isset($model) ? $model->keterangan : ''}}" data-id="keterangan"
             im-insert="true">
     </td>
-    <td style="width: 40%;padding: 30px">
+    <td style="padding: 30px">
         @php 
         $path = url('/storage/file/foto/'.$model->file_name);
         $defaultImg = url('/assets/icons/image.png');
@@ -32,13 +32,20 @@
         
         <!-- <img id="{{$name}}_{{$i}}_image-preview" alt="image-preview" src="{{isset($model->dokumentasi) ? isset($model->dokumentasi) : ''}}" style="width: 100px"/> -->
     </td>
-    <td>
-    <button type="button" class="btn btn-danger" id="" style="" onclick="removeLine({{$i}})"><i
-                class="fa fa-times"></i> </button> 
-    </td>
+    
     <td>
     <!-- image yang ter upload pak woy -->
-   
+    
+    @php 
+    $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
+    @endphp
+    
+       <!-- sementara di komen -->
+        <img src="{{isset($model->dokumentasi) ? $link: $link.url('/'.$model->url)}}" style="width: 100px">
+           </td>
+           <td>
+    <button type="button" class="btn btn-danger" id="" style="" onclick="removeLine({{$i}})"><i
+                class="fa fa-times"></i> </button> 
     </td>
 </tr>
 

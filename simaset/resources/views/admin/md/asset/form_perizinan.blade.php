@@ -28,6 +28,6 @@
         autoclose: true,
         format: "dd-mm-yyyy",
         immediateUpdates: true,
-        
-    }).datepicker("setDate", "0");
+        todayHighlight: true,
+    });
 </script>
