@@ -87,7 +87,7 @@ class RoleController extends BaseController
     }
 
     public function listRole(){
-        $list = Role::get();
+        $list = Role::where('is_delete', 0)->get();
 
         return DataTables::of($list)
         ->addIndexColumn()
@@ -151,5 +151,16 @@ class RoleController extends BaseController
             }
         }
         return view('admin.setting.role.create', compact('model', 'menu', 'role', 'title'));
+    }
+    public function delete(Request $request, $id){
+        $model = Role::query()->where('id', $request->id)->first();
+        // dd($model);
+        
+        $model->is_delete = '1';
+        $model->save();
+
+        // dd($model,$model->id_user);
+
+        
     }
 }

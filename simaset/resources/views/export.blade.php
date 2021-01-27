@@ -99,10 +99,6 @@
                 <caption>
                 <br>
             </caption> 
-
-
-                
-
             <table>
                 <tr bgcolor='#FFFAFA'>
                     <td colspan="2" >
@@ -112,20 +108,18 @@
                           <br><br>
                        
                        @foreach ($model->dokumentasi as $r)
-                                                <!-- <span>{{$r->file_name}}</span> -->
-                                                @php 
-                                                    $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
-                                                @endphp
-                                                <img src="{{$link.$r->url}}"
-                                                    style="width: 200px;height: 200 px;margin: 5px;border: 1px solid black;border-radius: 5px;">
-                                            
-                        @endforeach
-                      </center>
+                            <!-- <span>{{$r->file_name}}</span> -->
+                            @php 
+                            $link = "http://localhost/sim/sim/simaset/simaset-project/simaset/";
+                            @endphp
+                            <img src="{{$link.$r->url}}"
+                            style="width: 200px;height: 200 px;margin: 5px;
+                                    border: 1px solid black;border-radius: 5px;">      
+                            @endforeach
+                        </center>
                     </td>
                 </tr>
-                
             </table>
-        
-    </div>
-</body>
+        </div>
+    </body>
 </html>

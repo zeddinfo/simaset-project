@@ -308,7 +308,7 @@
                                     @if($currentUrl == $s->link)
                                     <script>
                                       $('#collapse{{$key}}').addClass('show');
-                                      // $('.dropdown{{$key}}').addClass(' menu');
+                                    //   $('.dropdown{{$key}}').addClass(' menu');
                                     </script>
                                     @endif
                                   @endforeach

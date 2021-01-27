@@ -66,6 +66,43 @@
 
 @section('script')
     <script>
+
+function hapus(id) {
+
+swal({
+    title: 'Apakah Anda Yakin?',
+    
+    imageUrl: '{{url("assets/icons/remove.svg")}}',
+    imageWidth: 200,
+    imageHeight: 200,
+    showCancelButton: true,
+    confirmButtonColor: '#FF0000',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Hapus!'
+}, function (isConfirm) {
+    if (isConfirm) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: `{{url('setting/role/delete/${id}')}}`,
+            type: 'POST',
+            success: function (res) {
+                toastr.info('User berhasil dihapus');
+                $('#table-role').DataTable().ajax.reload();
+                
+            }
+        });
+    } else {
+        return
+    }
+})
+}
+
+
         $(document).ready(function(){
             $('#table-role').DataTable({
                 processing: true,
